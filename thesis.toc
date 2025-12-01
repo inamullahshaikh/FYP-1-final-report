@@ -1,0 +1,54 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduction [AS PER SCOPE DOCUMENT]}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Existing Solutions}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Statement}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Scope}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Modules}{3}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Module 1}{3}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Module 2}{3}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Example:}{4}{subsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.3.1}Inventory Management Module}{4}{subsubsection.1.4.3.1}%
+\contentsline {section}{\numberline {1.5}Work Division}{4}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Project Requirements [AS PER FYP1 MID REPORT]}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Use-case/Event Response Table/Storyboarding}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Functional Requirements}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Module 1}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Module 2}{6}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Non-Functional Requirements}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Usability}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Performance}{7}{subsection.2.3.2}%
+\contentsline {chapter}{\numberline {3}System Overview [AS PER FYP1 MID REPORT]}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Architectural Design}{9}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Data Design}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Domain Model}{10}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Design Models [UPTO THE CURRENT ITERATION ONLY]}{11}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Implementation and Testing}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Current Progress}{13}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Front-End}{13}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Back-End}{14}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Next Steps}{16}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Algorithm Design}{17}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Admin Dashboard Aggregation}{17}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Report Generation Workflow (Planned Design)}{18}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Investigator Violation Review Flow}{19}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}External APIs and Libraries}{19}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Testing Details}{19}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Unit Testing}{20}{subsection.4.4.1}%
+\contentsline {chapter}{References}{30}{chapter*.8}%
+\contentsline {chapter}{\numberline {A}Appendices}{31}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix A}{31}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram example (Online Shopping System)}{31}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}Detail Use Case Example}{32}{subsection.A.1.2}%
+\contentsline {subsection}{\numberline {A.1.3}Event-Response Table for a Highway Intersection}{33}{subsection.A.1.3}%
+\contentsline {subsection}{\numberline {A.1.4}Story Board Example For Android App}{34}{subsection.A.1.4}%
+\contentsline {section}{\numberline {A.2}Appendix B}{35}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Domain Model Example For Online Shopping}{35}{subsection.A.2.1}%
+\contentsline {section}{\numberline {A.3}Appendix C}{36}{section.A.3}%
+\contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{36}{subsection.A.3.1}%
+\contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{37}{subsection.A.3.2}%
+\contentsline {section}{\numberline {A.4}Appendix D}{38}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{38}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{39}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{40}{subsection.A.4.3}%
+\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{40}{subsection.A.4.4}%
+\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{41}{subsection.A.4.5}%

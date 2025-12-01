@@ -1,0 +1,65 @@
+\chapter{System Overview [AS PER FYP1 MID REPORT]}
+
+
+
+Give a general description of the functionality, context, and design of your project.
+Provide any background information if necessary.
+\section{Architectural Design}
+Develop a modular program structure and explain the relationships between the modules to achieve the complete functionality of the system. This is a high-level overview of how the system’s modules collaborate with each other to achieve the desired functionality. 
+
+Don’t go into too much detail about the individual subsystems. The main purpose is to gain a general understanding of how and why the system was decomposed, and how the individual parts work together.
+
+Provide a diagram showing the major subsystems and their connections.
+
+\begin{itemize}
+    \item In the initial design stage, create a Box and Line Diagram for a simpler representation of the systems.
+    \item After finalizing the architecture style/pattern diagram (MVC, Client-Server, Layered, Multi-tiered), create a detailed mapping of modules/components to each part of the architecture.
+\end{itemize}
+
+To view examples of box and line diagrams and architecture styles, see Appendix C.
+
+\section{Data Design}
+Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. 
+
+List any databases or data storage items.
+\section{Domain Model}
+The domain model is a conceptual representation of the various entities, their attributes, and the relationships between them within the system. It serves as a bridge between the requirements and the design of the software, providing a clear understanding of the business domain and how it interacts with the system being developed. 
+
+A domain model typically includes key components such as:
+
+\begin{itemize}
+    \item \textbf{Entities}: These are the primary objects within the domain that hold data and represent real-world concepts. Each entity is defined by its attributes and behaviors.
+    
+    \item \textbf{Attributes}: Characteristics or properties of the entities that define their state. For example, a "Customer" entity might have attributes such as \texttt{customerID}, \texttt{name}, \texttt{email}, and \texttt{address}.
+    
+    \item \textbf{Relationships}: These illustrate how different entities interact with each other. Relationships can be one-to-one, one-to-many, or many-to-many, depending on how entities are associated.
+    
+    \item \textbf{Associations}: Connections between entities that help clarify their interdependencies. For instance, a "Product" may be associated with a "Category," indicating the type of product it belongs to.
+\end{itemize}
+
+By constructing a domain model, developers can better understand the system's requirements, facilitate communication among stakeholders, and guide the subsequent design and implementation phases. It also aids in identifying potential issues early in the development process, ensuring a more robust architecture.
+
+An example of a domain model for an online shopping system is provided in Appendix B.
+
+\section{Design Models [UPTO THE CURRENT ITERATION ONLY]}
+Create design models as are applicable to your system. Provide detailed descriptions with each of the models that you add. Also ensure visibility of all diagrams. 
+
+\textbf{Design Models for Object Oriented Development Approach}
+
+The applicable models for the project using object oriented development approach may include:
+
+•	Activity Diagram\\
+•	Class Diagram\\
+•	Class-level Sequence Diagram\\
+•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
+
+\textbf{Design Models for Procedural Approach}
+
+The applicable models for the project using procedural approach may include:
+
+•	Activity Diagram\\
+•	Data Flow Diagram (data flow diagram should be extended to 2-3 levels. It should clearly list all processes, their sources/sinks and data stores.)\\
+•	System-level Sequence Diagram\\
+•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
+
+Examples of above diagrams are given in Appendix D.

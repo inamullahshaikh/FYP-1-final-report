@@ -1,0 +1,331 @@
+\chapter{Implementation and Testing}
+
+This chapter describes the current implementation status of the \textbf{ForeSyte} AI Exam Surveillance System and the testing performed up to this iteration. The focus of this phase is on the \textbf{Admin} and \textbf{Investigator} dashboards and their supporting backend services. Computer-vision based monitoring and the Student Portal are planned components and therefore remain out of scope for this iteration.
+
+\section{Current Progress}
+
+\subsection{Front-End}
+
+The front-end of ForeSyte is implemented as a modern single-page application using React, TypeScript, Vite, and Tailwind CSS. The interface is split into role-specific areas so that administrators and investigators see different dashboards and workflows.
+
+\subsubsection*{Admin Dashboard}
+
+The main admin dashboard presents a high-level overview of system activity. It displays:
+\begin{itemize}
+    \item \textbf{Active Exams} -- number of exams scheduled for the current or future dates.
+    \item \textbf{Incidents Detected} -- count of student activity records (currently using placeholder data; actual cheating detection is planned for future iterations).
+    \item \textbf{Students Monitored} -- number of students currently under surveillance based on seating plans and exam sessions.
+    \item \textbf{Average Exam Duration} -- average exam length computed from start and end times.
+\end{itemize}
+
+These statistics are fetched via the backend \texttt{/dashboard/stats} endpoint with a period parameter (\texttt{today}, \texttt{week}, or \texttt{month}). The dashboard also includes:
+\begin{itemize}
+    \item An \textbf{Activity Overview} bar chart that compares the number of incidents and exams across time buckets using the \texttt{/dashboard/activity} endpoint.
+    \item A \textbf{Recent Incidents} panel that lists the latest flagged student activities with severity tags using the \texttt{/dashboard/recent-incidents} endpoint.
+    \item A \textbf{Quick Actions} area that links to live monitoring, reports, user management, and system settings.
+    \item A \textbf{System Status} section that summarizes the health of the detection pipeline, camera network, analytics, and database.
+\end{itemize}
+
+The Admin Dashboard is therefore fully wired to the backend aggregation APIs. Loading states, error handling, and period switching are implemented in the front-end.
+
+\subsubsection*{Investigator Portal}
+
+The Investigator Portal is implemented as a separate area in the React application, with its own header and sidebar components to clearly separate workflows from the admin role.
+
+\begin{itemize}
+    \item The \textbf{Investigator Dashboard} displays summary cards for total violations, pending reviews, violations resolved today, and active exams. It also lists recent activities (e.g., phone usage, invigilator negligence, unauthorized movement) with severity and status badges and a period filter (\texttt{today}, \texttt{week}, \texttt{month}).
+    \item The \textbf{Reports Page} shows a grid of generated reports with metadata such as report type (incident/exam), exam name, number of violations, generation date, and author. It provides filters for text search and report type, and a modal workflow for configuring a new report (type, export format, inclusion of video evidence links).
+\end{itemize}
+
+At this iteration, these investigator views use mock data to validate layout and interactions while backend report listing endpoints are being finalized. However, the UI contracts, filter behaviour, and state management are implemented and ready to be connected to live APIs.
+
+\subsection{Back-End}
+
+The backend is built with FastAPI and SQLAlchemy on top of PostgreSQL, with MongoDB used for flexible logging and high-volume events. Authentication uses JWT-based tokens with role-based access control (RBAC) to differentiate between Admin, Investigator, Invigilator, and Student users.
+
+Two backend modules are particularly important for this iteration:
+
+\begin{itemize}
+    \item \textbf{Dashboard API (\texttt{/dashboard})}: aggregates data for the Admin and Investigator dashboards.
+    \item \textbf{Reports API (\texttt{/reports})}: manages report generation and retrieval for incidents and exams.
+\end{itemize}
+
+\subsubsection*{Dashboard API}
+
+The \texttt{/dashboard/stats} endpoint computes:
+\begin{itemize}
+    \item \textbf{Active Exams}: exams scheduled for the current or future dates.
+    \item \textbf{Incidents Detected}: count of \texttt{StudentActivity} records in the selected period (note: actual cheating detection via computer vision is not yet implemented; this metric reflects activity records that would be populated by the detection pipeline in future iterations).
+    \item \textbf{Students Monitored}: distinct count of students with seat assignments in active exams.
+    \item \textbf{Average Exam Duration}: average duration (in minutes) based on start and end times of exams in the selected period.
+    \item \textbf{Trends}: percentage changes for incidents, students, and exams when compared to the previous period.
+\end{itemize}
+
+The \texttt{/dashboard/activity} endpoint returns a sequence of time buckets, each containing the number of incidents and exams in that interval. For \texttt{today}, 4-hour slots are used; for \texttt{week} and \texttt{month}, daily buckets are used. The \texttt{/dashboard/recent-incidents} endpoint returns the most recent student activities, joined with student information to show names, types, severity levels, timestamps, and model confidence values.
+
+All dashboard endpoints enforce RBAC policies and only allow access to users with \texttt{admin} or \texttt{investigator} roles.
+
+\subsubsection*{Reports API}
+
+The \texttt{/reports} router provides the API structure for managing report records. \textbf{Note:} The actual file generation (PDF, CSV, Excel) is not yet implemented in this iteration; the endpoints currently create database records and return metadata, but do not produce downloadable report files.
+
+\begin{itemize}
+    \item Standard CRUD endpoints (\texttt{POST /}, \texttt{GET /}, \texttt{GET /\{id\}}, \texttt{PUT /\{id\}}, \texttt{DELETE /\{id\}}) operate on the \texttt{Report} model and validate related \texttt{Violation} and \texttt{Investigator} records. These endpoints are functional for managing report metadata.
+    \item \texttt{POST /reports/incidents} accepts a list of incident IDs, desired export format, and whether to include video links. It validates and resolves the incident IDs into \texttt{StudentActivity} records, ensures there is an associated \texttt{Violation}, creates a new \texttt{Report} entry in the database, and returns a JSON response containing the report ID, file path, format, and status. \textbf{The actual report file generation (PDF/CSV/Excel) is planned for a future iteration.}
+    \item \texttt{POST /reports/exams/\{exam\_id\}} is designed to generate an exam-level report by aggregating all \texttt{StudentActivity} entries for the given exam and producing a \texttt{Report} record. \textbf{Currently, this endpoint creates the database record but does not generate the actual report file.}
+\end{itemize}
+
+These APIs establish the data model and workflow structure for report management, but the actual document generation logic will be implemented in subsequent iterations.
+
+\subsection{Next Steps}
+
+The completed work in this iteration establishes the core dashboard infrastructure and API structure for reports. Upcoming work will:
+\begin{itemize}
+    \item Connect the Investigator Portal to live dashboard and report APIs instead of mock data.
+    \item Implement actual report file generation (PDF, CSV, Excel) for incident and exam reports.
+    \item Integrate the video processing pipeline (camera ingestion, AI models, and real-time cheating detection) into the monitoring endpoints.
+    \item Finalize and expose the Student Portal, including student-facing views of violation histories and exam schedules.
+\end{itemize}
+
+\section{Algorithm Design}
+
+This section summarizes the main algorithms and data flows used to support the implemented features in ForeSyte.
+
+\subsection{Admin Dashboard Aggregation}
+
+The Admin Dashboard relies on server-side aggregation logic to compute statistics for different time windows. The high-level algorithm for computing dashboard statistics is:
+
+\begin{enumerate}
+    \item \textbf{Determine Time Window:} Given \texttt{period} $\in \{\texttt{today}, \texttt{week}, \texttt{month}\}$, compute the current window (\texttt{start\_date}) and the immediately preceding window (\texttt{prev\_start}, \texttt{prev\_end}) for trend comparison.
+    \item \textbf{Count Active Exams:} Query \texttt{Exam} where \texttt{exam\_date} is greater than or equal to the current date. Perform the same query on the previous window to obtain \texttt{prev\_active\_exams}.
+    \item \textbf{Count Incidents and Students:} 
+    \begin{itemize}
+        \item Incidents: count \texttt{StudentActivity} records with timestamps within the current window.
+        \item Previous incidents: count \texttt{StudentActivity} records within the previous window.
+        \item Students monitored: count distinct \texttt{Seat.student\_id} in rooms and exams that fall inside the current and previous windows.
+    \end{itemize}
+    \item \textbf{Compute Average Exam Duration:} For all exams in the current window with non-null start and end times, compute the duration in minutes and average the result.
+    \item \textbf{Compute Trends:} For each metric (incidents, students, exams), compute percentage change between current and previous counts, handling the edge case when the previous value is zero.
+    \item \textbf{Return Structured Response:} Package all calculated values into a \texttt{DashboardStats} object and return it to the client.
+\end{enumerate}
+
+On the client side, the React dashboard:
+\begin{itemize}
+    \item Calls \texttt{/dashboard/stats} to populate the metric cards.
+    \item Calls \texttt{/dashboard/activity} to render a bar chart comparing incidents and exams per time bucket.
+    \item Calls \texttt{/dashboard/recent-incidents} to display the latest suspicious activities with relative time labels.
+\end{itemize}
+
+\subsection{Report Generation Workflow (Planned Design)}
+
+The report generation workflow is designed to be configurable and format-agnostic. \textbf{Note:} The following describes the planned design; actual file generation (PDF, CSV, Excel) is not yet implemented in this iteration.
+
+\subsubsection*{Incident Reports (Planned)}
+
+\begin{enumerate}
+    \item The investigator selects one or more incident IDs and chooses an export format (e.g., PDF, CSV, JSON), with options such as including video evidence links.
+    \item The front-end constructs an \texttt{IncidentReportRequest} and sends it to \texttt{POST /reports/incidents}.
+    \item The backend validates permissions, resolves the incident IDs into \texttt{StudentActivity} records, ensures there is an associated \texttt{Violation}, and generates a unique report filename.
+    \item A new \texttt{Report} record is inserted in the database, and the API returns the report ID, file path, format, and status to the client. \textbf{In the current iteration, the actual report file is not generated; only the database record is created.}
+\end{enumerate}
+
+\subsubsection*{Exam Reports (Planned)}
+
+\begin{enumerate}
+    \item The investigator selects an exam and desired output format from the Reports Page.
+    \item The front-end sends an \texttt{ExamReportRequest} to \texttt{POST /reports/exams/\{exam\_id\}}.
+    \item The backend verifies the exam, aggregates its related \texttt{StudentActivity} records, ensures a linked \texttt{Violation} exists, and creates a \texttt{Report} entry in the database.
+    \item The API responds with the report metadata. \textbf{The actual report file generation (PDF/CSV/Excel) will be implemented in a future iteration.}
+\end{enumerate}
+
+\subsection{Investigator Violation Review Flow}
+
+The Investigator Dashboard is designed to give investigators a structured way to triage violations:
+
+\begin{enumerate}
+    \item Load dashboard summary counters (total violations, pending reviews, resolved today, active exams).
+    \item Display a list of recent activities with type, severity, and status tags.
+    \item Allow investigators to toggle the period filter to focus on \texttt{today}, \texttt{week}, or \texttt{month}.
+    \item Provide a \textit{Review} action for each activity which, in the next iteration, will navigate to a detailed case view and allow updating violation status and adding investigation notes.
+\end{enumerate}
+
+\section{External APIs and Libraries}
+
+At this stage, ForeSyte does not depend heavily on third-party AI services, but it makes extensive use of framework libraries and SDKs:
+\begin{itemize}
+    \item \textbf{FastAPI and Starlette} for HTTP routing, dependency injection, and request handling.
+    \item \textbf{SQLAlchemy} and \textbf{psycopg2} for ORM and PostgreSQL connectivity.
+    \item \textbf{PyMongo} for MongoDB integration in the logging and evidence pipeline.
+    \item \textbf{OpenCV} and image processing libraries, which are already installed and used in internal test scripts to handle frames for future AI detectors.
+    \item \textbf{React Router}, \textbf{Tailwind CSS}, and \textbf{lucide-react} on the front-end for routing, styling, and icons.
+\end{itemize}
+
+\section{Testing Details}
+
+Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions.
+
+\subsection{Unit Testing}
+
+\subsubsection*{Reports API Tests}
+
+Table~\ref{tab:reports-tests} summarizes representative unit tests for the Reports API.
+
+\begin{table}[H]
+    \centering
+    \caption{Unit Test Cases for Reports API}
+    \label{tab:reports-tests}
+    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC201 & Verify admin can create a report & Valid admin JWT; existing Violation and Investigator records & Call \texttt{POST /reports} with valid payload & \texttt{report\_type}: "incident"\\\texttt{violation\_id}: valid UUID\\\texttt{generated\_by}: valid UUID & Returns \texttt{201 Created} and a Report object with non-null \texttt{report\_id} & Database contains a new Report row & As Expected & Pass \\
+        \hline
+        TC202 & Enforce RBAC on report creation & Authenticated investigator JWT & Call \texttt{POST /reports} with valid payload & Same as TC201 & Returns \texttt{403 Forbidden} with ``Only admins can create reports'' & No new Report row is created & As Expected & Pass \\
+        \hline
+        TC203 & Create report record for incidents (file generation not yet implemented) & Investigator JWT; at least one StudentActivity present & Call \texttt{POST /reports/incidents} with valid incident IDs & \texttt{incident\_ids}: [valid UUID]\\\texttt{format}: "pdf"\\\texttt{include\_video\_links}: true & Returns JSON with non-empty \texttt{id} and \texttt{file\_path}, \texttt{status = generating} & New Report row linked to a Violation exists in database (actual file generation is not yet implemented) & As Expected & Pass \\
+        \hline
+        TC204 & Handle invalid incident IDs gracefully & Investigator JWT & Call \texttt{POST /reports/incidents} with invalid IDs & \texttt{incident\_ids}: ["invalid-uuid"]\\\texttt{format}: "csv" & Returns \texttt{404 Not Found} with ``No valid incidents found'' & No Report row is created & As Expected & Pass \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection*{Dashboard API Tests}
+
+Table~\ref{tab:dashboard-tests} lists key unit tests for the dashboard statistics and recent incidents endpoints.
+
+\begin{table}[H]
+    \centering
+    \caption{Unit Test Cases for Dashboard APIs}
+    \label{tab:dashboard-tests}
+    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC301 & Retrieve ``today'' dashboard stats & Admin JWT; at least one exam scheduled today & Call \texttt{GET /dashboard/stats?period=today} & \texttt{period}: "today" & Returns a valid \texttt{DashboardStats} object; all counts are non-negative and consistent with seeded data & Values computed from sample database state & As Expected & Pass \\
+        \hline
+        TC302 & Verify period filter behaviour & Seeded data across multiple days & Call \texttt{GET /dashboard/stats} with different periods & \texttt{period}: "today", "week", "month" & Returns different counts reflecting the date range; no errors occur & Internal trend computation behaves correctly & As Expected & Pass \\
+        \hline
+        TC303 & Enforce RBAC on stats & Student JWT & Call \texttt{GET /dashboard/stats?period=today} & \texttt{period}: "today" & Returns \texttt{403 Forbidden} and ``Access denied'' & No sensitive stats are exposed & As Expected & Pass \\
+        \hline
+        TC304 & Return recent incidents list & StudentActivity rows present in DB & Call \texttt{GET /dashboard/recent-incidents?limit=5} & \texttt{limit}: 5 & Returns up to 5 incidents ordered by timestamp; each item includes ID, student name, type, severity, timestamp, and confidence & Activities are ordered from most recent to oldest & As Expected & Pass \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection*{Front-End Behaviour Tests}
+
+The front-end was validated using component-level tests and manual exploratory runs:
+\begin{itemize}
+    \item \textbf{Admin Dashboard Rendering:} Ensured that the metric cards, activity chart, and recent incidents list render correctly when provided with sample API responses, and that loading and empty states are displayed when data is unavailable.
+    \item \textbf{Investigator Dashboard Layout:} Checked that period filters toggle correctly, summary counters are displayed, and recent activity items show appropriate severity and status chips.
+    \item \textbf{Reports Page Filtering:} Verified that text search and report-type filters reduce the visible set of reports appropriately and that the ``Generate New Report'' modal captures the selected configuration.
+\end{itemize}
+
+In addition, a dedicated test script was developed for testing the phone stream ingestion and processing pipeline without enabling AI-based detection. This script validates connection to phone camera streams and basic frame capture, ensuring that the underlying streaming components are stable and ready for integration with the full monitoring pipeline in subsequent iterations. \textbf{Note:} Actual cheating detection via computer vision models is not yet implemented; the test script focuses on connectivity and frame handling only.
+
+\subsubsection*{User Management API Tests}
+
+Table~\ref{tab:users-tests} summarizes unit tests for the User Management API, which allows administrators to create, view, update, and delete users across all roles (Admin, Investigator, Invigilator, Student).
+
+\begin{table}[H]
+    \centering
+    \caption{Unit Test Cases for User Management API}
+    \label{tab:users-tests}
+    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC401 & Verify admin can create a new student user & Valid admin JWT; database accessible & Call \texttt{POST /users} with student data & \texttt{name}: "John Doe"\\\texttt{email}: "john@example.com"\\\texttt{user\_type}: "student"\\\texttt{roll\_number}: "22I-1234"\\\texttt{password}: "secure123!" & Returns \texttt{201 Created} with User object containing non-null \texttt{id}, \texttt{email}, and \texttt{roll\_number} & New Student record exists in database with hashed password, email, roll\_number & As Expected & Pass \\
+        \hline
+        TC402 & Verify admin can create an investigator user & Valid admin JWT; database accessible & Call \texttt{POST /users} with investigator data & \texttt{name}: "Jane Smith"\\\texttt{email}: "jane@example.com"\\\texttt{user\_type}: "investigator"\\\texttt{designation}: "Senior Investigator"\\\texttt{password}: "secure123!" & Returns \texttt{201 Created} with User object containing \texttt{designation} field & New Investigator record exists in database containing designation & As Expected & Pass \\
+        \hline
+        TC403 & Enforce RBAC on user creation & Authenticated investigator JWT & Call \texttt{POST /users} with valid user data & Same as TC401 & Returns \texttt{403 Forbidden} with ``Only admins can create users'' & No new user record is created & As Expected & Pass \\
+        \hline
+        TC404 & Prevent duplicate email registration & Valid admin JWT; existing user with email ``john@example.com'' & Call \texttt{POST /users} with same email & \texttt{email}: "john@example.com"\\\texttt{user\_type}: "student" & Returns \texttt{400 Bad Request} with ``Email already registered'' & No duplicate user is created & As Expected & Pass \\
+        \hline
+        TC405 & Verify admin can retrieve all users with pagination & Valid admin JWT; multiple users in database & Call \texttt{GET /users?page=1\&limit=10} & \texttt{page}: 1\\\texttt{limit}: 10 & Returns \texttt{200 OK} with list of up to 10 users, total count, and pagination metadata & Response contains valid user list & As Expected & Pass \\
+        \hline
+        TC406 & Filter users by role & Valid admin JWT; users of different roles exist & Call \texttt{GET /users?role=student} & \texttt{role}: "student" & Returns only Student users in the response & Response contains only students & As Expected & Pass \\
+        \hline
+        TC407 & Verify admin can update user information & Valid admin JWT; existing non-admin user & Call \texttt{PUT /users/\{user\_id\}} with updated data & \texttt{name}: "Updated Name"\\\texttt{email}: "updated@example.com" & Returns \texttt{200 OK} with updated User object & User record reflects new name and email & As Expected & Pass \\
+        \hline
+        TC408 & Prevent admin from editing other admin users & Valid admin JWT; another admin user exists & Call \texttt{PUT /users/\{admin\_id\}} with update data & \texttt{name}: "Attempted Update" & Returns \texttt{403 Forbidden} with ``Admins cannot edit other admin users'' & Admin user remains unchanged & As Expected & Pass \\
+        \hline
+        TC409 & Verify admin can delete a non-admin user & Valid admin JWT; existing student user & Call \texttt{DELETE /users/\{user\_id\}} & Valid student \texttt{user\_id} & Returns \texttt{204 No Content} & User record is removed from database & As Expected & Pass \\
+        \hline
+        TC410 & Prevent deletion of admin users & Valid admin JWT; admin user exists & Call \texttt{DELETE /users/\{admin\_id\}} & Valid admin \texttt{user\_id} & Returns \texttt{403 Forbidden} or \texttt{400 Bad Request} with appropriate error message & Admin user remains in database & As Expected & Pass \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection*{Seating Plan Upload Tests}
+
+Table~\ref{tab:seating-plan-tests} lists test cases for the seating plan upload functionality, which processes PDF files containing exam schedules and extracts room, student, and seat assignment information.
+
+\begin{table}[H]
+    \centering
+    \caption{Unit Test Cases for Seating Plan Upload}
+    \label{tab:seating-plan-tests}
+    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC501 & Upload valid seating plan PDF with room filter & Valid PDF file; admin JWT; database accessible & Call \texttt{POST /upload-seating-plan} with PDF file and room parameter & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "C-301" & Returns \texttt{200 OK} with extracted data including room number, exam date, time slot, and list of students with seat numbers & Room, Exam, Student, and Seat records created/updated in database & As Expected & Pass \\
+        \hline
+        TC502 & Upload seating plan with time slot filter & Valid PDF file; admin JWT & Call \texttt{POST /upload-seating-plan} with PDF and time slot parameter & \texttt{file}: seating\_plan.pdf\\\texttt{time\_slot}: "10:20 AM to 11:20 AM" & Returns \texttt{200 OK} with data for exams matching the specified time slot & Only matching exam data is extracted and stored & As Expected & Pass \\
+        \hline
+        TC503 & Handle invalid PDF file format & Admin JWT & Call \texttt{POST /upload-seating-plan} with non-PDF file & \texttt{file}: document.txt (text file) & Returns \texttt{400 Bad Request} or \texttt{422 Unprocessable Entity} with appropriate error message & No data is extracted or stored & As Expected & Pass \\
+        \hline
+        TC504 & Handle PDF with no matching room & Valid PDF file; admin JWT; PDF contains different rooms & Call \texttt{POST /upload-seating-plan} with non-existent room & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "Z-999" & Returns \texttt{404 Not Found} or \texttt{400 Bad Request} indicating room not found in PDF & No database changes occur & As Expected & Pass \\
+        \hline
+        TC505 & Verify automatic student creation from seating plan & Valid PDF file; admin JWT; student with roll number does not exist & Upload seating plan containing new student roll numbers & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "C-301" & New Student records are created with roll numbers and names from PDF; email auto-generated if not present & Student records exist in database with correct roll numbers & As Expected & Pass \\
+        \hline
+        TC506 & Verify seat assignment to existing students & Valid PDF file; admin JWT; student already exists in database & Upload seating plan with existing student roll numbers & \texttt{file}: seating\_plan.pdf\\existing \texttt{roll\_number}: "22I-1234" & Seat records are created/updated linking existing Student to Room with correct seat number & Seat assignment reflects in database & As Expected & Pass \\
+        \hline
+        TC507 & Handle large PDF file upload & Valid PDF file (>10MB); admin JWT & Call \texttt{POST /upload-seating-plan} with large PDF & \texttt{file}: large\_seating\_plan.pdf (15MB) & Returns \texttt{200 OK} after processing; or \texttt{413 Payload Too Large} if size limit enforced & File is processed or rejected based on size limits & As Expected & Pass \\
+        \hline
+        TC508 & Verify room creation from seating plan & Valid PDF file; admin JWT; room does not exist & Upload seating plan with new room number & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "D-405" & New Room record is created with room number, block, total seats, and camera ID & Room record exists in database linked to Exam & As Expected & Pass \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection*{Monitoring and Camera Integration Tests}
+
+Table~\ref{tab:monitoring-tests} presents test cases for the monitoring endpoints and camera integration functionality, which enable administrators and investigators to view live camera feeds and manage monitoring sessions.
+
+\begin{table}[H]
+    \centering
+    \caption{Unit Test Cases for Monitoring and Camera Integration}
+    \label{tab:monitoring-tests}
+    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC601 & Retrieve monitoring feeds for all cameras & Admin JWT; rooms with cameras exist in database & Call \texttt{GET /monitoring/feeds} & No parameters & Returns \texttt{200 OK} with list of camera feeds including camera ID, room name, status, stream URL, and students monitored count & Response contains valid feed data for all rooms & As Expected & Pass \\
+        \hline
+        TC602 & Filter monitoring feeds by exam ID & Admin JWT; multiple exams with rooms & Call \texttt{GET /monitoring/feeds?exam\_id=\{exam\_id\}} & \texttt{exam\_id}: valid UUID & Returns only camera feeds for rooms associated with the specified exam & Response contains feeds filtered by exam & As Expected & Pass \\
+        \hline
+        TC603 & Enforce RBAC on monitoring feeds & Student JWT & Call \texttt{GET /monitoring/feeds} & Student token & Returns \texttt{403 Forbidden} with ``Access denied'' & No monitoring data is exposed to unauthorized users & As Expected & Pass \\
+        \hline
+        TC604 & Verify camera status endpoint & Admin JWT; camera exists & Call \texttt{GET /monitoring/cameras/\{camera\_id\}/status} & \texttt{camera\_id}: valid camera ID & Returns \texttt{200 OK} with camera status including last heartbeat, students detected, and connection status & Response contains valid status information & As Expected & Pass \\
+        \hline
+        TC605 & Handle non-existent camera ID & Admin JWT & Call \texttt{GET /monitoring/cameras/invalid-id/status} & \texttt{camera\_id}: "invalid-id" & Returns \texttt{404 Not Found} with appropriate error message & No data is returned & As Expected & Pass \\
+        \hline
+        TC606 & Start phone camera monitoring session & Admin JWT; phone stream URL available & Call \texttt{POST /phone-monitoring/start} with stream URL & \texttt{stream\_url}: "http://192.168.1.100:8080/video"\\\texttt{exam\_id}: "exam-123"\\\texttt{duration\_seconds}: 3600 & Returns \texttt{200 OK} with \texttt{session\_id}, \texttt{status: "started"}, and confirmation message & Monitoring session is active; frames are being captured & As Expected & Pass \\
+        \hline
+        TC607 & Verify phone monitoring session status & Admin JWT; active monitoring session exists & Call \texttt{GET /phone-monitoring/\{session\_id\}/status} & \texttt{session\_id}: valid session ID & Returns \texttt{200 OK} with session status including frames captured, processing status, and duration & Response reflects current monitoring state & As Expected & Pass \\
+        \hline
+        TC608 & Stop active phone monitoring session & Admin JWT; active monitoring session exists & Call \texttt{POST /phone-monitoring/\{session\_id\}/stop} & \texttt{session\_id}: valid session ID & Returns \texttt{200 OK} with \texttt{status: "stopped"} and confirmation message & Monitoring session is terminated; no further frames captured & As Expected & Pass \\
+        \hline
+        TC609 & Handle invalid stream URL in phone monitoring & Admin JWT & Call \texttt{POST /phone-monitoring/start} with invalid URL & \texttt{stream\_url}: "http://invalid-url:8080/video" & Returns \texttt{400 Bad Request} or connection error indicating invalid stream URL & No monitoring session is created & As Expected & Pass \\
+        \hline
+        TC610 & Verify stream URL proxy endpoint & Admin JWT; valid camera stream URL exists & Call \texttt{GET /monitoring/stream-proxy?url=\{encoded\_url\}} & \texttt{url}: valid encoded stream URL & Returns proxied stream or redirects to stream source & Stream is accessible through proxy & As Expected & Pass \\
+        \hline
+        TC611 & Verify camera feed displays in front-end & Admin logged in; monitoring page loaded & Navigate to Monitoring page and select a camera & Camera feed with valid \texttt{stream\_url} & Camera feed displays in video/image element; status indicator shows active/inactive & UI correctly renders camera stream & As Expected & Pass \\
+        \hline
+        TC612 & Handle camera feed with no stream URL & Admin logged in; room exists without stream URL & Navigate to Monitoring page; select camera without \texttt{stream\_url} & Camera with \texttt{stream\_url}: null & UI displays placeholder message ``No stream URL configured'' instead of video element & UI handles missing stream gracefully & As Expected & Pass \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\let\cleardoublepage\clearpage
