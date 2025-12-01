@@ -1,12 +1,13 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction [AS PER SCOPE DOCUMENT]}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Existing Solutions}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Problem Statement}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.1.1}How ForeSyte is Different}{2}{subsection.1.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Statement}{3}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Scope}{4}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Modules}{5}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}ForeSyte Web Portal}{5}{subsection.1.4.1}%
+\contentsline {section}{\numberline {1.4}Modules}{6}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}ForeSyte Web Portal}{6}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Backend Service}{6}{subsection.1.4.2}%
-\contentsline {section}{\numberline {1.5}Work Division}{6}{section.1.5}%
+\contentsline {section}{\numberline {1.5}Work Division}{7}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Project Requirements [AS PER FYP1 MID REPORT]}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Use-case/Event Response Table/Storyboarding}{9}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Functional Requirements}{10}{section.2.2}%

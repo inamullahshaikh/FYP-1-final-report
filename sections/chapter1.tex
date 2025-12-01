@@ -1,32 +1,63 @@
 \chapter{Introduction [AS PER SCOPE DOCUMENT]}
 \label{sec:introduction}
-The "Introduction" section sets the foundation for the entire report and should be carefully crafted to give the reader a clear understanding of the project’s scope, objectives, and context. Here’s what you can include:
 
-Background:
+This project proposal presents \textbf{ForeSyte}, an AI-powered CCTV/camera monitoring system designed to detect and log cheating attempts 
+and monitor invigilator activity during examinations. The purpose of this document is to outline the problem, motivation, proposed 
+solution, and stakeholders while providing a detailed background of the system.
 
-Begin by providing background information on the broader topic or field your development project is related to.
-Highlight any existing problems, gaps, or opportunities that led to the motivation for your project.
-Include relevant references to previous research, development projects, or technologies. For example, you might want to cite studies or prior systems that failed to address the issues you're focusing on.
+\textbf{ForeSyte} integrates computer vision and deep learning techniques to analyze both real-time CCTV/camera feeds and uploaded exam footage. 
+By focusing on seat-specific mapping, the system ensures precise tracking of students and their activities while simultaneously monitoring 
+invigilators’ behavior to maintain a fair and transparent examination environment \cite{bucciol2020cheating}. 
+It also ensures correct student ID verification on assigned seats using face recognition, thereby preventing impersonation. 
 
+Furthermore, several studies have highlighted the growing prevalence of academic dishonesty and the limitations of traditional manual invigilation methods. 
+By leveraging AI-driven video analysis, \textbf{ForeSyte} aims to improve the accuracy of cheating detection, automate timestamped reporting, 
+and enhance overall exam integrity. The system also acts as a deterrent; as students become aware that their activities are continuously monitored, 
+the likelihood of cheating is expected to decrease significantly over time \cite{examIntegrity2021}.
 
+% filepath: c:\Users\hp\Desktop\FYP\full-proj\Revised - Final Report Development - FYP-1\sections\chapter1.tex
 \section{Existing Solutions}
 
-For the Existing Solutions section, students should research and describe various solutions, methods, or approaches that have been previously developed to solve the problem they are addressing. This section should include an overview of the different techniques, technologies, or models that are currently in use or have been applied in the past. Students should critically assess the strengths and weaknesses of each solution, highlighting any gaps or limitations that their project aims to address. Additionally, this section should show an understanding of the state-of-the-art in the field and provide context for why the proposed solution is necessary or an improvement over existing ones.
+Several solutions have been developed to address the problem of cheating detection and exam monitoring, each with distinct approaches and limitations. Below is a critical overview and comparison of the most relevant systems:
 
+\begin{itemize}
+    \item \textbf{IndoAI:} Employs proprietary CNN-based gesture and face models running on Edge AI cameras. While it offers AI-driven gesture and face analysis, it does not support seat-based activity detection or invigilator monitoring. Additionally, it lacks the capability to generate structured, timestamped reports. Its reliance on specialized hardware (Edge AI cameras) limits scalability and integration with existing CCTV systems.
+    
+    \item \textbf{IPB University System:} Uses dual webcams (front and rear) for each student, combined with AI software for face and gaze monitoring. This approach is not based on CCTV and does not provide seat-based activity detection or invigilator monitoring. While it offers some level of timestamped reporting, it lacks structured, per-seat violation logs and is less scalable for large exam halls due to the need for individual webcams per student.
+\end{itemize}
 
 \begin{table}[H]
 \centering
 \caption{Comparison of Existing Solutions}
-\begin{tabular}{|c|p{5cm}|p{5cm}|}
+\begin{tabular}{|c|p{4.5cm}|p{4.5cm}|}
 \hline
-\textbf{System Name}   & \textbf{System Overview} & \textbf{System Limitations} \\ \hline
-System 1               & Brief description of what System 1 does and its primary features. & Highlight the shortcomings or issues with System 1. \\ \hline
-System 2               & Brief description of what System 2 does and its primary features. & Highlight the shortcomings or issues with System 2. \\ \hline
-System 3               & Brief description of what System 3 does and its primary features. & Highlight the shortcomings or issues with System 3. \\ \hline
+\textbf{System Name}   & \textbf{Technology} & \textbf{Limitations} \\ \hline
+
+IndoAI & 
+Proprietary CNN-based gesture + face models on Edge AI cameras. & 
+No seat-based activity detection; no invigilator monitoring; no structured timestamped reports; requires specialized hardware. \\ \hline
+
+IPB University System & 
+Dual webcam (front + rear) per student; AI software (face/gaze monitoring models); not CCTV. & 
+No seat-based activity detection; no invigilator monitoring; limited but no structured per-seat timestamped reports; not scalable for large halls. \\ \hline
+
 \end{tabular}
 \label{tab:system_comparison}
 \end{table}
 
+\subsection{How ForeSyte is Different}
+
+\textbf{ForeSyte} stands out from existing solutions by addressing their key limitations:
+
+\begin{itemize}
+    \item \textbf{Seat-based Activity Detection:} ForeSyte uniquely maps detected activities to specific seats, ensuring identification of students involved in suspicious behavior.
+    \item \textbf{Integration with Existing CCTV:} Unlike other solutions that require specialized hardware or individual webcams, ForeSyte works seamlessly with standard CCTV infrastructure, making it scalable and cost-effective for large exam halls.
+    \item \textbf{Invigilator Monitoring:} ForeSyte not only monitors students but also tracks invigilator presence and activity, identifying negligence or prolonged absences.
+    \item \textbf{Structured, Timestamped Reports:} The system generates detailed, per-seat violation logs with timestamps, enabling efficient review and transparent reporting.
+    \item \textbf{Comprehensive Automation:} By combining real-time and recorded video analysis, ForeSyte automates the entire monitoring and reporting process, reducing manual effort and enhancing exam integrity.
+\end{itemize}
+
+This approach ensures that ForeSyte provides a comprehensive, scalable, and automated exam monitoring solution that overcomes the major shortcomings of existing systems.
 \section{Problem Statement}
 Academic dishonesty has become a significant concern in educational institutions worldwide. 
 Studies indicate that approximately 61\% of university students have admitted to cheating during written examinations, 
