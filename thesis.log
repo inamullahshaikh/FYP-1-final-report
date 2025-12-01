@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 04:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 04:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -991,7 +991,32 @@ LaTeX Warning: Label `uc1' multiply defined.
 
 LaTeX Warning: Label `uc1' multiply defined.
 
-) (sections/chapter3.aux) (sections/chapter4.aux))
+) (sections/chapter3.aux) (sections/chapter4.aux) (appendix.aux
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+
+LaTeX Warning: Label `fig:usecase3' multiply defined.
+
+))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
@@ -1105,7 +1130,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.0601> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11.40012> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
-<ThesisFigs/FASTLogo.jpg, id=185, 325.96782pt x 321.45094pt>
+<ThesisFigs/FASTLogo.jpg, id=253, 325.96782pt x 321.45094pt>
 File: ThesisFigs/FASTLogo.jpg Graphic file (type jpg)
 <use ThesisFigs/FASTLogo.jpg>
 Package pdftex.def Info: ThesisFigs/FASTLogo.jpg  used on input line 72.
@@ -1309,7 +1334,7 @@ Overfull \hbox (6.99289pt too wide) in paragraph at lines 80--86
 \T1/ptm/m/n/12 search-ing through hours of footage. By com-bin-ing AI-powered surveil-lance with in-tel-li-gent
  []
 
-<sections/cheating_reduction_foreSyte.png, id=341, 608.7543pt x 380.1402pt>
+<sections/cheating_reduction_foreSyte.png, id=448, 608.7543pt x 380.1402pt>
 File: sections/cheating_reduction_foreSyte.png Graphic file (type png)
 <use sections/cheating_reduction_foreSyte.png>
 Package pdftex.def Info: sections/cheating_reduction_foreSyte.png  used on input line 90.
@@ -1322,7 +1347,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has b
                    \relax 
 l.92 \end{figure}
                   [3]
-<sections/piechart.png, id=348, 853.1875pt x 592.2125pt>
+<sections/piechart.png, id=455, 853.1875pt x 592.2125pt>
 File: sections/piechart.png Graphic file (type png)
 <use sections/piechart.png>
 Package pdftex.def Info: sections/piechart.png  used on input line 97.
@@ -1332,7 +1357,7 @@ Overfull \hbox (17.45575pt too wide) in paragraph at lines 102--106
 \T1/ptm/m/n/12 Re-cent re-search high-lights the im-por-tance of au-to-mated in-vig-i-la-tion for main-tain-ing aca-demic
  []
 
-<sections/flowchart.png, id=351, 851.43094pt x 527.571pt>
+<sections/flowchart.png, id=458, 851.43094pt x 527.571pt>
 File: sections/flowchart.png Graphic file (type png)
 <use sections/flowchart.png>
 Package pdftex.def Info: sections/flowchart.png  used on input line 110.
@@ -1567,7 +1592,7 @@ Overfull \hbox (25.19997pt too wide) in alignment at lines 229--256
 [16
 
 ]
-<sections/usecase.png, id=431, 670.505pt x 654.445pt>
+<sections/usecase.png, id=538, 670.505pt x 654.445pt>
 File: sections/usecase.png Graphic file (type png)
 <use sections/usecase.png>
 Package pdftex.def Info: sections/usecase.png  used on input line 266.
@@ -1746,7 +1771,7 @@ Overfull \hbox (7.89172pt too wide) in paragraph at lines 11--12
 []\T1/ptm/m/n/12 Figure [][][] il-lus-trates the high-level ar-chi-tec-ture of the sys-tem, show-ing the main sub-sys-tems
  []
 
-<sections/architecture.png, id=519, 2388.925pt x 1304.875pt>
+<sections/architecture.png, id=626, 2388.925pt x 1304.875pt>
 File: sections/architecture.png Graphic file (type png)
 <use sections/architecture.png>
 Package pdftex.def Info: sections/architecture.png  used on input line 16.
@@ -1798,7 +1823,7 @@ Overfull \hbox (25.78343pt too wide) in paragraph at lines 45--46
 []\T1/ptm/b/n/12 User In-for-ma-tion\T1/ptm/m/n/12 : Ad-min, In-vig-i-la-tor, In-ves-ti-ga-tor, and Stu-dent pro-files with cre-den-tials
  []
 
-<sections/data-flow.drawio (2).png, id=527, 1366.10374pt x 462.72874pt>
+<sections/data-flow.drawio (2).png, id=634, 1366.10374pt x 462.72874pt>
 File: sections/data-flow.drawio (2).png Graphic file (type png)
 <use sections/data-flow.drawio (2).png>
 Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 59.
@@ -1815,7 +1840,7 @@ Overfull \hbox (20.41943pt too wide) in paragraph at lines 71--72
 []\T1/ptm/b/n/12 Consumption\T1/ptm/m/n/12 : Ad-min dash-boards query re-la-tional views; in-ves-ti-ga-tors open pre-signed
  []
 
-<sections/domain-model.png, id=533, 884.30376pt x 673.51625pt>
+<sections/domain-model.png, id=640, 884.30376pt x 673.51625pt>
 File: sections/domain-model.png Graphic file (type png)
 <use sections/domain-model.png>
 Package pdftex.def Info: sections/domain-model.png  used on input line 81.
@@ -1833,7 +1858,7 @@ Underfull \vbox (badness 1242) has occurred while \output is active []
 [28 <./sections/data-flow.drawio (2).png>]
 
 [29 <./sections/domain-model.png>]
-<sections/class-diagram.png, id=549, 1003.75pt x 882.29625pt>
+<sections/class-diagram.png, id=656, 1003.75pt x 882.29625pt>
 File: sections/class-diagram.png Graphic file (type png)
 <use sections/class-diagram.png>
 Package pdftex.def Info: sections/class-diagram.png  used on input line 95.
@@ -1841,7 +1866,7 @@ Package pdftex.def Info: sections/class-diagram.png  used on input line 95.
 
 
 [30 <./sections/class-diagram.png>]
-<sections/activity-diagram.png, id=555, 660.4675pt x 1069.9975pt>
+<sections/activity-diagram.png, id=662, 660.4675pt x 1069.9975pt>
 File: sections/activity-diagram.png Graphic file (type png)
 <use sections/activity-diagram.png>
 Package pdftex.def Info: sections/activity-diagram.png  used on input line 106.
@@ -1856,7 +1881,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  <./sections/activity-diagram.png>]
 
 pdfTeX warning: pdflatex (file ./sections/uc01.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc01.pdf, id=561, 614.295pt x 794.97pt>
+<sections/uc01.pdf, id=668, 614.295pt x 794.97pt>
 File: sections/uc01.pdf Graphic file (type pdf)
 <use sections/uc01.pdf>
 Package pdftex.def Info: sections/uc01.pdf  used on input line 122.
@@ -1866,7 +1891,7 @@ Package pdftex.def Info: sections/uc01.pdf  used on input line 122.
 [32 <./sections/uc01.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc02.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc02.pdf, id=576, 614.295pt x 794.97pt>
+<sections/uc02.pdf, id=683, 614.295pt x 794.97pt>
 File: sections/uc02.pdf Graphic file (type pdf)
 <use sections/uc02.pdf>
 Package pdftex.def Info: sections/uc02.pdf  used on input line 131.
@@ -1876,7 +1901,7 @@ Package pdftex.def Info: sections/uc02.pdf  used on input line 131.
 [33 <./sections/uc02.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc03.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc03.pdf, id=590, 614.295pt x 794.97pt>
+<sections/uc03.pdf, id=697, 614.295pt x 794.97pt>
 File: sections/uc03.pdf Graphic file (type pdf)
 <use sections/uc03.pdf>
 Package pdftex.def Info: sections/uc03.pdf  used on input line 140.
@@ -1891,7 +1916,7 @@ Overfull \hbox (41.10876pt too wide) in paragraph at lines 140--141
 [34 <./sections/uc03.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc04.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc04.pdf, id=604, 614.295pt x 794.97pt>
+<sections/uc04.pdf, id=711, 614.295pt x 794.97pt>
 File: sections/uc04.pdf Graphic file (type pdf)
 <use sections/uc04.pdf>
 Package pdftex.def Info: sections/uc04.pdf  used on input line 148.
@@ -1901,7 +1926,7 @@ Package pdftex.def Info: sections/uc04.pdf  used on input line 148.
 [35 <./sections/uc04.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc05.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc05.pdf, id=623, 614.295pt x 794.97pt>
+<sections/uc05.pdf, id=730, 614.295pt x 794.97pt>
 File: sections/uc05.pdf Graphic file (type pdf)
 <use sections/uc05.pdf>
 Package pdftex.def Info: sections/uc05.pdf  used on input line 157.
@@ -1911,7 +1936,7 @@ Package pdftex.def Info: sections/uc05.pdf  used on input line 157.
 [36 <./sections/uc05.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc06.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc06.pdf, id=642, 614.295pt x 794.97pt>
+<sections/uc06.pdf, id=749, 614.295pt x 794.97pt>
 File: sections/uc06.pdf Graphic file (type pdf)
 <use sections/uc06.pdf>
 Package pdftex.def Info: sections/uc06.pdf  used on input line 167.
@@ -1921,7 +1946,7 @@ Package pdftex.def Info: sections/uc06.pdf  used on input line 167.
 [37 <./sections/uc06.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc077.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc077.pdf, id=661, 614.295pt x 794.97pt>
+<sections/uc077.pdf, id=768, 614.295pt x 794.97pt>
 File: sections/uc077.pdf Graphic file (type pdf)
 <use sections/uc077.pdf>
 Package pdftex.def Info: sections/uc077.pdf  used on input line 177.
@@ -1929,7 +1954,7 @@ Package pdftex.def Info: sections/uc077.pdf  used on input line 177.
 
 
 [38 <./sections/uc077.pdf>]
-<sections/std.jpg, id=676, 638.385pt x 834.11626pt>
+<sections/std.jpg, id=783, 638.385pt x 834.11626pt>
 File: sections/std.jpg Graphic file (type jpg)
 <use sections/std.jpg>
 Package pdftex.def Info: sections/std.jpg  used on input line 187.
@@ -9787,7 +9812,160 @@ Overfull \vbox (1732.92894pt too high) has occurred while \output is active []
 
 
 
-] (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (sections/chapter4.aux))
+]
+\openout2 = `appendix.aux'.
+
+ (appendix.tex
+Appendix A.
+<images/usecaseexample.png, id=889, 735.49782pt x 304.88907pt>
+File: images/usecaseexample.png Graphic file (type png)
+<use images/usecaseexample.png>
+Package pdftex.def Info: images/usecaseexample.png  used on input line 7.
+(pdftex.def)             Requested size: 426.79135pt x 176.92416pt.
+<images/detailusecase.png, id=890, 545.03625pt x 433.62pt>
+File: images/detailusecase.png Graphic file (type png)
+<use images/detailusecase.png>
+Package pdftex.def Info: images/detailusecase.png  used on input line 15.
+(pdftex.def)             Requested size: 426.79135pt x 339.54553pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[58
+
+
+ <./images/usecaseexample.png>]
+<images/eventresponsetable.png, id=896, 472.01344pt x 536.0025pt>
+File: images/eventresponsetable.png Graphic file (type png)
+<use images/eventresponsetable.png>
+Package pdftex.def Info: images/eventresponsetable.png  used on input line 23.
+(pdftex.def)             Requested size: 426.79135pt x 484.65512pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[59 <./images/detailusecase.png>]
+<images/storyboard.png, id=902, 497.60907pt x 436.63126pt>
+File: images/storyboard.png Graphic file (type png)
+<use images/storyboard.png>
+Package pdftex.def Info: images/storyboard.png  used on input line 31.
+(pdftex.def)             Requested size: 426.79135pt x 374.49619pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[60 <./images/eventresponsetable.png>]
+<images/domainmodel.png, id=908, 563.10374pt x 532.23843pt>
+File: images/domainmodel.png Graphic file (type png)
+<use images/domainmodel.png>
+Package pdftex.def Info: images/domainmodel.png  used on input line 41.
+(pdftex.def)             Requested size: 426.79135pt x 403.40091pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[61 <./images/storyboard.png>]
+<images/boxandline.png, id=914, 340.27126pt x 213.04594pt>
+File: images/boxandline.png Graphic file (type png)
+<use images/boxandline.png>
+Package pdftex.def Info: images/boxandline.png  used on input line 52.
+(pdftex.def)             Requested size: 426.79135pt x 267.22998pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[62 <./images/domainmodel.png>]
+<images/Architecturepattern.png, id=921, 509.65407pt x 382.42876pt>
+File: images/Architecturepattern.png Graphic file (type png)
+<use images/Architecturepattern.png>
+Package pdftex.def Info: images/Architecturepattern.png  used on input line 60.
+(pdftex.def)             Requested size: 426.79135pt x 320.26344pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[63 <./images/boxandline.png>]
+<images/activityexample.png, id=927, 709.90219pt x 429.10312pt>
+File: images/activityexample.png Graphic file (type png)
+<use images/activityexample.png>
+Package pdftex.def Info: images/activityexample.png  used on input line 71.
+(pdftex.def)             Requested size: 426.79135pt x 257.98111pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[64 <./images/Architecturepattern.png>]
+<images/classexample.png, id=933, 551.05875pt x 525.46312pt>
+File: images/classexample.png Graphic file (type png)
+<use images/classexample.png>
+Package pdftex.def Info: images/classexample.png  used on input line 80.
+(pdftex.def)             Requested size: 426.79135pt x 406.98116pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[65 <./images/activityexample.png>]
+<images/sequenceexample.png, id=939, 578.16pt x 312.41719pt>
+File: images/sequenceexample.png Graphic file (type png)
+<use images/sequenceexample.png>
+Package pdftex.def Info: images/sequenceexample.png  used on input line 88.
+(pdftex.def)             Requested size: 426.79135pt x 230.62257pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[66 <./images/classexample.png>]
+<images/statetransitionexample.png, id=945, 520.19344pt x 263.48438pt>
+File: images/statetransitionexample.png Graphic file (type png)
+<use images/statetransitionexample.png>
+Package pdftex.def Info: images/statetransitionexample.png  used on input line 96.
+(pdftex.def)             Requested size: 426.79135pt x 216.17517pt.
+
+
+pdfTeX warning: pdflatex (file ./DFD.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<DFD.pdf, id=946, 614.295pt x 794.97pt>
+File: DFD.pdf Graphic file (type pdf)
+<use DFD.pdf>
+Package pdftex.def Info: DFD.pdf  used on input line 104.
+(pdftex.def)             Requested size: 426.79135pt x 552.32666pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[67 <./images/sequenceexample.png> <./images/statetransitionexample.png>]
+
+pdfTeX warning: pdflatex (file ./DFD2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<DFD2.pdf, id=953, 614.295pt x 794.97pt>
+File: DFD2.pdf Graphic file (type pdf)
+<use DFD2.pdf>
+Package pdftex.def Info: DFD2.pdf  used on input line 108.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
+
+Overfull \hbox (126.06903pt too wide) in paragraph at lines 108--110
+[][] 
+ []
+
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[68 <./DFD.pdf>]
+Overfull \vbox (42.68332pt too high) has occurred while \output is active []
+
+
+
+[69 <./DFD2.pdf>] (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux) (sections/chapter3.aux) (sections/chapter4.aux) (appendix.aux))
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -9797,20 +9975,20 @@ L3 programming layer <2025-09-02>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E2121EA5BE5F31334779E862833682C6;6977.
+(rerunfilecheck)             Checksum: CD375093C51797C74852D6CFCC26BC79;10708.
  ) 
 Here is how much of TeX's memory you used:
- 32302 strings out of 468081
- 635215 string characters out of 5427240
- 1238064 words of memory out of 5000000
- 60114 multiletter control sequences out of 15000+600000
+ 32480 strings out of 468081
+ 639629 string characters out of 5427240
+ 1240154 words of memory out of 5000000
+ 60244 multiletter control sequences out of 15000+600000
  697279 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,12n,121p,1593b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\hp\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (62 pages, 2930952 bytes).
+Output written on thesis.pdf (74 pages, 4789283 bytes).
 PDF statistics:
- 919 PDF objects out of 1000 (max. 8388607)
- 225 named destinations out of 1000 (max. 500000)
- 515 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1165 PDF objects out of 1200 (max. 8388607)
+ 267 named destinations out of 1000 (max. 500000)
+ 716 words of extra memory for PDF output out of 10000 (max. 10000000)
 
