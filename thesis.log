@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 03:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 04:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1105,7 +1105,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.0601> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11.40012> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
-<ThesisFigs/FASTLogo.jpg, id=177, 325.96782pt x 321.45094pt>
+<ThesisFigs/FASTLogo.jpg, id=185, 325.96782pt x 321.45094pt>
 File: ThesisFigs/FASTLogo.jpg Graphic file (type jpg)
 <use ThesisFigs/FASTLogo.jpg>
 Package pdftex.def Info: ThesisFigs/FASTLogo.jpg  used on input line 72.
@@ -1309,7 +1309,7 @@ Overfull \hbox (6.99289pt too wide) in paragraph at lines 80--86
 \T1/ptm/m/n/12 search-ing through hours of footage. By com-bin-ing AI-powered surveil-lance with in-tel-li-gent
  []
 
-<sections/cheating_reduction_foreSyte.png, id=305, 608.7543pt x 380.1402pt>
+<sections/cheating_reduction_foreSyte.png, id=341, 608.7543pt x 380.1402pt>
 File: sections/cheating_reduction_foreSyte.png Graphic file (type png)
 <use sections/cheating_reduction_foreSyte.png>
 Package pdftex.def Info: sections/cheating_reduction_foreSyte.png  used on input line 90.
@@ -1322,7 +1322,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has b
                    \relax 
 l.92 \end{figure}
                   [3]
-<sections/piechart.png, id=312, 853.1875pt x 592.2125pt>
+<sections/piechart.png, id=348, 853.1875pt x 592.2125pt>
 File: sections/piechart.png Graphic file (type png)
 <use sections/piechart.png>
 Package pdftex.def Info: sections/piechart.png  used on input line 97.
@@ -1332,7 +1332,7 @@ Overfull \hbox (17.45575pt too wide) in paragraph at lines 102--106
 \T1/ptm/m/n/12 Re-cent re-search high-lights the im-por-tance of au-to-mated in-vig-i-la-tion for main-tain-ing aca-demic
  []
 
-<sections/flowchart.png, id=315, 851.43094pt x 527.571pt>
+<sections/flowchart.png, id=351, 851.43094pt x 527.571pt>
 File: sections/flowchart.png Graphic file (type png)
 <use sections/flowchart.png>
 Package pdftex.def Info: sections/flowchart.png  used on input line 110.
@@ -1567,7 +1567,7 @@ Overfull \hbox (25.19997pt too wide) in alignment at lines 229--256
 [16
 
 ]
-<sections/usecase.png, id=395, 670.505pt x 654.445pt>
+<sections/usecase.png, id=431, 670.505pt x 654.445pt>
 File: sections/usecase.png Graphic file (type png)
 <use sections/usecase.png>
 Package pdftex.def Info: sections/usecase.png  used on input line 266.
@@ -1704,22 +1704,29 @@ Overfull \hbox (15.22342pt too wide) in paragraph at lines 494--495
  (sections/chapter3.tex
 Chapter 3.
 
-Overfull \hbox (1.64136pt too wide) in paragraph at lines 5--7
-\T1/ptm/m/n/12 Give a gen-eral de-scrip-tion of the func-tion-al-ity, con-text, and de-sign of your project. Pro-vide
+Overfull \hbox (12.71655pt too wide) in paragraph at lines 3--4
+\T1/ptm/m/n/12 mod-els to de-tect sus-pi-cious stu-dent be-hav-iors such as phone us-age, fre-quent seat move-ments,
  []
 
 
-Overfull \hbox (4.89107pt too wide) in paragraph at lines 15--16
-[]\T1/ptm/m/n/12 In the ini-tial de-sign stage, cre-ate a Box and Line Di-a-gram for a sim-pler rep-re-sen-ta-tion
+Overfull \hbox (35.2036pt too wide) in paragraph at lines 3--4
+\T1/ptm/m/n/12 or unau-tho-rized com-mu-ni-ca-tion, while also track-ing in-vig-i-la-tor ac-tiv-i-ties to en-sure ac-count-abil-ity.
  []
 
 
-Overfull \hbox (5.21494pt too wide) in paragraph at lines 16--17
-[]\T1/ptm/m/n/12 After fi-nal-iz-ing the ar-chi-tec-ture style/pattern di-a-gram (MVC, Client-Server, Lay-ered,
+Overfull \hbox (0.60793pt too wide) in paragraph at lines 3--4
+\T1/ptm/m/n/12 vi-o-la-tions, which are com-piled into struc-tured re-ports ac-ces-si-ble through an ad-min-is-tra-tive
  []
 
 
-Underfull \vbox (badness 1062) has occurred while \output is active []
+Overfull \hbox (12.67998pt too wide) in paragraph at lines 3--4
+\T1/ptm/m/n/12 de-ci-sions. The sys-tem fol-lows a mod-u-lar ar-chi-tec-ture con-sist-ing of two pri-mary com-po-nents:
+ []
+
+
+Overfull \hbox (3.71596pt too wide) in paragraph at lines 3--4
+\T1/ptm/m/n/12 pro-vid-ing seam-less in-te-gra-tion be-tween the user in-ter-face and the un-der-ly-ing AI pro-cess-ing
+ []
 
 
 
@@ -1730,60 +1737,224 @@ Underfull \vbox (badness 1062) has occurred while \output is active []
 
 
 ]
-Overfull \hbox (7.90298pt too wide) in paragraph at lines 31--32
-[]\T1/ptm/b/n/12 Entities\T1/ptm/m/n/12 : These are the pri-mary ob-jects within the do-main that hold data and rep-re-sent
+Overfull \hbox (1.79642pt too wide) in paragraph at lines 9--10
+\T1/ptm/m/n/12 vi-su-al-iza-tion, the back-end pro-cesses and an-a-lyzes video frames, and the data man-age-ment
  []
 
 
-Overfull \hbox (38.69356pt too wide) in paragraph at lines 35--36
-[]\T1/ptm/b/n/12 Relationships\T1/ptm/m/n/12 : These il-lus-trate how dif-fer-ent en-ti-ties in-ter-act with each other. Re-la-tion-ships
+Overfull \hbox (7.89172pt too wide) in paragraph at lines 11--12
+[]\T1/ptm/m/n/12 Figure [][][] il-lus-trates the high-level ar-chi-tec-ture of the sys-tem, show-ing the main sub-sys-tems
+ []
+
+<sections/architecture.png, id=519, 2388.925pt x 1304.875pt>
+File: sections/architecture.png Graphic file (type png)
+<use sections/architecture.png>
+Package pdftex.def Info: sections/architecture.png  used on input line 16.
+(pdftex.def)             Requested size: 426.79135pt x 233.11522pt.
+
+Overfull \hbox (4.89107pt too wide) in paragraph at lines 22--23
+[]\T1/ptm/m/n/12 In the ini-tial de-sign stage, cre-ate a Box and Line Di-a-gram for a sim-pler rep-re-sen-ta-tion
  []
 
 
-Overfull \hbox (4.84245pt too wide) in paragraph at lines 37--38
-[]\T1/ptm/b/n/12 Associations\T1/ptm/m/n/12 : Con-nec-tions be-tween en-ti-ties that help clar-ify their in-ter-de-pen-den-cies.
+Overfull \hbox (5.21494pt too wide) in paragraph at lines 23--24
+[]\T1/ptm/m/n/12 After fi-nal-iz-ing the ar-chi-tec-ture style/pattern di-a-gram (MVC, Client-Server, Lay-ered,
  []
 
 
-Overfull \hbox (15.88441pt too wide) in paragraph at lines 40--41
-[]\T1/ptm/m/n/12 By con-struct-ing a do-main model, de-vel-op-ers can bet-ter un-der-stand the sys-tem's re-quire-ments,
+Overfull \hbox (12.6208pt too wide) in paragraph at lines 30--31
+\T1/ptm/m/n/12 The data de-sign for \T1/ptm/b/n/12 ForeSyte \T1/ptm/m/n/12 fo-cuses on how the sys-tem's in-for-ma-tion do-main is rep-re-sented
  []
 
 
-Overfull \hbox (44.19177pt too wide) in paragraph at lines 40--41
-\T1/ptm/m/n/12 fa-cil-i-tate com-mu-ni-ca-tion among stake-hold-ers, and guide the sub-se-quent de-sign and im-ple-men-ta-tion
+
+[26 <./sections/architecture.png>]
+Overfull \hbox (3.04364pt too wide) in paragraph at lines 33--35
+\T1/ptm/m/n/12 video ev-i-dence, AI de-tec-tions, ac-tiv-i-ties, vi-o-la-tions, and re-ports. The core data is or-ga-nized
  []
 
 
-Overfull \hbox (4.80446pt too wide) in paragraph at lines 44--44
+Overfull \hbox (4.37473pt too wide) in paragraph at lines 35--36
+[]\T1/ptm/b/n/12 Relational (Post-greSQL) \T1/ptm/m/n/12 holds nor-mal-ized, queryable facts: Users, Ex-ams, Rooms,
+ []
+
+
+Overfull \hbox (7.56645pt too wide) in paragraph at lines 35--36
+\T1/ptm/m/n/12 Seats, Stu-den-tAc-tiv-ity, In-vig-i-la-torAc-tiv-ity, Vi-o-la-tions, Re-ports, and seat as-sign-ments;
+ []
+
+
+Overfull \hbox (28.14606pt too wide) in paragraph at lines 36--37
+[]\T1/ptm/b/n/12 Document (Mon-goDB) \T1/ptm/m/n/12 holds high-velocity \T1/ptm/m/it/12 De-tec-tion-Event \T1/ptm/m/n/12 JSON and model di-ag-nos-tics
+ []
+
+
+Overfull \hbox (11.18011pt too wide) in paragraph at lines 40--41
+\T1/ptm/m/n/12 con-verts them into ac-tiv-i-ties and vi-o-la-tions with ev-i-dence links; dash-boards and in-ves-ti-ga-tors
+ []
+
+
+Overfull \hbox (25.78343pt too wide) in paragraph at lines 45--46
+[]\T1/ptm/b/n/12 User In-for-ma-tion\T1/ptm/m/n/12 : Ad-min, In-vig-i-la-tor, In-ves-ti-ga-tor, and Stu-dent pro-files with cre-den-tials
+ []
+
+<sections/data-flow.drawio (2).png, id=527, 1366.10374pt x 462.72874pt>
+File: sections/data-flow.drawio (2).png Graphic file (type png)
+<use sections/data-flow.drawio (2).png>
+Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 59.
+(pdftex.def)             Requested size: 426.79135pt x 144.56001pt.
+
+
+[27]
+Overfull \hbox (44.14165pt too wide) in paragraph at lines 69--70
+[]\T1/ptm/b/n/12 Aggregation/Rules\T1/ptm/m/n/12 : Busi-ness rules trans-form events into \T1/ptm/m/it/12 Stu-den-tAc-tiv-ity/InvigilatorActivity\T1/ptm/m/n/12 ;
+ []
+
+
+Overfull \hbox (20.41943pt too wide) in paragraph at lines 71--72
+[]\T1/ptm/b/n/12 Consumption\T1/ptm/m/n/12 : Ad-min dash-boards query re-la-tional views; in-ves-ti-ga-tors open pre-signed
+ []
+
+<sections/domain-model.png, id=533, 884.30376pt x 673.51625pt>
+File: sections/domain-model.png Graphic file (type png)
+<use sections/domain-model.png>
+Package pdftex.def Info: sections/domain-model.png  used on input line 81.
+(pdftex.def)             Requested size: 426.79135pt x 325.06204pt.
+
+Overfull \hbox (4.80446pt too wide) in paragraph at lines 85--85
 |[]\T1/ptm/b/n/17.28 Design Mod-els [UPTO THE CUR-RENT IT-ER-A-TION
  []
 
 
+Underfull \vbox (badness 1242) has occurred while \output is active []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
 
+
+[28 <./sections/data-flow.drawio (2).png>]
+
+[29 <./sections/domain-model.png>]
+<sections/class-diagram.png, id=549, 1003.75pt x 882.29625pt>
+File: sections/class-diagram.png Graphic file (type png)
+<use sections/class-diagram.png>
+Package pdftex.def Info: sections/class-diagram.png  used on input line 95.
+(pdftex.def)             Requested size: 426.79135pt x 375.1527pt.
+
+
+[30 <./sections/class-diagram.png>]
+<sections/activity-diagram.png, id=555, 660.4675pt x 1069.9975pt>
+File: sections/activity-diagram.png Graphic file (type png)
+<use sections/activity-diagram.png>
+Package pdftex.def Info: sections/activity-diagram.png  used on input line 106.
+(pdftex.def)             Requested size: 340.55272pt x 551.68704pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[31
+
+ <./sections/activity-diagram.png>]
+
+pdfTeX warning: pdflatex (file ./sections/uc01.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc01.pdf, id=561, 614.295pt x 794.97pt>
+File: sections/uc01.pdf Graphic file (type pdf)
+<use sections/uc01.pdf>
+Package pdftex.def Info: sections/uc01.pdf  used on input line 122.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[32 <./sections/uc01.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc02.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc02.pdf, id=576, 614.295pt x 794.97pt>
+File: sections/uc02.pdf Graphic file (type pdf)
+<use sections/uc02.pdf>
+Package pdftex.def Info: sections/uc02.pdf  used on input line 131.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[33 <./sections/uc02.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc03.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc03.pdf, id=590, 614.295pt x 794.97pt>
+File: sections/uc03.pdf Graphic file (type pdf)
+<use sections/uc03.pdf>
+Package pdftex.def Info: sections/uc03.pdf  used on input line 140.
+(pdftex.def)             Requested size: 467.90012pt x 605.50066pt.
+
+Overfull \hbox (41.10876pt too wide) in paragraph at lines 140--141
+ [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--64
 
+[34 <./sections/uc03.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc04.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc04.pdf, id=604, 614.295pt x 794.97pt>
+File: sections/uc04.pdf Graphic file (type pdf)
+<use sections/uc04.pdf>
+Package pdftex.def Info: sections/uc04.pdf  used on input line 148.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[35 <./sections/uc04.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc05.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc05.pdf, id=623, 614.295pt x 794.97pt>
+File: sections/uc05.pdf Graphic file (type pdf)
+<use sections/uc05.pdf>
+Package pdftex.def Info: sections/uc05.pdf  used on input line 157.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[36 <./sections/uc05.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc06.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc06.pdf, id=642, 614.295pt x 794.97pt>
+File: sections/uc06.pdf Graphic file (type pdf)
+<use sections/uc06.pdf>
+Package pdftex.def Info: sections/uc06.pdf  used on input line 167.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[37 <./sections/uc06.pdf>]
+
+pdfTeX warning: pdflatex (file ./sections/uc077.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<sections/uc077.pdf, id=661, 614.295pt x 794.97pt>
+File: sections/uc077.pdf Graphic file (type pdf)
+<use sections/uc077.pdf>
+Package pdftex.def Info: sections/uc077.pdf  used on input line 177.
+(pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
+
+
+[38 <./sections/uc077.pdf>]
+<sections/std.jpg, id=676, 638.385pt x 834.11626pt>
+File: sections/std.jpg Graphic file (type jpg)
+<use sections/std.jpg>
+Package pdftex.def Info: sections/std.jpg  used on input line 187.
+(pdftex.def)             Requested size: 426.79135pt x 557.64587pt.
+
+Overfull \hbox (10.92848pt too wide) in paragraph at lines 192--193
+\T1/ptm/m/n/12 This model col-lec-tively pro-vide a com-pre-hen-sive view of the ForeSyte sys-tem's ar-chi-tec-ture,
  []
 
 )
 
-[27]
+[39
+
+
+
+
+
+
+
+ <./sections/std.jpg>]
+
+[40]
 \openout2 = `sections/chapter4.aux'.
 
  (sections/chapter4.tex
-
-[28
-
-
-
-
-]
 Chapter 4.
 
 Overfull \hbox (23.7793pt too wide) in paragraph at lines 3--4
@@ -1797,7 +1968,12 @@ Overfull \hbox (16.24493pt too wide) in paragraph at lines 3--4
 
 
 
-[29]
+[41
+
+
+
+
+]
 Overfull \hbox (1.19614pt too wide) in paragraph at lines 37--38
 \T1/ptm/m/n/12 type (in-ci-dent/exam), exam name, num-ber of vi-o-la-tions, gen-er-a-tion date, and au-thor.
  []
@@ -1814,7 +1990,7 @@ Overfull \hbox (7.29277pt too wide) in paragraph at lines 44--45
 
 
 
-[30]
+[42]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 49.
 
@@ -1824,7 +2000,7 @@ Overfull \hbox (14.40692pt too wide) in paragraph at lines 73--74
 
 
 
-[31]
+[43]
 Overfull \hbox (41.15515pt too wide) in paragraph at lines 74--75
 \T1/ptm/m/n/12 re-port ID, file path, for-mat, and sta-tus. \T1/ptm/b/n/12 The ac-tual re-port file gen-er-a-tion (PDF/CSV/Excel)
  []
@@ -1836,7 +2012,7 @@ Overfull \hbox (13.18388pt too wide) in paragraph at lines 92--93
 
 
 
-[32]
+[44]
 Overfull \hbox (9.29889pt too wide) in paragraph at lines 99--100
 \T1/ptm/m/n/12 cur-rent win-dow (\T1/cmtt/m/n/12 start_-date\T1/ptm/m/n/12 ) and the im-me-di-ately pre-ced-ing win-dow (\T1/cmtt/m/n/12 prev_-start\T1/ptm/m/n/12 ,
  []
@@ -1863,7 +2039,7 @@ Overfull \hbox (9.67288pt too wide) in paragraph at lines 109--110
 
 
 
-[33]
+[45]
 Overfull \hbox (81.03534pt too wide) in paragraph at lines 127--128
 []\T1/ptm/m/n/12 The front-end con-structs an \T1/cmtt/m/n/12 IncidentReportRequest \T1/ptm/m/n/12 and sends it to \T1/cmtt/m/n/12 POST /reports/incidents\T1/ptm/m/n/12 . 
  []
@@ -1885,7 +2061,7 @@ Overfull \hbox (6.104pt too wide) in paragraph at lines 146--147
 
 
 
-[34]
+[46]
 Overfull \hbox (12.12694pt too wide) in paragraph at lines 156--157
 []\T1/ptm/b/n/12 FastAPI and Star-lette \T1/ptm/m/n/12 for HTTP rout-ing, de-pen-dency in-jec-tion, and re-quest han-dling. 
  []
@@ -2735,12 +2911,12 @@ Underfull \vbox (badness 2846) has occurred while \output is active []
 
 
 
-[35]
+[47]
 Overfull \vbox (545.81035pt too high) has occurred while \output is active []
 
 
 
-[36]
+[48]
 Overfull \hbox (14.38342pt too wide) in paragraph at lines 212--212
 []|\T1/ptm/b/n/12 Objective| 
  []
@@ -3390,12 +3566,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[37]
+[49]
 Overfull \vbox (145.61255pt too high) has occurred while \output is active []
 
 
 
-[38]
+[50]
 Overfull \hbox (20.1556pt too wide) in paragraph at lines 220--221
 []\T1/ptm/b/n/12 Investigator Dash-board Lay-out: \T1/ptm/m/n/12 Checked that pe-riod fil-ters tog-gle cor-rectly, sum-mary
  []
@@ -5365,12 +5541,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[39]
+[51]
 Overfull \vbox (1698.77902pt too high) has occurred while \output is active []
 
 
 
-[40]
+[52]
 Overfull \hbox (11.82822pt too wide) in paragraph at lines 263--264
 \T1/ptm/m/n/12 files con-tain-ing exam sched-ules and ex-tracts room, stu-dent, and seat as-sign-ment in-for-ma-tion. 
  []
@@ -7355,12 +7531,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[41]
+[53]
 Overfull \vbox (2281.60104pt too high) has occurred while \output is active []
 
 
 
-[42]
+[54]
 Overfull \hbox (19.24425pt too wide) in paragraph at lines 294--295
 \T1/ptm/m/n/12 Table [][][] presents test cases for the mon-i-tor-ing end-points and cam-era in-te-gra-tion func-tion-al-ity,
  []
@@ -9600,14 +9776,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[43]
+[55]
 Overfull \vbox (1732.92894pt too high) has occurred while \output is active []
 
 
 
-[44]) (thesis.bbl)
+[56]) (thesis.bbl)
 
-[45
+[57
 
 
 
@@ -9621,20 +9797,20 @@ L3 programming layer <2025-09-02>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F4DBF0EC0B389B224DAC91465B45160B;6553.
+(rerunfilecheck)             Checksum: E2121EA5BE5F31334779E862833682C6;6977.
  ) 
 Here is how much of TeX's memory you used:
- 32162 strings out of 468081
- 631886 string characters out of 5427240
- 1236968 words of memory out of 5000000
- 60006 multiletter control sequences out of 15000+600000
+ 32302 strings out of 468081
+ 635215 string characters out of 5427240
+ 1238064 words of memory out of 5000000
+ 60114 multiletter control sequences out of 15000+600000
  697279 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,13n,121p,684b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,12n,121p,1593b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\hp\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (50 pages, 787660 bytes).
+Output written on thesis.pdf (62 pages, 2930952 bytes).
 PDF statistics:
- 721 PDF objects out of 1000 (max. 8388607)
- 193 named destinations out of 1000 (max. 500000)
- 434 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 919 PDF objects out of 1000 (max. 8388607)
+ 225 named destinations out of 1000 (max. 500000)
+ 515 words of extra memory for PDF output out of 10000 (max. 10000000)
 

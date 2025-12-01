@@ -1,15 +1,22 @@
 \chapter{System Overview [AS PER FYP1 MID REPORT]}
 
+\textbf{ForeSyte} AI Exam Surveillance System is an intelligent monitoring solution designed to enhance the integrity of in-person examinations by automating student and invigilator monitoring. The system integrates CCTV cameras, computer vision, and deep learning models to detect suspicious student behaviors such as phone usage, frequent seat movements, or unauthorized communication, while also tracking invigilator activities to ensure accountability. Each activity is mapped to seating plans and verified against student identities using face recognition, preventing impersonation. Detected events are logged as timestamped violations, which are compiled into structured reports accessible through an administrative dashboard. Administrators manage user profiles, seating plans, and exam sessions, while disciplinary investigators utilize the violation reports to review cases and make informed decisions. The system follows a modular architecture consisting of two primary components: the ForeSyte Web Portal, a multi-user web interface for dashboard visualization and report management, and the Backend Service, the core AI engine handling video stream processing, cheating detection, face recognition, and automated report generation. This architectural design ensures separation of concerns, scalability, and maintainability while providing seamless integration between the user interface and the underlying AI processing capabilities.
 
-
-Give a general description of the functionality, context, and design of your project.
-Provide any background information if necessary.
 \section{Architectural Design}
-Develop a modular program structure and explain the relationships between the modules to achieve the complete functionality of the system. This is a high-level overview of how the system’s modules collaborate with each other to achieve the desired functionality. 
 
-Don’t go into too much detail about the individual subsystems. The main purpose is to gain a general understanding of how and why the system was decomposed, and how the individual parts work together.
+The ForeSyte AI Exam Surveillance System is designed using a modular architecture to ensure scalability, maintainability, and clear separation of concerns. At a high level, the system is divided into front-end modules, back-end modules, and supporting external systems. Each module plays a distinct role but collaborates with others to achieve the overall goal of automated, AI-powered exam monitoring.
 
-Provide a diagram showing the major subsystems and their connections.
+The architecture follows a \textbf{multi-tiered layered style}, combining elements of the \textbf{MVC (Model-View-Controller)} pattern. The front-end handles input, report generation and visualization, the back-end processes and analyzes video frames, and the data management layer ensures persistence and retrieval of information. Reports are then generated for administrators and investigators. This decomposition ensures that the AI detection logic, data storage, and user interfaces remain loosely coupled and independently upgradable.
+
+Figure \ref{fig:architecture} illustrates the high-level architecture of the system, showing the main subsystems and their interactions.
+
+\begin{figure}
+    \centering
+    \caption{High-Level Architectural Design of the ForeSyte AI Exam Surveillance System}
+    \includegraphics[width=\textwidth]{sections/architecture.png}
+    \label{fig:architecture}
+\end{figure}
+\FloatBarrier
 
 \begin{itemize}
     \item In the initial design stage, create a Box and Line Diagram for a simpler representation of the systems.
@@ -18,48 +25,173 @@ Provide a diagram showing the major subsystems and their connections.
 
 To view examples of box and line diagrams and architecture styles, see Appendix C.
 
-\section{Data Design}
-Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed, and organized. 
+\subsection*{3.4 Data Design}
 
-List any databases or data storage items.
-\section{Domain Model}
-The domain model is a conceptual representation of the various entities, their attributes, and the relationships between them within the system. It serves as a bridge between the requirements and the design of the software, providing a clear understanding of the business domain and how it interacts with the system being developed. 
+The data design for \textbf{ForeSyte} focuses on how the system's information domain is represented and transformed into data structures across relational, document, and object stores. In this section, we outline the major system entities, how they are stored, processed, and managed to ensure robust operation and secure handling of user information and evidence.
 
-A domain model typically includes key components such as:
-
+\subsubsection*{3.4.1 Data Structures and Organization}
+ForeSyte deals with multiple data classes: user identities, seating plans, live/recorded video evidence, AI detections, activities, violations, and reports. The core data is organized so that:
 \begin{itemize}
-    \item \textbf{Entities}: These are the primary objects within the domain that hold data and represent real-world concepts. Each entity is defined by its attributes and behaviors.
-    
-    \item \textbf{Attributes}: Characteristics or properties of the entities that define their state. For example, a "Customer" entity might have attributes such as \texttt{customerID}, \texttt{name}, \texttt{email}, and \texttt{address}.
-    
-    \item \textbf{Relationships}: These illustrate how different entities interact with each other. Relationships can be one-to-one, one-to-many, or many-to-many, depending on how entities are associated.
-    
-    \item \textbf{Associations}: Connections between entities that help clarify their interdependencies. For instance, a "Product" may be associated with a "Category," indicating the type of product it belongs to.
+  \item \textbf{Relational (PostgreSQL)} holds normalized, queryable facts: Users, Exams, Rooms, Seats, StudentActivity, InvigilatorActivity, Violations, Reports, and seat assignments; enforced with foreign keys.
+  \item \textbf{Document (MongoDB)} holds high-velocity \textit{DetectionEvent} JSON and model diagnostics with TTL, enabling fast ingest and optional replay/debug.
+  \item \textbf{Blob/Object Storage} (evidence bucket) stores immutable artifacts: frame crops, video snippets, and exported PDF reports.
 \end{itemize}
 
-By constructing a domain model, developers can better understand the system's requirements, facilitate communication among stakeholders, and guide the subsequent design and implementation phases. It also aids in identifying potential issues early in the development process, ensuring a more robust architecture.
+\paragraph{Data lifecycle.} Streams or uploads produce detection events; an aggregation service converts them into activities and violations with evidence links; dashboards and investigators read relational views and open the referenced evidence in object storage.
 
-An example of a domain model for an online shopping system is provided in Appendix B.
+\subsubsection*{3.4.2 Major Data Entities}
+Key logical entities:
+\begin{itemize}
+  \item \textbf{User Information}: Admin, Invigilator, Investigator, and Student profiles with credentials and roles.
+  \item \textbf{Exam/Room/Seat}: Exam sessions; rooms with cameras; seats mapped to students and exams.
+  \item \textbf{DetectionEvent} (document): Raw detector output with timestamps, camera/room source, and model metadata.
+  \item \textbf{StudentActivity/InvigilatorActivity}: Curated activities derived from detections; include severity, confidence, and optional evidence URL.
+  \item \textbf{Violation}: Confirmed cheating events; include type, timestamp, severity, status, and optional evidence URL.
+  \item \textbf{Report}: Generated summaries (PDF) of violations and activities for investigators.
+\end{itemize}
+
+% 3.4.3 (Credentials moved to security section to keep Data Design focused.)
+
+Similarly, Figure~\ref{fig:data-flow-storage} shows how streams/uploads are processed and persisted. 
+\begin{figure}[H]
+    \centering
+     \caption{Data Flow and Storage View (PostgreSQL, MongoDB, Blob/Object Storage)}
+    \includegraphics[width=\textwidth]{sections/data-flow.drawio (2).png}
+    \label{fig:data-flow-storage}
+\end{figure}
+
+
+\subsubsection*{3.4.5 Data Flow and Processing}
+The system processes exam footage via two paths that converge into a unified pipeline:
+\begin{enumerate}
+  \item \textbf{Real-time (Live) Monitoring}: Camera streams feed the AI service, which emits per-frame \textit{DetectionEvents} (JSON).
+  \item \textbf{Uploaded Footage}: After the exam, recorded video is ingested; the AI service produces the same \textit{DetectionEvents} offline.
+  \item \textbf{Aggregation/Rules}: Business rules transform events into \textit{StudentActivity/InvigilatorActivity}; suspicious patterns yield \textit{Violation} rows with evidence links.
+  \item \textbf{Persistence}: Normalized facts land in PostgreSQL; evidence media is stored in Blob/Object storage; optionally, transient raw events remain in MongoDB (TTL).
+  \item \textbf{Consumption}: Admin dashboards query relational views; investigators open pre-signed evidence URLs and download reports.
+\end{enumerate}
+\let\cleardoublepage\clearpage
+
+\section{Domain Model}
+Figure \textcolor{blue}{\ref{fig:domain}} represents the domain model for ForeSyte.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{ForeSyte Domain Model Diagram}
+    \includegraphics[width=\textwidth]{sections/domain-model.png}
+    \label{fig:domain}
+\end{figure}
 
 \section{Design Models [UPTO THE CURRENT ITERATION ONLY]}
-Create design models as are applicable to your system. Provide detailed descriptions with each of the models that you add. Also ensure visibility of all diagrams. 
 
-\textbf{Design Models for Object Oriented Development Approach}
+The ForeSyte system employs an object-oriented development approach, utilizing several key design models to represent the system's structure, behavior, and interactions. These models provide comprehensive documentation of the system's architecture and facilitate understanding of complex relationships between system components.
 
-The applicable models for the project using object oriented development approach may include:
+\subsection{Class Diagram}
 
-•	Activity Diagram\\
-•	Class Diagram\\
-•	Class-level Sequence Diagram\\
-•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
+The system's class diagram represents the core entities and their relationships within the ForeSyte domain model. 
+\begin{figure}[htbp]
+    \centering
+    \caption{ForeSyte Class Diagram}
+    \includegraphics[width=\textwidth]{sections/class-diagram.png}
+    \label{fig:class}
+\end{figure}
+\clearpage
+\subsection{Activity Diagram}
 
-\textbf{Design Models for Procedural Approach}
+The system's activity diagram illustrates the main processes and workflows:
 
-The applicable models for the project using procedural approach may include:
+\begin{figure}[H]
+    \centering
+    \caption{ForeSyte Activity Diagram}
+    \includegraphics[height=0.82\textheight,keepaspectratio]{sections/activity-diagram.png}
+    \label{fig:activity}
+\end{figure}
+\FloatBarrier
 
-•	Activity Diagram\\
-•	Data Flow Diagram (data flow diagram should be extended to 2-3 levels. It should clearly list all processes, their sources/sinks and data stores.)\\
-•	System-level Sequence Diagram\\
-•	[OPTIONAL] State Transition Diagram (for the projects which include event handling and backend processes)\\
 
-Examples of above diagrams are given in Appendix D.
+% ------------------------
+\subsubsection*{3.2.3 Sequence Diagrams}
+
+This section presents the sequence diagrams for all identified use cases (UC-01 to UC-07). 
+Each diagram illustrates the dynamic interaction between actors, the ForeSyte AI System, 
+and domain entities.
+
+% ---------- UC-01 ----------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc01.pdf}
+    \caption{Sequence Diagram for UC-01: View and Manage Reports/Dashboard}
+    \label{fig:uc01}
+\end{figure}
+\clearpage
+
+% ---------- UC-02 ----------
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc02.pdf}
+    \caption{Sequence Diagram for UC-02: Manage User Profiles}
+    \label{fig:uc02}
+\end{figure}
+\clearpage
+
+% ---------- UC-03 ----------
+\begin{figure}[p]
+    \centering
+    \includegraphics[height=0.9\textheight,keepaspectratio]{sections/uc03.pdf}
+    \caption{Sequence Diagram for UC-03: Generate Detection Reports}
+    \label{fig:uc03}
+\end{figure}
+\clearpage
+% ---------- UC-04 ----------
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc04.pdf}
+    \caption{Sequence Diagram for UC-04: Verify Student Identity \& Seat Mapping}
+    \label{fig:uc04}
+\end{figure}
+\clearpage
+
+% ---------- UC-05 ----------
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc05.pdf}
+    \caption{Sequence Diagram for UC-05: Monitor Invigilator Activity}
+    \label{fig:uc05}
+\end{figure}
+\clearpage
+
+
+% ---------- UC-06 ----------
+\begin{figure}[p]
+    \centering
+ \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc06.pdf}
+
+    \caption{Sequence Diagram for UC-06: Monitor Student Behaviour}
+    \label{fig:uc06}
+\end{figure}
+\clearpage
+
+% ---------- UC-07 ----------
+\begin{figure}[p]
+    \centering
+ \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{sections/uc077.pdf}
+    \caption{Sequence Diagram for UC-07: Process Exam Footage (Live/Recorded)}
+    \label{fig:uc07}
+\end{figure}
+\clearpage
+
+\subsection{State Transition Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{sections/std.jpg}
+    \caption{State Transition Diagram}
+    \label{fig:state-diagram}
+\end{figure}
+\FloatBarrier
+This model collectively provide a comprehensive view of the ForeSyte system's architecture, ensuring clear understanding of system components, their interactions, and the overall system behavior throughout the examination monitoring process.
+
+
+
+
+

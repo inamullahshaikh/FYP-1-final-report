@@ -6,4 +6,17 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces ForeSyte Use Case Diagram}}{17}{figure.caption.8}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces High-Level Architectural Design of the ForeSyte AI Exam Surveillance System}}{26}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Data Flow and Storage View (PostgreSQL, MongoDB, Blob/Object Storage)}}{28}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces ForeSyte Domain Model Diagram}}{29}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces ForeSyte Class Diagram}}{30}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces ForeSyte Activity Diagram}}{31}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Sequence Diagram for UC-01: View and Manage Reports/Dashboard}}{32}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Sequence Diagram for UC-02: Manage User Profiles}}{33}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Sequence Diagram for UC-03: Generate Detection Reports}}{34}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Sequence Diagram for UC-04: Verify Student Identity \& Seat Mapping}}{35}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Sequence Diagram for UC-05: Monitor Invigilator Activity}}{36}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Sequence Diagram for UC-06: Monitor Student Behaviour}}{37}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Sequence Diagram for UC-07: Process Exam Footage (Live/Recorded)}}{38}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces State Transition Diagram}}{39}{figure.caption.29}%
 \addvspace {10\p@ }
