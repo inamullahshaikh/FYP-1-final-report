@@ -269,265 +269,36 @@ The Figure \textcolor{blue}{\ref{fig:usecase}} highlights the use case diagram o
 \end{figure}
 
 \section{Functional Requirements}
-This section describes the functional requirements of ForeSyte arranged in a use case-based organizational method.
+This section describes the functional requirements of the system expressed in the natural language style. This section is typically organized by feature as a system feature name and specific functional requirements associated with this feature. 
 
-% ---------- UC-01 ----------
-\subsubsection*{2.2.1\quad UC-01 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-01}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-01 & The system shall allow authorized users to log in and access the Reports/Dashboard module. \\ \hline
-FR-02 & The system shall display real-time and historical reports of student and invigilator activity. \\ \hline
-FR-03 & The system shall provide filtering options (by student ID, seat number, violation type, timestamp). \\ \hline
-FR-04 & The system shall allow exporting reports in PDF and Excel formats. \\ \hline
-FR-05 & The system shall enforce role-based access to reports. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-02 ----------
-\subsubsection*{2.2.2\quad UC-02 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-02}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-06 & The system shall allow the administrator to add new user accounts with role assignments. \\ \hline
-FR-07 & The system shall allow editing of existing user details and permissions. \\ \hline
-FR-08 & The system shall allow deleting user accounts securely. \\ \hline
-FR-09 & The system shall validate inputs (username, password, role) before saving. \\ \hline
-FR-10 & The system shall enforce strong password and security policies. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-03 ----------
-\subsubsection*{2.2.3\quad UC-03 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-03}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-11 & The system shall automatically generate detection reports when violations are flagged. \\ \hline
-FR-12 & The system shall include timestamps, seat numbers, and violation type in reports. \\ \hline
-FR-13 & The system shall store generated reports in a database. \\ \hline
-FR-14 & The system shall allow investigators to review and approve reports. \\ \hline
-FR-15 & The system shall allow reports to be exported in PDF/Excel format. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-04 ----------
-\subsubsection*{2.2.4\quad UC-04 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-04}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-16 & The system shall verify student identity using face recognition. \\ \hline
-FR-17 & The system shall cross-check student identity against pre-stored records. \\ \hline
-FR-18 & The system shall map verified students to their assigned seat numbers. \\ \hline
-FR-19 & The system shall log verification results (student ID, seat ID, verification status). \\ \hline
-FR-20 & The system shall flag mismatches for manual review. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-05 ----------
-\subsubsection*{2.2.5\quad UC-05 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-05}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-21 & The system shall monitor invigilators during exam sessions. \\ \hline
-FR-22 & The system shall track invigilator presence in defined zones. \\ \hline
-FR-23 & The system shall detect unauthorized activities (e.g., phone use). \\ \hline
-FR-24 & The system shall log negligence events with timestamp and location. \\ \hline
-FR-25 & The system shall provide invigilator activity logs to the Discipline Committee. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-06 ----------
-\subsubsection*{2.2.6\quad UC-06 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-06}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-26 & The system shall analyze student actions in real time. \\ \hline
-FR-27 & The system shall detect suspicious behaviors (phone use, hand gestures, looking around). \\ \hline
-FR-28 & The system shall differentiate between normal and abnormal behaviors. \\ \hline
-FR-29 & The system shall log violations with seat ID, timestamp, and video snippet. \\ \hline
-FR-30 & The system shall allow investigators to review and confirm logged violations. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- UC-07 ----------
-\subsubsection*{2.2.7\quad UC-07 Functional Requirement}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{Functional Requirements for UC-07}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-31 & The system shall process both live CCTV feeds and uploaded recordings. \\ \hline
-FR-32 & The system shall analyze frames using AI detection models. \\ \hline
-FR-33 & The system shall log activities with timestamps and seat IDs. \\ \hline
-FR-34 & The system shall store processed results in the database. \\ \hline
-FR-35 & The system shall make analyzed results available in the Reports module. \\ \hline
-\end{tabular}
-\end{table}
-
-% ---------- General ----------
-\subsubsection*{2.2.8\quad General Functional Requirements}
-\vspace{-0.5em}
-\begin{table}[H]
-\caption{General Functional Requirements}
-\centering
-\begin{tabular}{|c|p{11cm}|}
-\hline
-\textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-36 & The system shall ensure processing of violations and reports within 20 seconds. \\ \hline
-FR-37 & The system shall implement secure storage and encryption of student/exam data. \\ \hline
-FR-38 & The system shall allow a responsive web interface for investigators and administrators. \\ \hline
-FR-39 & The system shall maintain audit logs for all activities. \\ \hline
-FR-40 & The system shall support scalability for multiple exam halls simultaneously. \\ \hline
-\end{tabular}
-\end{table}
-\subsection*{2.2.9\quad Module 1: ForeSyte Web Portal}
-Following are the requirements for Module 1 (ForeSyte Web Portal):
-
+\subsection{Module 1}
+Following are the requirements for module 1:
 \begin{enumerate}
-    \item \textbf{Dashboard Visualization}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-01: The system shall allow authorized users to log in and access the Reports/Dashboard module.
-        \item FR-02: The system shall display real-time and historical reports of student and invigilator activity.
-        \item FR-03: The system shall provide filtering options (by student ID, seat number, violation type, timestamp).
-        \item FR-04: The system shall allow exporting reports in PDF and Excel formats.
-        \item FR-05: The system shall enforce role-based access to reports.
-    \end{enumerate}
-
-    \item \textbf{Report Access}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-11: The system shall automatically generate detection reports when violations are flagged.
-        \item FR-12: The system shall include timestamps, seat numbers, and violation type in reports.
-        \item FR-13: The system shall store generated reports in a database.
-        \item FR-14: The system shall allow investigators to review and approve reports.
-        \item FR-15: The system shall allow reports to be exported in PDF/Excel format.
-    \end{enumerate}
-
-    \item \textbf{User Roles and Permissions}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-06: The system shall allow the administrator to add new user accounts with role assignments.
-        \item FR-07: The system shall allow editing of existing user details and permissions.
-        \item FR-08: The system shall allow deleting user accounts securely.
-        \item FR-09: The system shall validate inputs (username, password, role) before saving.
-        \item FR-10: The system shall enforce strong password and security policies.
-    \end{enumerate}
+    \item FR1
+    \item FR2
 \end{enumerate}
 
-
-\subsection*{2.2.10\quad Module 2: Backend Service}
-Following are the requirements for Module 2 (Backend Service):
-
+\subsection{Module 2}
+Following are the requirements for module 2:
 \begin{enumerate}
-    \item \textbf{Video Stream Processing}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-31: The system shall process both live CCTV feeds and uploaded recordings.
-        \item FR-32: The system shall analyze frames using AI detection models.
-        \item FR-33: The system shall log activities with timestamps and seat IDs.
-        \item FR-34: The system shall store processed results in the database.
-        \item FR-35: The system shall make analyzed results available in the Reports module.
-    \end{enumerate}
-
-    \item \textbf{Cheating Detection Engine}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-26: The system shall analyze student actions in real time.
-        \item FR-27: The system shall detect suspicious behaviors (phone use, hand gestures, looking around).
-        \item FR-28: The system shall differentiate between normal and abnormal behaviors.
-        \item FR-29: The system shall log violations with seat ID, timestamp, and video snippet.
-        \item FR-30: The system shall allow investigators to review and confirm logged violations.
-    \end{enumerate}
-
-    \item \textbf{Face and Seat Verification}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-16: The system shall verify student identity using face recognition.
-        \item FR-17: The system shall cross-check student identity against pre-stored records.
-        \item FR-18: The system shall map verified students to their assigned seat numbers.
-        \item FR-19: The system shall log verification results (student ID, seat ID, verification status).
-        \item FR-20: The system shall flag mismatches for manual review.
-    \end{enumerate}
-
-    \item \textbf{Invigilator Monitoring}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-21: The system shall monitor invigilators during exam sessions.
-        \item FR-22: The system shall track invigilator presence in defined zones.
-        \item FR-23: The system shall detect unauthorized activities (e.g., phone use).
-        \item FR-24: The system shall log negligence events with timestamp and location.
-        \item FR-25: The system shall provide invigilator activity logs to the Discipline Committee.
-    \end{enumerate}
-
-    \item \textbf{Report Generation and Security}
-    \begin{enumerate}[label=(\alph*)]
-        \item FR-36: The system shall ensure processing of violations and reports within 20 seconds.
-        \item FR-37: The system shall implement secure storage and encryption of student/exam data.
-        \item FR-38: The system shall allow a responsive web interface for investigators and administrators.
-        \item FR-39: The system shall maintain audit logs for all activities.
-        \item FR-40: The system shall support scalability for multiple exam halls simultaneously.
-    \end{enumerate}
+    \item FR1
+    \item FR2
 \end{enumerate}
-
 
 \section{Non-Functional Requirements}
-This section specifies the non-functional requirements of the ForeSyte system. These requirements are practical, measurable, and verifiable to ensure the system can be realistically implemented in an academic setting. 
-
-\subsection{Reliability}
-\begin{itemize}
-    \item REL-1: The system shall achieve at least 95\% uptime during scheduled exam sessions.  
-    \item REL-2: In case of camera or feed failure, the system shall log the event and notify the administrator within 1 minute.  
-    \item REL-3: The system shall store video footage and violation data redundantly to prevent data loss.  
-\end{itemize}
+This section specifies nonfunctional requirements. These quality requirements should be specific, quantitative, and verifiable. The following are some examples of documenting guidelines.
 
 \subsection{Usability}
-\begin{itemize}
-    \item USE-1: An administrator shall be able to generate a violation report in no more than 3 interactions.  
-    \item USE-2: New users (administrators or investigators) shall be able to learn the core functions of the system with less than 2 hours of training.  
-    \item USE-3: The dashboard shall present violation summaries in a clear tabular format with filters.
-\end{itemize}
+Usability requirements deal with ease of learning, ease of use, error avoidance and recovery, the efficiency of interactions, and accessibility. The usability requirements specified here will help the user interface designer create the optimum user experience.
+Example:\\
+
+USE-1: The COS shall allow a user to retrieve the previous meal ordered with a single interaction.
 
 \subsection{Performance}
-\begin{itemize}
-    \item PER-1: The system shall process live camera feeds with a maximum latency of 10 seconds.  
-    \item PER-2: The cheating detection engine shall analyze at least 20 frames per second per camera feed.  
-    \item PER-3: Violation reports shall be generated within 15 minutes of the end of an exam session.  
-\end{itemize}
+State specific performance requirements for various system operations. If different functional requirements or features have different performance requirements, it’s appropriate to specify those performance goals right with the corresponding functional requirements, rather than collecting them in this section. 
+Example:\\
 
-\subsection{Security}
-\begin{itemize}
-    \item SEC-1: Only authenticated users shall access the system dashboard.  
-    \item SEC-2: User access shall be role-based (administrator, investigator).  
-    \item SEC-3: All access attempts shall be logged for audit purposes.  
-\end{itemize}
-
-\subsection{Maintainability}
-\begin{itemize}
-    \item MAI-1: The system shall follow a modular architecture so that detection models can be updated independently.  
-    \item MAI-2: Minor bugs shall be diagnosable and fixable within 48 hours.  
-    \item MAI-3: The documentation shall describe system modules, and troubleshooting in detail for developers.  
-\end{itemize}
-\clearpage
+PER-1:	 95\% of webpages generated by the COS shall download completely within 4 seconds from the time the user requests the page over a 20 Mbps or faster Internet connection.
 
 
 

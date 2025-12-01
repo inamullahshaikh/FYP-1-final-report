@@ -1,6 +1,8 @@
 \documentclass{fast-nuces-bs}
 %\documentclass{article}
-
+\usepackage[none]{hyphenat}   % disable word hyphenation
+\usepackage{caption}
+\captionsetup{font=small}
 \usepackage{blindtext}
 \usepackage{mathptmx}% Times Roman font
 \usepackage[T1]{fontenc}
@@ -8,18 +10,37 @@
 \usepackage{sectsty}
 \usepackage{tikz-uml}
 \usepackage{titlesec}
-\usepackage{graphicx}
-\usepackage{float}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage{longtable}
 \usepackage{placeins} % for \FloatBarrier
+
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{caption}
 \usepackage{hyperref}
 \usepackage{xcolor} % for colors
+
+% ---------------- Packages ----------------
 \usepackage{enumitem}   % for label=(\alph*) in enumerate
-\usepackage{caption}
-\captionsetup{font=small}
+\usepackage{caption}    % better control of captions
+\usepackage{float}      % for [H] placement of tables/figures
+\usepackage{titlesec}   % control spacing around section headings
+
+% ---------------- Formatting tweaks ----------------
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em} % tighten spacing
 \captionsetup[table]{skip=2pt} % reduce space between table & caption
 
+% Reduce spacing after subsubsection headings
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em}
+
+% Reduce space around captions
+\captionsetup[table]{skip=2pt}
 
 % Information about the Thesis 
 % -----------------------------------------------------------------------------
@@ -29,21 +50,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \department{Department of Computer Science}
 \faculty{Computer Science}
-\degreeyear{2022}
+\degreeyear{2026}
 \degreemonth{June}
 \degreename{Computer Science}
 \campuscity{Islamabad}
-\authorone{Student 1}{19I-1234}
-\authortwo{Student 2}{19I-1234}
-\authorthree{Student 3}{19I-1234}
-\supervisor{Mr./ Ms./ Dr. Supervisor Name}
-\sessionduration{2018-2022}
-\cosupervisor{Mr./ Ms./ Dr. Supervisor Name}
+\authorone{Inam Ullah Shaikh}{22i-0857}
+\authortwo{Emaan Fatima}{22i-0869}
+\authorthree{Aden Sial}{22i-1313}
+\supervisor{Ms. Saira Qamar}
+\sessionduration{2022-2026}
+% \cosupervisor{Mr./ Ms./ Dr. Supervisor Name}
 \deanname{Dr. Dean Computing}
 \directorname{Dr. Director of the Campus}
 \hodname{Dr. Head of Computer Science Department}
-\fypcoordinatorname{Name of FYP Coordinator}
-\title{Project Title}
+%\fypcoordinatorname{Name of FYP Coordinator}
+\title{ForeSyte}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,10 +84,11 @@
 \include{sections/chapter3}
 \include{sections/chapter4}
 
+%\appendix
+%\include{appendix1/appendix1}
+
 \bibliographystyle{plain}
-\bibliography{bib}
+\bibliography{bib} 
 \addcontentsline{toc}{chapter}{References} 
 
-\appendix
-\include{appendix}
 \end{document}
