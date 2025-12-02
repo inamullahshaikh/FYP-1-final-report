@@ -15,7 +15,7 @@ By leveraging AI-driven video analysis, \textbf{ForeSyte} aims to improve the ac
 and enhance overall exam integrity. The system also acts as a deterrent; as students become aware that their activities are continuously monitored, 
 the likelihood of cheating is expected to decrease significantly over time \cite{examIntegrity2021}.
 
-% filepath: c:\Users\hp\Desktop\FYP\full-proj\Revised - Final Report Development - FYP-1\sections\chapter1.tex
+
 \section{Existing Solutions}
 
 Several solutions have been developed to address the problem of cheating detection and exam monitoring, each with distinct approaches and limitations. Below is a critical overview and comparison of the most relevant systems:
@@ -59,6 +59,7 @@ No seat-based activity detection; no invigilator monitoring; limited but no stru
 
 This approach ensures that ForeSyte provides a comprehensive, scalable, and automated exam monitoring solution that overcomes the major shortcomings of existing systems.
 \section{Problem Statement}
+
 Academic dishonesty has become a significant concern in educational institutions worldwide. 
 Studies indicate that approximately 61\% of university students have admitted to cheating during written examinations, 
 while nearly 68\% confess to cheating at least once during their academic career \cite{bucciol2020cheating}. 
@@ -72,7 +73,7 @@ phone usage, hand waving, bending over the desk, looking around, and standing up
 The system focuses on seat-specific mapping, ensuring that every detected activity is linked to the correct student. 
 It also ensures that the correct student ID is sitting on the assigned seat by using face recognition.  
 In addition, \textbf{ForeSyte} incorporates an Invigilator Activity Monitoring module to:
-\begin{itemize}
+\begin{itemize}[noitemsep, topsep=0pt]
     \item Track invigilators' movements
     \item Detect prolonged idle periods
     \item Identify potential negligence
@@ -86,17 +87,18 @@ is expected to decrease significantly over repeated examination sessions
 
 \begin{figure}[H]
     \centering
-     \caption{Estimated reduction in cheating rates using ForeSyte AI-based surveillance system}
     \includegraphics[width=0.8\linewidth]{sections/cheating_reduction_foreSyte.png}
+    \caption{Estimated reduction in cheating rates using ForeSyte AI-based surveillance system}
     \label{fig:cheating_reduction}
 \end{figure}
 
 \begin{figure}[H]
     \centering
+    \includegraphics[width=0.7\linewidth]{sections/piechart.jpg}
     \caption{Frequency of students who reported cheating during written examinations \cite{bucciol2020cheating}}
-    \includegraphics[width=0.7\linewidth]{sections/piechart.png}
     \label{fig:cheating_frequency}
 \end{figure}
+
 \FloatBarrier
 \section{Scope}
 The scope of the ForeSyte project includes developing an AI-powered exam surveillance 
@@ -106,8 +108,8 @@ academic integrity \cite{bucciol2020cheating, examIntegrity2021}.
 
 \begin{figure}[h]
     \centering
-    \caption{Scope workflow of the ForeSyte system}
     \includegraphics[width=0.9\textwidth]{sections/flowchart.png}
+    \caption{Scope workflow of the ForeSyte system}
     \label{fig:flowchart}
 \end{figure}
 
@@ -135,7 +137,9 @@ AI in exam supervision, highlighting fairness and privacy issues.
 
 The boundaries of this project are confined to creating a robust and intelligent surveillance 
 solution that automates detection, verification, and reporting within physical exam 
-environments, thereby ensuring greater fairness, efficiency, and accountability in academic assessments.
+environments, thereby ensuring greater fairness, efficiency, and accountability in academic 
+assessments.
+
 \section{Modules} 
 
 The \textbf{ForeSyte} project is organized into several core modules, each responsible for specific functionalities required to ensure seamless, automated exam monitoring. 
