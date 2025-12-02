@@ -4,32 +4,32 @@
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Frequency of students who reported cheating during written examinations \cite {bucciol2020cheating}}}{4}{figure.caption.4}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Scope workflow of the ForeSyte system}}{5}{figure.caption.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces ForeSyte Use Case Diagram}}{17}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces ForeSyte Use Case Diagram}}{16}{figure.caption.8}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Box and Line Diagram for ForeSyte AI Exam Surveillance System}}{26}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces High-Level Architectural Design of the ForeSyte AI Exam Surveillance System}}{27}{figure.caption.18}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Data Flow and Storage View (PostgreSQL, MongoDB, Blob/Object Storage)}}{28}{figure.caption.19}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces ForeSyte Domain Model Diagram}}{29}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces ForeSyte Class Diagram}}{30}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces ForeSyte Activity Diagram}}{31}{figure.caption.22}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Sequence Diagram for UC-01: View and Manage Reports/Dashboard}}{32}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Sequence Diagram for UC-02: Manage User Profiles}}{33}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Sequence Diagram for UC-03: Generate Detection Reports}}{34}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Sequence Diagram for UC-04: Verify Student Identity \& Seat Mapping}}{35}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Sequence Diagram for UC-05: Monitor Invigilator Activity}}{36}{figure.caption.27}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Sequence Diagram for UC-06: Monitor Student Behaviour}}{37}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Sequence Diagram for UC-07: Process Exam Footage (Live/Recorded)}}{38}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.14}{\ignorespaces State Transition Diagram}}{39}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Box and Line Diagram for ForeSyte AI Exam Surveillance System}}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces High-Level Architectural Design of the ForeSyte AI Exam Surveillance System}}{26}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Data Flow and Storage View (PostgreSQL, MongoDB, Blob/Object Storage)}}{27}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces ForeSyte Domain Model Diagram}}{28}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces ForeSyte Class Diagram}}{29}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces ForeSyte Activity Diagram}}{30}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Sequence Diagram for UC-01: View and Manage Reports/Dashboard}}{31}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Sequence Diagram for UC-02: Manage User Profiles}}{32}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Sequence Diagram for UC-03: Generate Detection Reports}}{33}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Sequence Diagram for UC-04: Verify Student Identity \& Seat Mapping}}{34}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Sequence Diagram for UC-05: Monitor Invigilator Activity}}{35}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Sequence Diagram for UC-06: Monitor Student Behaviour}}{36}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Sequence Diagram for UC-07: Process Exam Footage (Live/Recorded)}}{37}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces State Transition Diagram}}{38}{figure.caption.30}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Use Case Diagram for the Online Shopping System}}{62}{figure.caption.37}%
-\contentsline {figure}{\numberline {A.2}{\ignorespaces Detail Use Case Example}}{63}{figure.caption.38}%
-\contentsline {figure}{\numberline {A.3}{\ignorespaces Example of Event Response Table}}{64}{figure.caption.39}%
-\contentsline {figure}{\numberline {A.4}{\ignorespaces Example of Story Board}}{65}{figure.caption.40}%
-\contentsline {figure}{\numberline {A.5}{\ignorespaces Domain Model Example For Online Shopping Application}}{66}{figure.caption.41}%
-\contentsline {figure}{\numberline {A.6}{\ignorespaces Box and Line Diagram For Online Shopping Application}}{67}{figure.caption.42}%
-\contentsline {figure}{\numberline {A.7}{\ignorespaces Architecture Pattern For Online Shopping Application}}{68}{figure.caption.43}%
-\contentsline {figure}{\numberline {A.8}{\ignorespaces Activity Diagram For Online Shopping Application}}{69}{figure.caption.44}%
-\contentsline {figure}{\numberline {A.9}{\ignorespaces Class Diagram For Online Shopping Application}}{70}{figure.caption.45}%
-\contentsline {figure}{\numberline {A.10}{\ignorespaces Sequence Diagram For Online Shopping Application}}{71}{figure.caption.46}%
-\contentsline {figure}{\numberline {A.11}{\ignorespaces State Transition Diagram For Online Shopping Application}}{71}{figure.caption.47}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Use Case Diagram for the Online Shopping System}}{61}{figure.caption.37}%
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Detail Use Case Example}}{62}{figure.caption.38}%
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Example of Event Response Table}}{63}{figure.caption.39}%
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Example of Story Board}}{64}{figure.caption.40}%
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Domain Model Example For Online Shopping Application}}{65}{figure.caption.41}%
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Box and Line Diagram For Online Shopping Application}}{66}{figure.caption.42}%
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Architecture Pattern For Online Shopping Application}}{67}{figure.caption.43}%
+\contentsline {figure}{\numberline {A.8}{\ignorespaces Activity Diagram For Online Shopping Application}}{68}{figure.caption.44}%
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Class Diagram For Online Shopping Application}}{69}{figure.caption.45}%
+\contentsline {figure}{\numberline {A.10}{\ignorespaces Sequence Diagram For Online Shopping Application}}{70}{figure.caption.46}%
+\contentsline {figure}{\numberline {A.11}{\ignorespaces State Transition Diagram For Online Shopping Application}}{70}{figure.caption.47}%
