@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lipsum} 
 \usepackage{sectsty}
-\usepackage{tikz-uml}
+%\usepackage{tikz-uml}  % Commented out - package not found. Install via MiKTeX Package Manager if needed.
 \usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage{array}
@@ -23,8 +23,10 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{caption}
-\usepackage{hyperref}
+% hyperref is already loaded in fast-nuces-bs.cls, so we don't need to load it again
+% \usepackage{hyperref}  % Commented out - already loaded in class file
 \usepackage{xcolor} % for colors
+\usepackage{listings} % for code blocks
 
 % ---------------- Packages ----------------
 \usepackage{enumitem}   % for label=(\alph*) in enumerate
@@ -41,6 +43,74 @@
 
 % Reduce space around captions
 \captionsetup[table]{skip=2pt}
+
+% ---------------- Table of Contents, List of Figures, List of Tables Formatting ----------------
+% Ensure lists are properly formatted and displayed
+% These commands help ensure the lists display correctly with tocloft package
+\makeatletter
+% Ensure babel compatibility for lists
+\@ifpackageloaded{babel}{%
+  \addto\extrasenglish{%
+    \def\contentsname{Contents}%
+    \def\listfigurename{List of Figures}%
+    \def\listtablename{List of Tables}%
+  }%
+}{}
+\makeatother
+\renewcommand{\cftfigfont}{\normalfont}
+\renewcommand{\cfttabfont}{\normalfont}
+\renewcommand{\cftfigleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttableader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftfigindent}{0pt}
+\setlength{\cfttabindent}{0pt}
+
+% ---------------- Code Block Styling ----------------
+\definecolor{codebackground}{RGB}{245,245,245}
+\definecolor{codeborder}{RGB}{200,200,200}
+\definecolor{keywordcolor}{RGB}{0,0,255}
+\definecolor{stringcolor}{RGB}{163,21,21}
+\definecolor{commentcolor}{RGB}{0,128,0}
+\definecolor{numbercolor}{RGB}{128,0,128}
+
+% Custom pseudocode language
+\lstdefinelanguage{pseudocode}{
+    keywords={START,READ,EXTRACT,NORMALIZE,DEFINE,FIND,CREATE,FOR,IF,ELSE,CHECK,ADD,SELECT,STORE,PARSE,QUERY,WHERE,AND,COMMIT,SPLIT,UPDATE,LOAD,CALCULATE,TRACK,DEFINE,CONVERT,RETURN,GET,DRAW,SAVE,EXISTS,NOT,CONTINUE,FAILED,MATCHES,USING},
+    keywordstyle=\color{blue}\bfseries,
+    sensitive=false,
+    comment=[l]{\#},
+    commentstyle=\color{green!60!black}\itshape,
+    string=[b]",
+    stringstyle=\color{red},
+    morestring=[b]',
+    morestring=[s]{"""}{"""},
+}
+
+\lstset{
+    backgroundcolor=\color{codebackground},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{codeborder},
+    framesep=8pt,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    showstringspaces=false,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    stringstyle=\color{stringcolor},
+    commentstyle=\color{commentcolor}\itshape,
+    numberstyle=\tiny\color{numbercolor},
+    numbers=left,
+    numberfirstline=true,
+    stepnumber=5,
+    numbersep=8pt,
+    captionpos=b,
+    aboveskip=10pt,
+    belowskip=10pt,
+    extendedchars=true
+}
 
 % Information about the Thesis 
 % -----------------------------------------------------------------------------

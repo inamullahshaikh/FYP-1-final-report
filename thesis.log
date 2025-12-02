@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  3 DEC 2025 02:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  3 DEC 2025 03:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -710,268 +710,95 @@ LaTeX Warning: Command \underbar  has changed.
 LaTeX Warning: Command \underline  has changed.
                Check if current package is valid.
 
-) (tikz-uml.sty
-Package: tikz-uml 2011/01/26
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
-\xs_counta=\count367
-\xs_countb=\count368
-)
-Package: xstring 2023/08/22 v1.86 String manipulations (CT)
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
-Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count369
-\calc@Bcount=\count370
-\calc@Adimen=\dimen299
-\calc@Bdimen=\dimen300
-\calc@Askip=\skip109
-\calc@Bskip=\skip110
-LaTeX Info: Redefining \setlength on input line 86.
-LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count371
-\calc@Cskip=\skip111
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/pgfopts\pgfopts.sty
-Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
-\pgfopts@list@add@a@toks=\toks53
-\pgfopts@list@add@b@toks=\toks54
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.code.tex
-File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@layerbox@background=\box66
-\pgf@layerboxsaved@background=\box67
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.code.tex
-File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\arrowsize=\dimen301
-)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.callouts.code.tex (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.callouts.code.tex)) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodepartlowerbox=\box68
-\pgfnodeparttwobox=\box69
-\pgfnodepartthreebox=\box70
-\pgfnodepartfourbox=\box71
-\pgfnodeparttwentybox=\box72
-\pgfnodepartnineteenbox=\box73
-\pgfnodeparteighteenbox=\box74
-\pgfnodepartseventeenbox=\box75
-\pgfnodepartsixteenbox=\box76
-\pgfnodepartfifteenbox=\box77
-\pgfnodepartfourteenbox=\box78
-\pgfnodepartthirteenbox=\box79
-\pgfnodeparttwelvebox=\box80
-\pgfnodepartelevenbox=\box81
-\pgfnodeparttenbox=\box82
-\pgfnodepartninebox=\box83
-\pgfnodeparteightbox=\box84
-\pgfnodepartsevenbox=\box85
-\pgfnodepartsixbox=\box86
-\pgfnodepartfivebox=\box87
-))) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
-File: tikzlibraryfit.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshadows.code.tex
-File: tikzlibraryshadows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfadings.code.tex
-File: tikzlibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
- (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfadings.code.tex
-File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.markings.code.tex (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
-\pgfdecoratedcompleteddistance=\dimen302
-\pgfdecoratedremainingdistance=\dimen303
-\pgfdecoratedinputsegmentcompleteddistance=\dimen304
-\pgfdecoratedinputsegmentremainingdistance=\dimen305
-\pgf@decorate@distancetomove=\dimen306
-\pgf@decorate@repeatstate=\count372
-\pgfdecorationsegmentamplitude=\dimen307
-\pgfdecorationsegmentlength=\dimen308
-)
-\tikz@lib@dec@box=\box88
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.markings.code.tex))
-\c@tikzumlPackageLayers=\count373
-\pgf@layerbox@package0=\box89
-\pgf@layerboxsaved@package0=\box90
-\pgf@layerbox@package1=\box91
-\pgf@layerboxsaved@package1=\box92
-\pgf@layerbox@package2=\box93
-\pgf@layerboxsaved@package2=\box94
-\pgf@layerbox@package3=\box95
-\pgf@layerboxsaved@package3=\box96
-\c@tikzumlFragmentLayers=\count374
-\pgf@layerbox@fragment0=\box97
-\pgf@layerboxsaved@fragment0=\box98
-\pgf@layerbox@fragment1=\box99
-\pgf@layerboxsaved@fragment1=\box100
-\pgf@layerbox@fragment2=\box101
-\pgf@layerboxsaved@fragment2=\box102
-\pgf@layerbox@fragment3=\box103
-\pgf@layerboxsaved@fragment3=\box104
-\c@tikzumlStateLayers=\count375
-\pgf@layerbox@state0=\box105
-\pgf@layerboxsaved@state0=\box106
-\pgf@layerbox@state1=\box107
-\pgf@layerboxsaved@state1=\box108
-\pgf@layerbox@state2=\box109
-\pgf@layerboxsaved@state2=\box110
-\pgf@layerbox@state3=\box111
-\pgf@layerboxsaved@state3=\box112
-\c@tikzumlComponentLayers=\count376
-\pgf@layerbox@component0=\box113
-\pgf@layerboxsaved@component0=\box114
-\pgf@layerbox@component1=\box115
-\pgf@layerboxsaved@component1=\box116
-\pgf@layerbox@component2=\box117
-\pgf@layerboxsaved@component2=\box118
-\pgf@layerbox@component3=\box119
-\pgf@layerboxsaved@component3=\box120
-\pgf@layerbox@lifelines=\box121
-\pgf@layerboxsaved@lifelines=\box122
-\pgf@layerbox@activity=\box123
-\pgf@layerboxsaved@activity=\box124
-\pgf@layerbox@connections=\box125
-\pgf@layerboxsaved@connections=\box126
-\c@tikzumlPackageClassNum=\count377
-\c@tikzumlPackageSubPackageNum=\count378
-\c@tikzumlRelationNum=\count379
-\c@tikzumlNoteNum=\count380
-\c@pos=\count381
-\c@posT=\count382
-\c@posStereo=\count383
-\c@tikzumlPackageLevel=\count384
-\tikzumlNestingSymbolSize=\dimen309
-\c@tikzumlSystemUseCaseNum=\count385
-\c@tikzumlSystemLevel=\count386
-\c@tikzumlUseCaseNum=\count387
-\c@tikzumlActorNum=\count388
-\c@tikzumlStateJoinNum=\count389
-\c@tikzumlStateDecisionNum=\count390
-\c@tikzumlStateInitialNum=\count391
-\c@tikzumlStateFinalNum=\count392
-\c@tikzumlStateEnterNum=\count393
-\c@tikzumlStateExitNum=\count394
-\c@tikzumlStateEndNum=\count395
-\c@tikzumlStateHistoryNum=\count396
-\c@tikzumlStateDeepHistoryNum=\count397
-\c@tikzumlStateLevel=\count398
-\c@tikzumlStateSubStateNum=\count399
-\c@tikzumlStateText=\count400
-\c@tikzumlObjectNum=\count401
-\c@tikzumlCallLevel=\count402
-\c@tikzumlCallNum=\count403
-\c@tikzumlFragmentLevel=\count404
-\c@tikzumlFragmentLevelNum=\count405
-\c@tikzumlFragmentNum=\count406
-\c@tikzumlFragmentPartNum=\count407
-\c@tikzumlCallStartFragmentNum=\count408
-\c@tikzumlCallEndFragmentNum=\count409
-\c@tikzumlSDNodeNum=\count410
-\tikzumlCall@xa=\skip112
-\tikzumlCall@xb=\skip113
-\c@tikzumlComponentLevel=\count411
-\c@tikzumlComponentSubComponentNum=\count412
-\c@tikzumlConnectorNum=\count413
-\tikzuml@AC@xa=\skip114
-\tikzuml@AC@ya=\skip115
-\tikzuml@AC@xb=\skip116
-\tikzuml@AC@yb=\skip117
-\tikzuml@AC@xi=\skip118
-\tikzuml@AC@yi=\skip119
-\tikzuml@AC@xic=\skip120
-\tikzuml@AC@yic=\skip121
-\tikzuml@AC@xio=\skip122
-\tikzuml@AC@yio=\skip123
-\tikzuml@AC@AB=\skip124
-\tikzuml@AC@lambda=\skip125
-\tikzuml@AC@xtrc=\skip126
-\tikzuml@AC@ytrc=\skip127
-\tikzuml@AC@xtlc=\skip128
-\tikzuml@AC@ytlc=\skip129
-\tikzuml@AC@xblc=\skip130
-\tikzuml@AC@yblc=\skip131
-\tikzuml@AC@xbrc=\skip132
-\tikzuml@AC@ybrc=\skip133
-\tikzuml@AC@middleArm=\skip134
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
-\ttl@box=\box127
-\beforetitleunit=\skip135
-\aftertitleunit=\skip136
-\ttl@plus=\dimen310
-\ttl@minus=\dimen311
-\ttl@toksa=\toks55
-\titlewidth=\dimen312
-\titlewidthlast=\dimen313
-\titlewidthfirst=\dimen314
+\ttl@box=\box66
+\beforetitleunit=\skip109
+\aftertitleunit=\skip110
+\ttl@plus=\dimen299
+\ttl@minus=\dimen300
+\ttl@toksa=\toks53
+\titlewidth=\dimen301
+\titlewidthlast=\dimen302
+\titlewidthfirst=\dimen303
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
-\col@sep=\dimen315
-\ar@mcellbox=\box128
-\extrarowheight=\dimen316
-\NC@list=\toks56
-\extratabsurround=\skip137
-\backup@length=\skip138
-\ar@cellbox=\box129
+\col@sep=\dimen304
+\ar@mcellbox=\box67
+\extrarowheight=\dimen305
+\NC@list=\toks54
+\extratabsurround=\skip111
+\backup@length=\skip112
+\ar@cellbox=\box68
 )
-\TX@col@width=\dimen317
-\TX@old@table=\dimen318
-\TX@old@col=\dimen319
-\TX@target=\dimen320
-\TX@delta=\dimen321
-\TX@cols=\count414
-\TX@ftn=\toks57
+\TX@col@width=\dimen306
+\TX@old@table=\dimen307
+\TX@old@col=\dimen308
+\TX@target=\dimen309
+\TX@delta=\dimen310
+\TX@cols=\count367
+\TX@ftn=\toks55
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
 Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
-\LTleft=\skip139
-\LTright=\skip140
-\LTpre=\skip141
-\LTpost=\skip142
-\LTchunksize=\count415
-\LTcapwidth=\dimen322
-\LT@head=\box130
-\LT@firsthead=\box131
-\LT@foot=\box132
-\LT@lastfoot=\box133
-\LT@gbox=\box134
-\LT@cols=\count416
-\LT@rows=\count417
-\c@LT@tables=\count418
-\c@LT@chunks=\count419
-\LT@p@ftn=\toks58
+\LTleft=\skip113
+\LTright=\skip114
+\LTpre=\skip115
+\LTpost=\skip116
+\LTchunksize=\count368
+\LTcapwidth=\dimen311
+\LT@head=\box69
+\LT@firsthead=\box70
+\LT@foot=\box71
+\LT@lastfoot=\box72
+\LT@gbox=\box73
+\LT@cols=\count369
+\LT@rows=\count370
+\c@LT@tables=\count371
+\c@LT@chunks=\count372
+\LT@p@ftn=\toks56
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
 Package: placeins 2005/04/18  v 2.2
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count420
-\float@exts=\toks59
-\float@box=\box135
-\@float@everytoks=\toks60
-\@floatcapt=\box136
-) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+\c@float@type=\count373
+\float@exts=\toks57
+\float@box=\box74
+\@float@everytoks=\toks58
+\@floatcapt=\box75
+) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count374
+\lst@gtempboxa=\box76
+\lst@token=\toks59
+\lst@length=\count375
+\lst@currlwidth=\dimen312
+\lst@column=\count376
+\lst@pos=\count377
+\lst@lostspace=\dimen313
+\lst@width=\dimen314
+\lst@newlines=\count378
+\lst@lineno=\count379
+\lst@maxwidth=\dimen315
+ (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count380
+\lst@skipnumbers=\count381
+\lst@framebox=\box77
+) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip143
-\enit@outerparindent=\dimen323
-\enit@toks=\toks61
-\enit@inbox=\box137
-\enit@count@id=\count421
-\enitdp@description=\count422
+\labelindent=\skip117
+\enit@outerparindent=\dimen316
+\enit@toks=\toks60
+\enit@inbox=\box78
+\enit@count@id=\count382
+\enitdp@description=\count383
 ) (thesis.aux (sections/chapter1.aux) (sections/chapter2.aux
 
 LaTeX Warning: Label `uc1' multiply defined.
@@ -1019,37 +846,37 @@ LaTeX Warning: Label `fig:usecase3' multiply defined.
 ))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count423
-\scratchdimen=\dimen324
-\scratchbox=\box138
-\nofMPsegments=\count424
-\nofMParguments=\count425
-\everyMPshowfont=\toks62
-\MPscratchCnt=\count426
-\MPscratchDim=\dimen325
-\MPnumerator=\count427
-\makeMPintoPDFobject=\count428
-\everyMPtoPDFconversion=\toks63
+\scratchcounter=\count384
+\scratchdimen=\dimen317
+\scratchbox=\box79
+\nofMPsegments=\count385
+\nofMParguments=\count386
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count387
+\MPscratchDim=\dimen318
+\MPnumerator=\count388
+\makeMPintoPDFobject=\count389
+\everyMPtoPDFconversion=\toks62
 ) (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1090,50 +917,52 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 72.
-Package hyperref Info: Link coloring ON on input line 72.
+Package hyperref Info: Option `colorlinks' set `true' on input line 142.
+Package hyperref Info: Link coloring ON on input line 142.
 (thesis.out) (thesis.out)
 \@outlinefile=\write4
 \openout4 = `thesis.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <19> on input line 72.
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 72.
+\c@lstlisting=\count390
+LaTeX Font Info:    Calculating math sizes for size <19> on input line 142.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 72.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 72.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 72.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 72.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 142.
  (C:\Users\inamu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <19> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.0601> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11.40012> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
-<ThesisFigs/FASTLogo.jpg, id=257, 325.96782pt x 321.45094pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 142.
+<ThesisFigs/FASTLogo.jpg, id=233, 325.96782pt x 321.45094pt>
 File: ThesisFigs/FASTLogo.jpg Graphic file (type jpg)
 <use ThesisFigs/FASTLogo.jpg>
-Package pdftex.def Info: ThesisFigs/FASTLogo.jpg  used on input line 72.
+Package pdftex.def Info: ThesisFigs/FASTLogo.jpg  used on input line 142.
 (pdftex.def)             Requested size: 128.0387pt x 126.26787pt.
 
 
@@ -1163,12 +992,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[3] (thesis.lof
-Overfull \hbox (3.60652pt too wide) in paragraph at lines 3--3
- [][] []\T1/ptm/m/n/12 Estimated re-duc-tion in cheat-ing rates us-ing ForeSyte AI-based surveil-lance 
- []
-
-)
+[3] (thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
@@ -1176,16 +1000,7 @@ Overfull \hbox (3.60652pt too wide) in paragraph at lines 3--3
 
 [4
 
-]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[5] (thesis.lot)
+] (thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
@@ -1200,7 +1015,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Chapter 1.
 
 Overfull \hbox (3.30862pt too wide) in paragraph at lines 4--7
-\T1/ptm/m/n/12 This project pro-posal presents \T1/ptm/b/n/12 ForeSyte\T1/ptm/m/n/12 , an AI-powered CCTV/camera mon-i-tor-ing sys-tem
+\T1/ptm/m/n/12 This project pro-posal presents \T1/ptm/b/n/12 ForeSyte\T1/ptm/m/n/12 , an AI-powered CCTV/-cam-era mon-i-tor-ing sys-tem
  []
 
 
@@ -1343,7 +1158,7 @@ Overfull \hbox (6.99289pt too wide) in paragraph at lines 80--86
 \T1/ptm/m/n/12 search-ing through hours of footage. By com-bin-ing AI-powered surveil-lance with in-tel-li-gent
  []
 
-<sections/cheating_reduction_foreSyte.png, id=459, 608.7543pt x 380.1402pt>
+<sections/cheating_reduction_foreSyte.png, id=431, 608.7543pt x 380.1402pt>
 File: sections/cheating_reduction_foreSyte.png Graphic file (type png)
 <use sections/cheating_reduction_foreSyte.png>
 Package pdftex.def Info: sections/cheating_reduction_foreSyte.png  used on input line 90.
@@ -1356,7 +1171,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has b
                    \relax 
 l.92 \end{figure}
                   [3]
-<sections/piechart.png, id=466, 853.1875pt x 592.2125pt>
+<sections/piechart.png, id=438, 853.1875pt x 592.2125pt>
 File: sections/piechart.png Graphic file (type png)
 <use sections/piechart.png>
 Package pdftex.def Info: sections/piechart.png  used on input line 97.
@@ -1366,7 +1181,7 @@ Overfull \hbox (17.45575pt too wide) in paragraph at lines 102--106
 \T1/ptm/m/n/12 Re-cent re-search high-lights the im-por-tance of au-to-mated in-vig-i-la-tion for main-tain-ing aca-demic
  []
 
-<sections/flowchart.png, id=469, 851.43094pt x 527.571pt>
+<sections/flowchart.png, id=441, 851.43094pt x 527.571pt>
 File: sections/flowchart.png Graphic file (type png)
 <use sections/flowchart.png>
 Package pdftex.def Info: sections/flowchart.png  used on input line 110.
@@ -1376,7 +1191,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Overfull \hbox (4.54448pt too wide) in paragraph at lines 114--119
-[]\T1/ptm/m/n/12 The sys-tem will pro-cess CCTV/camera footage, both live streams and up-loaded record-ings,
+[]\T1/ptm/m/n/12 The sys-tem will pro-cess CCTV/-cam-era footage, both live streams and up-loaded record-ings,
  []
 
 
@@ -1393,7 +1208,7 @@ Overfull \hbox (14.54024pt too wide) in paragraph at lines 120--125
 
 
 Overfull \hbox (9.08044pt too wide) in paragraph at lines 126--130
-\T1/ptm/m/n/12 to man-u-ally re-view ex-ten-sive CCTV/camera footage, of-fer-ing in-stead a con-cise and ac-cu-rate
+\T1/ptm/m/n/12 to man-u-ally re-view ex-ten-sive CCTV/-cam-era footage, of-fer-ing in-stead a con-cise and ac-cu-rate
  []
 
 
@@ -1406,12 +1221,7 @@ Underfull \vbox (badness 2073) has occurred while \output is active []
 
 
 
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.143 
-       [5 <./sections/flowchart.png>]
+[5 <./sections/flowchart.png>]
 Overfull \hbox (12.95435pt too wide) in paragraph at lines 150--151
 []\T1/ptm/b/n/12 Dashboard Vi-su-al-iza-tion: \T1/ptm/m/n/12 Dis-plays real-time up-dates of sus-pi-cious ac-tiv-i-ties, flagged
  []
@@ -1428,7 +1238,7 @@ Overfull \hbox (18.10294pt too wide) in paragraph at lines 153--154
 
 
 Overfull \hbox (2.68448pt too wide) in paragraph at lines 157--159
-\T1/ptm/m/n/12 pro-cesses video streams from CCTV/camera sys-tems and up-loaded exam footage to en-sure
+\T1/ptm/m/n/12 pro-cesses video streams from CCTV/-cam-era sys-tems and up-loaded exam footage to en-sure
  []
 
 
@@ -1606,7 +1416,7 @@ Overfull \hbox (25.19997pt too wide) in alignment at lines 229--256
 [16
 
 ]
-<sections/usecase.png, id=548, 670.505pt x 654.445pt>
+<sections/usecase.png, id=521, 670.505pt x 654.445pt>
 File: sections/usecase.png Graphic file (type png)
 <use sections/usecase.png>
 Package pdftex.def Info: sections/usecase.png  used on input line 266.
@@ -1718,7 +1528,7 @@ Overfull \hbox (7.53288pt too wide) in paragraph at lines 469--470
 
 
 Overfull \hbox (20.08498pt too wide) in paragraph at lines 485--486
-[]\T1/ptm/m/n/12 FR-37: The sys-tem shall im-ple-ment se-cure stor-age and en-cryp-tion of stu-dent/exam
+[]\T1/ptm/m/n/12 FR-37: The sys-tem shall im-ple-ment se-cure stor-age and en-cryp-tion of stu-den-t/exam
  []
 
 
@@ -1790,7 +1600,7 @@ Overfull \hbox (1.77223pt too wide) in paragraph at lines 9--10
 \T1/ptm/m/n/12 for re-la-tional data and Mon-goDB for high-velocity event logs. This de-com-po-si-tion en-sures
  []
 
-<sections/box-line.drawio.png, id=636, 643.40375pt x 171.64125pt>
+<sections/box-line.drawio.png, id=608, 643.40375pt x 171.64125pt>
 File: sections/box-line.drawio.png Graphic file (type png)
 <use sections/box-line.drawio.png>
 Package pdftex.def Info: sections/box-line.drawio.png  used on input line 16.
@@ -1800,7 +1610,7 @@ Overfull \hbox (5.51593pt too wide) in paragraph at lines 23--24
 \T1/ptm/m/n/12 clear sep-a-ra-tion be-tween the pre-sen-ta-tion layer (Re-act fron-tend), ap-pli-ca-tion layer (FastAPI
  []
 
-<sections/foresyte-architecture-style.drawio.png, id=638, 1406.25375pt x 533.995pt>
+<sections/foresyte-architecture-style.drawio.png, id=610, 1406.25375pt x 533.995pt>
 File: sections/foresyte-architecture-style.drawio.png Graphic file (type png)
 <use sections/foresyte-architecture-style.drawio.png>
 Package pdftex.def Info: sections/foresyte-architecture-style.drawio.png  used on input line 28.
@@ -1852,7 +1662,7 @@ Overfull \hbox (25.78343pt too wide) in paragraph at lines 53--54
 []\T1/ptm/b/n/12 User In-for-ma-tion\T1/ptm/m/n/12 : Ad-min, In-vig-i-la-tor, In-ves-ti-ga-tor, and Stu-dent pro-files with cre-den-tials
  []
 
-<sections/data-flow.drawio (2).png, id=650, 1366.10374pt x 462.72874pt>
+<sections/data-flow.drawio (2).png, id=623, 1366.10374pt x 462.72874pt>
 File: sections/data-flow.drawio (2).png Graphic file (type png)
 <use sections/data-flow.drawio (2).png>
 Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 67.
@@ -1861,7 +1671,7 @@ Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 6
 
 [28 <./sections/data-flow.drawio (2).png>]
 Overfull \hbox (44.14165pt too wide) in paragraph at lines 76--77
-[]\T1/ptm/b/n/12 Aggregation/Rules\T1/ptm/m/n/12 : Busi-ness rules trans-form events into \T1/ptm/m/it/12 Stu-den-tAc-tiv-ity/InvigilatorActivity\T1/ptm/m/n/12 ;
+[]\T1/ptm/b/n/12 Aggregation/Rules\T1/ptm/m/n/12 : Busi-ness rules trans-form events into \T1/ptm/m/it/12 Stu-den-tAc-tiv-i-ty/In-vig-i-la-torAc-tiv-ity\T1/ptm/m/n/12 ;
  []
 
 
@@ -1869,7 +1679,7 @@ Overfull \hbox (20.41943pt too wide) in paragraph at lines 78--79
 []\T1/ptm/b/n/12 Consumption\T1/ptm/m/n/12 : Ad-min dash-boards query re-la-tional views; in-ves-ti-ga-tors open pre-signed
  []
 
-<sections/domain-model.png, id=658, 884.30376pt x 673.51625pt>
+<sections/domain-model.png, id=631, 884.30376pt x 673.51625pt>
 File: sections/domain-model.png Graphic file (type png)
 <use sections/domain-model.png>
 Package pdftex.def Info: sections/domain-model.png  used on input line 87.
@@ -1882,7 +1692,7 @@ Overfull \hbox (4.80446pt too wide) in paragraph at lines 91--91
 
 
 [29 <./sections/domain-model.png>]
-<sections/class-diagram.png, id=668, 1003.75pt x 882.29625pt>
+<sections/class-diagram.png, id=641, 1003.75pt x 882.29625pt>
 File: sections/class-diagram.png Graphic file (type png)
 <use sections/class-diagram.png>
 Package pdftex.def Info: sections/class-diagram.png  used on input line 101.
@@ -1890,7 +1700,7 @@ Package pdftex.def Info: sections/class-diagram.png  used on input line 101.
 
 
 [30 <./sections/class-diagram.png>]
-<sections/activity-diagram.png, id=674, 660.4675pt x 1069.9975pt>
+<sections/activity-diagram.png, id=647, 660.4675pt x 1069.9975pt>
 File: sections/activity-diagram.png Graphic file (type png)
 <use sections/activity-diagram.png>
 Package pdftex.def Info: sections/activity-diagram.png  used on input line 112.
@@ -1905,7 +1715,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  <./sections/activity-diagram.png>]
 
 pdfTeX warning: pdflatex (file ./sections/uc01.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc01.pdf, id=681, 614.295pt x 794.97pt>
+<sections/uc01.pdf, id=653, 614.295pt x 794.97pt>
 File: sections/uc01.pdf Graphic file (type pdf)
 <use sections/uc01.pdf>
 Package pdftex.def Info: sections/uc01.pdf  used on input line 128.
@@ -1915,7 +1725,7 @@ Package pdftex.def Info: sections/uc01.pdf  used on input line 128.
 [32 <./sections/uc01.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc02.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc02.pdf, id=695, 614.295pt x 794.97pt>
+<sections/uc02.pdf, id=668, 614.295pt x 794.97pt>
 File: sections/uc02.pdf Graphic file (type pdf)
 <use sections/uc02.pdf>
 Package pdftex.def Info: sections/uc02.pdf  used on input line 137.
@@ -1925,7 +1735,7 @@ Package pdftex.def Info: sections/uc02.pdf  used on input line 137.
 [33 <./sections/uc02.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc03.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc03.pdf, id=709, 614.295pt x 794.97pt>
+<sections/uc03.pdf, id=682, 614.295pt x 794.97pt>
 File: sections/uc03.pdf Graphic file (type pdf)
 <use sections/uc03.pdf>
 Package pdftex.def Info: sections/uc03.pdf  used on input line 146.
@@ -1940,7 +1750,7 @@ Overfull \hbox (41.10876pt too wide) in paragraph at lines 146--147
 [34 <./sections/uc03.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc04.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc04.pdf, id=723, 614.295pt x 794.97pt>
+<sections/uc04.pdf, id=696, 614.295pt x 794.97pt>
 File: sections/uc04.pdf Graphic file (type pdf)
 <use sections/uc04.pdf>
 Package pdftex.def Info: sections/uc04.pdf  used on input line 154.
@@ -1950,7 +1760,7 @@ Package pdftex.def Info: sections/uc04.pdf  used on input line 154.
 [35 <./sections/uc04.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc05.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc05.pdf, id=742, 614.295pt x 794.97pt>
+<sections/uc05.pdf, id=715, 614.295pt x 794.97pt>
 File: sections/uc05.pdf Graphic file (type pdf)
 <use sections/uc05.pdf>
 Package pdftex.def Info: sections/uc05.pdf  used on input line 163.
@@ -1960,7 +1770,7 @@ Package pdftex.def Info: sections/uc05.pdf  used on input line 163.
 [36 <./sections/uc05.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc06.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc06.pdf, id=761, 614.295pt x 794.97pt>
+<sections/uc06.pdf, id=734, 614.295pt x 794.97pt>
 File: sections/uc06.pdf Graphic file (type pdf)
 <use sections/uc06.pdf>
 Package pdftex.def Info: sections/uc06.pdf  used on input line 173.
@@ -1970,7 +1780,7 @@ Package pdftex.def Info: sections/uc06.pdf  used on input line 173.
 [37 <./sections/uc06.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc077.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc077.pdf, id=781, 614.295pt x 794.97pt>
+<sections/uc077.pdf, id=753, 614.295pt x 794.97pt>
 File: sections/uc077.pdf Graphic file (type pdf)
 <use sections/uc077.pdf>
 Package pdftex.def Info: sections/uc077.pdf  used on input line 183.
@@ -1978,7 +1788,7 @@ Package pdftex.def Info: sections/uc077.pdf  used on input line 183.
 
 
 [38 <./sections/uc077.pdf>]
-<sections/std.jpg, id=795, 638.385pt x 834.11626pt>
+<sections/std.jpg, id=768, 638.385pt x 834.11626pt>
 File: sections/std.jpg Graphic file (type jpg)
 <use sections/std.jpg>
 Package pdftex.def Info: sections/std.jpg  used on input line 193.
@@ -2024,7 +1834,7 @@ Overfull \hbox (16.24493pt too wide) in paragraph at lines 3--4
 
 ]
 Overfull \hbox (1.19614pt too wide) in paragraph at lines 37--38
-\T1/ptm/m/n/12 type (in-ci-dent/exam), exam name, num-ber of vi-o-la-tions, gen-er-a-tion date, and au-thor.
+\T1/ptm/m/n/12 type (in-ci-den-t/exam), exam name, num-ber of vi-o-la-tions, gen-er-a-tion date, and au-thor.
  []
 
 
@@ -2051,7 +1861,7 @@ Overfull \hbox (14.40692pt too wide) in paragraph at lines 73--74
 
 [43]
 Overfull \hbox (41.15515pt too wide) in paragraph at lines 74--75
-\T1/ptm/m/n/12 re-port ID, file path, for-mat, and sta-tus. \T1/ptm/b/n/12 The ac-tual re-port file gen-er-a-tion (PDF/CSV/Excel)
+\T1/ptm/m/n/12 re-port ID, file path, for-mat, and sta-tus. \T1/ptm/b/n/12 The ac-tual re-port file gen-er-a-tion (PDF/CSV/Ex-cel)
  []
 
 
@@ -2111,6 +1921,9 @@ Overfull \hbox (6.104pt too wide) in paragraph at lines 146--147
 
 
 [46]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 157.
+
 
 [47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2123,11 +1936,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [49]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[50]
 Overfull \hbox (12.12694pt too wide) in paragraph at lines 313--314
 []\T1/ptm/b/n/12 FastAPI and Star-lette \T1/ptm/m/n/12 for HTTP rout-ing, de-pen-dency in-jec-tion, and re-quest han-dling. 
  []
@@ -2138,6 +1946,8 @@ Overfull \hbox (2.58807pt too wide) in paragraph at lines 317--318
  []
 
 
+
+[50]
 Overfull \hbox (27.60696pt too wide) in paragraph at lines 346--346
 []|\T1/ptm/b/n/12 Objective| 
  []
@@ -2971,6 +2781,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 346--346
 Overfull \hbox (23.1792pt too wide) in paragraph at lines 346--346
 \T1/ptm/m/n/12 Ex-pected| 
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -5931,7 +5744,7 @@ Overfull \hbox (19.35178pt too wide) in paragraph at lines 446--446
 
 
 Overfull \hbox (60.00728pt too wide) in paragraph at lines 446--446
-\T1/ptm/m/n/12 cre-ated/updated
+\T1/ptm/m/n/12 cre-at-ed/up-dated
  []
 
 
@@ -7031,7 +6844,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 446--446
 
 
 Overfull \hbox (60.00728pt too wide) in paragraph at lines 446--446
-\T1/ptm/m/n/12 cre-ated/updated
+\T1/ptm/m/n/12 cre-at-ed/up-dated
  []
 
 
@@ -9546,7 +9359,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 485--485
 
 
 Overfull \hbox (36.20732pt too wide) in paragraph at lines 485--485
-\T1/ptm/m/n/12 video/image
+\T1/ptm/m/n/12 video/im-age
  []
 
 
@@ -9571,7 +9384,7 @@ Overfull \hbox (6.57974pt too wide) in paragraph at lines 485--485
 
 
 Overfull \hbox (45.90308pt too wide) in paragraph at lines 485--485
-\T1/ptm/m/n/12 ac-tive/inactive| 
+\T1/ptm/m/n/12 ac-tive/i-n-ac-tive| 
  []
 
 
@@ -9855,12 +9668,12 @@ Overfull \vbox (1732.92894pt too high) has occurred while \output is active []
 
  (appendix.tex
 Appendix A.
-<images/usecaseexample.png, id=919, 735.49782pt x 304.88907pt>
+<images/usecaseexample.png, id=1042, 735.49782pt x 304.88907pt>
 File: images/usecaseexample.png Graphic file (type png)
 <use images/usecaseexample.png>
 Package pdftex.def Info: images/usecaseexample.png  used on input line 7.
 (pdftex.def)             Requested size: 426.79135pt x 176.92416pt.
-<images/detailusecase.png, id=920, 545.03625pt x 433.62pt>
+<images/detailusecase.png, id=1043, 545.03625pt x 433.62pt>
 File: images/detailusecase.png Graphic file (type png)
 <use images/detailusecase.png>
 Package pdftex.def Info: images/detailusecase.png  used on input line 15.
@@ -9874,7 +9687,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
  <./images/usecaseexample.png>]
-<images/eventresponsetable.png, id=926, 472.01344pt x 536.0025pt>
+<images/eventresponsetable.png, id=1050, 472.01344pt x 536.0025pt>
 File: images/eventresponsetable.png Graphic file (type png)
 <use images/eventresponsetable.png>
 Package pdftex.def Info: images/eventresponsetable.png  used on input line 23.
@@ -9885,7 +9698,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [63 <./images/detailusecase.png>]
-<images/storyboard.png, id=932, 497.60907pt x 436.63126pt>
+<images/storyboard.png, id=1056, 497.60907pt x 436.63126pt>
 File: images/storyboard.png Graphic file (type png)
 <use images/storyboard.png>
 Package pdftex.def Info: images/storyboard.png  used on input line 31.
@@ -9896,7 +9709,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [64 <./images/eventresponsetable.png>]
-<images/domainmodel.png, id=938, 563.10374pt x 532.23843pt>
+<images/domainmodel.png, id=1062, 563.10374pt x 532.23843pt>
 File: images/domainmodel.png Graphic file (type png)
 <use images/domainmodel.png>
 Package pdftex.def Info: images/domainmodel.png  used on input line 41.
@@ -9907,7 +9720,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [65 <./images/storyboard.png>]
-<images/boxandline.png, id=944, 340.27126pt x 213.04594pt>
+<images/boxandline.png, id=1068, 340.27126pt x 213.04594pt>
 File: images/boxandline.png Graphic file (type png)
 <use images/boxandline.png>
 Package pdftex.def Info: images/boxandline.png  used on input line 52.
@@ -9918,7 +9731,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [66 <./images/domainmodel.png>]
-<images/Architecturepattern.png, id=950, 509.65407pt x 382.42876pt>
+<images/Architecturepattern.png, id=1074, 509.65407pt x 382.42876pt>
 File: images/Architecturepattern.png Graphic file (type png)
 <use images/Architecturepattern.png>
 Package pdftex.def Info: images/Architecturepattern.png  used on input line 60.
@@ -9929,7 +9742,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [67 <./images/boxandline.png>]
-<images/activityexample.png, id=957, 709.90219pt x 429.10312pt>
+<images/activityexample.png, id=1080, 709.90219pt x 429.10312pt>
 File: images/activityexample.png Graphic file (type png)
 <use images/activityexample.png>
 Package pdftex.def Info: images/activityexample.png  used on input line 71.
@@ -9940,7 +9753,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [68 <./images/Architecturepattern.png>]
-<images/classexample.png, id=963, 551.05875pt x 525.46312pt>
+<images/classexample.png, id=1087, 551.05875pt x 525.46312pt>
 File: images/classexample.png Graphic file (type png)
 <use images/classexample.png>
 Package pdftex.def Info: images/classexample.png  used on input line 80.
@@ -9951,7 +9764,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [69 <./images/activityexample.png>]
-<images/sequenceexample.png, id=969, 578.16pt x 312.41719pt>
+<images/sequenceexample.png, id=1093, 578.16pt x 312.41719pt>
 File: images/sequenceexample.png Graphic file (type png)
 <use images/sequenceexample.png>
 Package pdftex.def Info: images/sequenceexample.png  used on input line 88.
@@ -9962,7 +9775,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [70 <./images/classexample.png>]
-<images/statetransitionexample.png, id=975, 520.19344pt x 263.48438pt>
+<images/statetransitionexample.png, id=1099, 520.19344pt x 263.48438pt>
 File: images/statetransitionexample.png Graphic file (type png)
 <use images/statetransitionexample.png>
 Package pdftex.def Info: images/statetransitionexample.png  used on input line 96.
@@ -9970,7 +9783,7 @@ Package pdftex.def Info: images/statetransitionexample.png  used on input line 9
 
 
 pdfTeX warning: pdflatex (file ./DFD.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD.pdf, id=976, 614.295pt x 794.97pt>
+<DFD.pdf, id=1100, 614.295pt x 794.97pt>
 File: DFD.pdf Graphic file (type pdf)
 <use DFD.pdf>
 Package pdftex.def Info: DFD.pdf  used on input line 104.
@@ -9983,7 +9796,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [71 <./images/sequenceexample.png> <./images/statetransitionexample.png>]
 
 pdfTeX warning: pdflatex (file ./DFD2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD2.pdf, id=983, 614.295pt x 794.97pt>
+<DFD2.pdf, id=1107, 614.295pt x 794.97pt>
 File: DFD2.pdf Graphic file (type pdf)
 <use DFD2.pdf>
 Package pdftex.def Info: DFD2.pdf  used on input line 108.
@@ -10016,17 +9829,17 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 5B6771F6C65357B1F912369E9EA7F550;10984.
  ) 
 Here is how much of TeX's memory you used:
- 32500 strings out of 468081
- 640148 string characters out of 5425788
- 1240250 words of memory out of 5000000
- 60257 multiletter control sequences out of 15000+600000
- 697576 words of font info for 133 fonts, out of 8000000 for 9000
+ 29672 strings out of 468081
+ 538639 string characters out of 5425788
+ 1137601 words of memory out of 5000000
+ 57357 multiletter control sequences out of 15000+600000
+ 700316 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,12n,121p,1545b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\inamu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1200.pk> <C:\Users\inamu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (79 pages, 4676935 bytes).
+ 117i,13n,121p,1545b,2167s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\inamu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit1000.pk> <C:\Users\inamu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\inamu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/inamu/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on thesis.pdf (78 pages, 4722615 bytes).
 PDF statistics:
- 1216 PDF objects out of 1440 (max. 8388607)
- 273 named destinations out of 1000 (max. 500000)
- 729 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1442 PDF objects out of 1728 (max. 8388607)
+ 422 named destinations out of 1000 (max. 500000)
+ 633 words of extra memory for PDF output out of 10000 (max. 10000000)
 
