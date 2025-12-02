@@ -87,6 +87,157 @@ The completed work in this iteration establishes the core dashboard infrastructu
     \item Finalize and expose the Student Portal, including student-facing views of violation histories and exam schedules.
 \end{itemize}
 
+\section{External APIs/SDKs}
+
+This section describes the third-party APIs/SDKs used in the \textbf{ForeSyte} project implementation.
+
+\subsection{External APIs and SDKs Table}
+
+\begin{table}[H]
+\centering
+\caption{External APIs and SDKs for ForeSyte}
+\label{tab:external-apis-sdks}
+\scriptsize
+\sloppy
+\renewcommand{\arraystretch}{1.5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{2.5cm}|p{2.8cm}|p{2.8cm}|p{4.4cm}|}
+\hline
+\textbf{API and version} & \textbf{Description} & \textbf{Purpose of usage} & \textbf{API endpoint/function/class used} \\
+\hline
+Google OAuth 2.0 (via Authlib 1.6.5) & Google authentication and authorization service & User authentication using Google accounts for single sign-on (SSO) & \texttt{https://accounts.google.com/.well-known/openid-configuration}, \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, \texttt{google.authorize\_access\_token()} \\
+\hline
+OpenCV (cv2) 4.12.0.88 & Computer vision and image processing library & Video stream processing, frame extraction from live CCTV feeds and recorded videos, image analysis for behavior detection & \texttt{cv2.VideoCapture()}, \texttt{cv2.imread()}, \texttt{cv2.CAP\_PROP\_FRAME\_COUNT}, \texttt{cv2.CAP\_PROP\_BUFFERSIZE} \\
+\hline
+PDFplumber 0.11.7 & PDF text and table extraction library & Parsing seating plan PDFs to extract student information, roll numbers, and exam schedules & \texttt{pdfplumber.open()}, \texttt{page.extract\_tables()}, \texttt{page.extract\_text()} \\
+\hline
+Requests 2.32.5 & HTTP library for making API calls & Fetching video streams from phone cameras, proxying video streams, testing connection endpoints & \texttt{requests.get()}, \texttt{requests.exceptions.Timeout}, \texttt{requests.exceptions.ConnectionError} \\
+\hline
+Python-JOSE (jose) 3.5.0 & JSON Web Token (JWT) implementation & Creating and validating JWT access tokens for user authentication and authorization & \texttt{jwt.encode()}, \texttt{jwt.decode()}, \texttt{JWTError} \\
+\hline
+Pillow (PIL) 11.3.0 & Python Imaging Library & Image processing and manipulation for video frames and uploaded images & Image processing utilities (used indirectly through OpenCV) \\
+\hline
+NumPy 2.2.6 & Numerical computing library & Array operations and mathematical computations for image/video processing & \texttt{numpy} arrays for image data manipulation \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Detailed Usage}
+
+\subsubsection*{Google OAuth 2.0}
+\begin{itemize}
+    \item \textbf{Location}: \texttt{src/database/auth.py}
+    \item \textbf{Implementation}: Uses Authlib library to integrate with Google's OAuth 2.0 service
+    \item \textbf{Endpoints Used}:
+    \begin{itemize}
+        \item \texttt{https://accounts.google.com/.well-known/openid-configuration} -- OpenID Connect discovery endpoint
+        \item \texttt{/auth/google} -- Initiates Google OAuth flow
+        \item \texttt{/auth/google/callback} -- Handles OAuth callback and user authentication
+    \end{itemize}
+    \item \textbf{Functions}: 
+    \begin{itemize}
+        \item \texttt{oauth.register()} -- Registers Google OAuth client
+        \item \texttt{google.authorize\_redirect()} -- Redirects user to Google login
+        \item \texttt{google.authorize\_access\_token()} -- Exchanges authorization code for access token
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{OpenCV (cv2)}
+\begin{itemize}
+    \item \textbf{Location}: 
+    \begin{itemize}
+        \item \texttt{src/app/video\_processing/stream\_handler.py}
+        \item \texttt{src/app/video\_processing/processor.py}
+        \item \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}
+    \end{itemize}
+    \item \textbf{Purpose}: 
+    \begin{itemize}
+        \item Capturing video frames from live streams and recorded videos
+        \item Processing video streams for behavior analysis
+        \item Frame extraction for AI-based detection
+    \end{itemize}
+    \item \textbf{Key Functions}:
+    \begin{itemize}
+        \item \texttt{cv2.VideoCapture()} -- Opens video file or stream URL
+        \item \texttt{cap.read()} -- Reads frames from video
+        \item \texttt{cv2.imread()} -- Loads image frames for processing
+        \item \texttt{cap.get(cv2.CAP\_PROP\_FRAME\_COUNT)} -- Gets total frame count
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{PDFplumber}
+\begin{itemize}
+    \item \textbf{Location}: 
+    \begin{itemize}
+        \item \texttt{src/app/seating\_plan/upload\_plan.py}
+        \item \texttt{import\_students\_from\_pdf.py}
+    \end{itemize}
+    \item \textbf{Purpose}: 
+    \begin{itemize}
+        \item Extracting student information from seating plan PDFs
+        \item Parsing exam schedules and room assignments
+        \item Extracting roll numbers and student names from PDF tables
+    \end{itemize}
+    \item \textbf{Key Functions}:
+    \begin{itemize}
+        \item \texttt{pdfplumber.open()} -- Opens PDF file
+        \item \texttt{page.extract\_tables()} -- Extracts table data from PDF pages
+        \item \texttt{page.extract\_text()} -- Extracts text content from PDF pages
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Requests}
+\begin{itemize}
+    \item \textbf{Location}: 
+    \begin{itemize}
+        \item \texttt{src/database/api/stream\_proxy.py}
+        \item \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}
+        \item \texttt{src/app/live\_phone\_feeds/connection\_tester.py}
+    \end{itemize}
+    \item \textbf{Purpose}: 
+    \begin{itemize}
+        \item Making HTTP GET requests to fetch video streams
+        \item Proxying video streams to frontend
+        \item Testing connectivity to phone camera endpoints
+    \end{itemize}
+    \item \textbf{Key Functions}:
+    \begin{itemize}
+        \item \texttt{requests.get()} -- Makes HTTP GET requests
+        \item \texttt{requests.exceptions.Timeout} -- Handles timeout errors
+        \item \texttt{requests.exceptions.ConnectionError} -- Handles connection errors
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Python-JOSE}
+\begin{itemize}
+    \item \textbf{Location}: \texttt{src/database/auth.py}
+    \item \textbf{Purpose}: 
+    \begin{itemize}
+        \item Encoding JWT tokens for authenticated users
+        \item Decoding and validating JWT tokens in protected routes
+        \item Managing user session tokens
+    \end{itemize}
+    \item \textbf{Key Functions}:
+    \begin{itemize}
+        \item \texttt{jwt.encode()} -- Creates JWT access tokens
+        \item \texttt{jwt.decode()} -- Validates and decodes JWT tokens
+        \item \texttt{JWTError} -- Exception handling for invalid tokens
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Pillow (PIL)}
+\begin{itemize}
+    \item \textbf{Location}: Used indirectly through OpenCV and other image processing operations
+    \item \textbf{Purpose}: Image manipulation and processing utilities
+\end{itemize}
+
+\subsubsection*{NumPy}
+\begin{itemize}
+    \item \textbf{Location}: Used in video processing modules
+    \item \textbf{Purpose}: Array operations for image data and mathematical computations in computer vision tasks
+\end{itemize}
+
 \section{Algorithm Design}
 
 This section summarizes the main algorithms and data flows used to support the implemented features in ForeSyte.
@@ -149,183 +300,318 @@ The Investigator Dashboard is designed to give investigators a structured way to
     \item Provide a \textit{Review} action for each activity which, in the next iteration, will navigate to a detailed case view and allow updating violation status and adding investigation notes.
 \end{enumerate}
 
-\section{External APIs and Libraries}
-
-At this stage, ForeSyte does not depend heavily on third-party AI services, but it makes extensive use of framework libraries and SDKs:
-\begin{itemize}
-    \item \textbf{FastAPI and Starlette} for HTTP routing, dependency injection, and request handling.
-    \item \textbf{SQLAlchemy} and \textbf{psycopg2} for ORM and PostgreSQL connectivity.
-    \item \textbf{PyMongo} for MongoDB integration in the logging and evidence pipeline.
-    \item \textbf{OpenCV} and image processing libraries, which are already installed and used in internal test scripts to handle frames for future AI detectors.
-    \item \textbf{React Router}, \textbf{Tailwind CSS}, and \textbf{lucide-react} on the front-end for routing, styling, and icons.
-\end{itemize}
-
 \section{Testing Details}
 
 Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions.
 
 \subsection{Unit Testing}
 
-\subsubsection*{Reports API Tests}
+\subsubsection*{Investigator Portal Testing}
 
-Table~\ref{tab:reports-tests} summarizes representative unit tests for the Reports API.
+\begin{table}[H]
+\centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Investigator Portal}
+    \label{tab:investigator-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Stats, Violations, Incidents APIs. 
+        3. Render Investigator Dashboard & Token: "test-token" & Header and sidebar appear on screen & As Expected & Pass \\
+        \hline
+        TC002 & Dashboard statistics load correctly & API returns valid stats + violations & 1. Mock Stats API: active\_exams=3. 
+        2. Mock Violations API: 2 violations. 
+        3. Render component & Stats: \{active\_exams: 3\}. 
+        2 violations & UI shows: Active Exams = 3, Total Violations = 2, Pending Reviews $\geq$ 1 & As Expected & Pass \\
+        \hline
+        TC003 & Dashboard displays recent activities correctly & API returns incident data & 1. Mock Incidents API with type='Cheating'. 
+        2. Render dashboard. 
+        3. Verify activity display & Incident: \{type: "Cheating", student: "John Doe", severity: "high"\} & Recent activities section shows "Cheating" as h3 heading & As Expected & Pass \\
+        \hline
+        TC004 & Period filter changes dashboard data & Dashboard loaded with initial data & 1. Render dashboard. 
+        2. Click "This Week" button. 
+        3. Verify API call & Initial period: "today" & getDashboardStats called with period='week' parameter & As Expected & Pass \\
+        \hline
+        TC005 & Violations page renders and displays violations list & Valid token and API returns violations & 1. Mock getViolations API. 
+        2. Render ViolationsPage. 
+        3. Verify table display & Violation: \{student\_name: "John Doe", type: "cheating", status: "pending"\} & Student name and violation type appear in table row & As Expected & Pass \\
+        \hline
+        TC006 & Violations can be filtered by search term & Multiple violations loaded & 1. Render page with 2 violations. 
+        2. Enter "Jane" in search input. 
+        3. Verify filtered results & Students: "John Doe", "Jane Smith" & Only "Jane Smith" violation visible, "John Doe" hidden & As Expected & Pass \\
+        \hline
+        TC007 & Violations can be filtered by status & Violations with different statuses loaded & 1. Render page with pending and confirmed violations. 
+        2. Select "pending" in status filter. 
+        3. Verify filtered results & Statuses: "pending", "confirmed" & Only pending violation visible, confirmed violation hidden & As Expected & Pass \\
+        \hline
+        TC008 & Violation details modal opens and confirms violation & Violation exists in system & 1. Render ViolationsPage. 
+        2. Click "View" button. 
+        3. Click "Confirm" in modal. 
+        4. Verify API call & Violation ID: "v1" & Modal opens with "Violation Details" heading; confirmViolation API called with ID "v1" & As Expected & Pass \\
+\hline
+    \end{tabular}%
+    }
+\end{table}
 
 \begin{table}[H]
     \centering
-    \caption{Unit Test Cases for Reports API}
-    \label{tab:reports-tests}
-    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Investigator Portal (continued)}
+    \label{tab:investigator-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
         \hline
-        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC201 & Verify admin can create a report & Valid admin JWT; existing Violation and Investigator records & Call \texttt{POST /reports} with valid payload & \texttt{report\_type}: "incident"\\\texttt{violation\_id}: valid UUID\\\texttt{generated\_by}: valid UUID & Returns \texttt{201 Created} and a Report object with non-null \texttt{report\_id} & Database contains a new Report row & As Expected & Pass \\
+        TC009 & Invigilator activities page displays and filters by type & Multiple activity types exist & 1. Mock activities API with phone\_usage and absent\_from\_zone. 
+        2. Render page. 
+        3. Select "phone\_usage" filter. 
+        4. Verify display & Activities: phone\_usage, absent\_from\_zone & phone\_usage appears in table cell (td element) after filtering & As Expected & Pass \\
         \hline
-        TC202 & Enforce RBAC on report creation & Authenticated investigator JWT & Call \texttt{POST /reports} with valid payload & Same as TC201 & Returns \texttt{403 Forbidden} with ``Only admins can create reports'' & No new Report row is created & As Expected & Pass \\
+        TC010 & Student activities page displays and filters by search & Multiple student activities loaded & 1. Mock API with activities for John and Jane. 
+        2. Render page. 
+        3. Search for "Jane". 
+        4. Verify results & Students: "John Doe", "Jane Smith" & Only Jane's activities visible; phone\_usage type shown in table cell & As Expected & Pass \\
         \hline
-        TC203 & Create report record for incidents (file generation not yet implemented) & Investigator JWT; at least one StudentActivity present & Call \texttt{POST /reports/incidents} with valid incident IDs & \texttt{incident\_ids}: [valid UUID]\\\texttt{format}: "pdf"\\\texttt{include\_video\_links}: true & Returns JSON with non-empty \texttt{id} and \texttt{file\_path}, \texttt{status = generating} & New Report row linked to a Violation exists in database (actual file generation is not yet implemented) & As Expected & Pass \\
+        TC011 & Reports page opens generate modal and displays reports list & Valid token and reports exist & 1. Mock getReports API. 
+        2. Render ReportsPage. 
+        3. Click "Generate New Report" button. 
+        4. Verify modal & Report: \{type: "incident", exam: "Calculus I"\} & Report displayed; modal opens with "Generate New Report" heading & As Expected & Pass \\
         \hline
-        TC204 & Handle invalid incident IDs gracefully & Investigator JWT & Call \texttt{POST /reports/incidents} with invalid IDs & \texttt{incident\_ids}: ["invalid-uuid"]\\\texttt{format}: "csv" & Returns \texttt{404 Not Found} with ``No valid incidents found'' & No Report row is created & As Expected & Pass \\
+        TC012 & All pages handle API errors gracefully & API returns network error & 1. Mock API to reject with error. 
+        2. Render any investigator page. 
+        3. Verify error handling & Error: "Network error" & Page renders with header visible; no crash or unhandled exception & As Expected & Pass \\
         \hline
-    \end{tabularx}
+    \end{tabular}%
+    }
 \end{table}
-
-\subsubsection*{Dashboard API Tests}
-
-Table~\ref{tab:dashboard-tests} lists key unit tests for the dashboard statistics and recent incidents endpoints.
+\subsubsection*{Student Portal Testing}
 
 \begin{table}[H]
     \centering
-    \caption{Unit Test Cases for Dashboard APIs}
-    \label{tab:dashboard-tests}
-    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Student Portal}
+    \label{tab:student-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
         \hline
-        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC301 & Retrieve ``today'' dashboard stats & Admin JWT; at least one exam scheduled today & Call \texttt{GET /dashboard/stats?period=today} & \texttt{period}: "today" & Returns a valid \texttt{DashboardStats} object; all counts are non-negative and consistent with seeded data & Values computed from sample database state & As Expected & Pass \\
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Profile, Activities, Violations APIs. 
+        3. Render Student Dashboard & Token: "test-token", User ID: "student-123" & Header and sidebar appear on screen & As Expected & Pass \\
         \hline
-        TC302 & Verify period filter behaviour & Seeded data across multiple days & Call \texttt{GET /dashboard/stats} with different periods & \texttt{period}: "today", "week", "month" & Returns different counts reflecting the date range; no errors occur & Internal trend computation behaves correctly & As Expected & Pass \\
+        TC002 & Dashboard displays welcome message with student name & API returns valid profile data & 1. Mock getStudentProfile API with name="John Doe". 
+        2. Mock Activities and Violations APIs. 
+        3. Render dashboard & Profile: \{name: "John Doe", email: "john@test.com", roll\_number: "22I-1234"\} & UI shows: "Welcome back, John Doe" message & As Expected & Pass \\
         \hline
-        TC303 & Enforce RBAC on stats & Student JWT & Call \texttt{GET /dashboard/stats?period=today} & \texttt{period}: "today" & Returns \texttt{403 Forbidden} and ``Access denied'' & No sensitive stats are exposed & As Expected & Pass \\
+        TC003 & Dashboard displays disciplinary cases count correctly & API returns violations data & 1. Mock Profile API. 
+        2. Mock getStudentViolations with 2 violations. 
+        3. Render dashboard & Violations: [\{violation\_id: "v1", status: "pending"\}, \{violation\_id: "v2", status: "confirmed"\}] & UI shows: Disciplinary Cases = 2 & As Expected & Pass \\
         \hline
-        TC304 & Return recent incidents list & StudentActivity rows present in DB & Call \texttt{GET /dashboard/recent-incidents?limit=5} & \texttt{limit}: 5 & Returns up to 5 incidents ordered by timestamp; each item includes ID, student name, type, severity, timestamp, and confidence & Activities are ordered from most recent to oldest & As Expected & Pass \\
+        TC004 & Dashboard displays recent activities list & API returns activities data & 1. Mock Profile API. 
+        2. Mock getStudentActivitiesByStudentId with head\_movement activity. 
+        3. Render dashboard & Activities: [\{activity\_type: "head\_movement", severity: "high", timestamp: "2024-01-01T10:00:00Z"\}] & Recent activities section shows "head\_movement" activity & As Expected & Pass \\
         \hline
-    \end{tabularx}
+        TC005 & Disciplinary records page displays violations list & Valid token and API returns violations & 1. Mock getStudentProfile API. 
+        2. Mock getStudentViolations with cheating violation. 
+        3. Render dcRecords page & Violation: \{violation\_type: "cheating", severity: 3, status: "pending", timestamp: "2024-01-01T10:00:00Z"\} & Violation type "cheating" appears as heading (h3 element) & As Expected & Pass \\
+        \hline
+        TC006 & Disciplinary records can be expanded to view details & Violations loaded on page & 1. Render dcRecords page with violations. 
+        2. Find clickable record card. 
+        3. Click on record. 
+        4. Verify details display & Violation: \{violation\_type: "cheating", status: "pending"\} & Record expands; "Details" text appears on screen & As Expected & Pass \\
+        \hline
+        TC007 & Profile page allows editing student name & Valid profile data loaded & 1. Mock getStudentProfile with name="John Doe". 
+        2. Render profile page. 
+        3. Click "Edit" button. 
+        4. Change name to "Jane Doe". 
+        5. Click save button. 
+        6. Verify API call & Original: "John Doe", Updated: "Jane Doe" & updateStudentProfile API called with name="Jane Doe"; change saved successfully & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
 \end{table}
-
-\subsubsection*{Front-End Behaviour Tests}
-
-The front-end was validated using component-level tests and manual exploratory runs:
-\begin{itemize}
-    \item \textbf{Admin Dashboard Rendering:} Ensured that the metric cards, activity chart, and recent incidents list render correctly when provided with sample API responses, and that loading and empty states are displayed when data is unavailable.
-    \item \textbf{Investigator Dashboard Layout:} Checked that period filters toggle correctly, summary counters are displayed, and recent activity items show appropriate severity and status chips.
-    \item \textbf{Reports Page Filtering:} Verified that text search and report-type filters reduce the visible set of reports appropriately and that the ``Generate New Report'' modal captures the selected configuration.
-\end{itemize}
-
-In addition, a dedicated test script was developed for testing the phone stream ingestion and processing pipeline without enabling AI-based detection. This script validates connection to phone camera streams and basic frame capture, ensuring that the underlying streaming components are stable and ready for integration with the full monitoring pipeline in subsequent iterations. \textbf{Note:} Actual cheating detection via computer vision models is not yet implemented; the test script focuses on connectivity and frame handling only.
-
-\subsubsection*{User Management API Tests}
-
-Table~\ref{tab:users-tests} summarizes unit tests for the User Management API, which allows administrators to create, view, update, and delete users across all roles (Admin, Investigator, Invigilator, Student).
 
 \begin{table}[H]
     \centering
-    \caption{Unit Test Cases for User Management API}
-    \label{tab:users-tests}
-    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Student Portal (continued)}
+    \label{tab:student-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
         \hline
-        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC401 & Verify admin can create a new student user & Valid admin JWT; database accessible & Call \texttt{POST /users} with student data & \texttt{name}: "John Doe"\\\texttt{email}: "john@example.com"\\\texttt{user\_type}: "student"\\\texttt{roll\_number}: "22I-1234"\\\texttt{password}: "secure123!" & Returns \texttt{201 Created} with User object containing non-null \texttt{id}, \texttt{email}, and \texttt{roll\_number} & New Student record exists in database with hashed password, email, roll\_number & As Expected & Pass \\
+        TC008 & Profile page cancels editing when cancel button clicked & Profile in edit mode with changes & 1. Render profile page. 
+        2. Click "Edit" button. 
+        3. Change name to "Jane Doe". 
+        4. Click cancel button. 
+        5. Verify revert & Changed: "Jane Doe", Original: "John Doe" & Input field disappears; original name "John Doe" displayed; updateStudentProfile not called & As Expected & Pass \\
         \hline
-        TC402 & Verify admin can create an investigator user & Valid admin JWT; database accessible & Call \texttt{POST /users} with investigator data & \texttt{name}: "Jane Smith"\\\texttt{email}: "jane@example.com"\\\texttt{user\_type}: "investigator"\\\texttt{designation}: "Senior Investigator"\\\texttt{password}: "secure123!" & Returns \texttt{201 Created} with User object containing \texttt{designation} field & New Investigator record exists in database containing designation & As Expected & Pass \\
+        TC009 & Settings page allows password change with validation & Valid profile and matching passwords & 1. Mock getStudentProfile API. 
+        2. Render settings page. 
+        3. Switch to Password tab. 
+        4. Enter current="oldpass123", new="newpass123", confirm="newpass123". 
+        5. Click "Update Password" & Passwords: \{current: "oldpass123", new: "newpass123", confirm: "newpass123"\} & changePassword API called with current\_password="oldpass123" and new\_password="newpass123" & As Expected & Pass \\
         \hline
-        TC403 & Enforce RBAC on user creation & Authenticated investigator JWT & Call \texttt{POST /users} with valid user data & Same as TC401 & Returns \texttt{403 Forbidden} with ``Only admins can create users'' & No new user record is created & As Expected & Pass \\
+        TC010 & Upload page displays uploaded documents and allows file removal & Documents exist in system & 1. Mock getStudentDocuments with id\_card.pdf. 
+        2. Render upload page. 
+        3. Find remove button. 
+        4. Click remove. 
+        5. Verify removal & Document: \{filename: "id\_card.pdf", size: 1024000, status: "verified"\} & Document "id\_card.pdf" appears initially; after clicking remove button, document no longer visible & As Expected & Pass \\
         \hline
-        TC404 & Prevent duplicate email registration & Valid admin JWT; existing user with email ``john@example.com'' & Call \texttt{POST /users} with same email & \texttt{email}: "john@example.com"\\\texttt{user\_type}: "student" & Returns \texttt{400 Bad Request} with ``Email already registered'' & No duplicate user is created & As Expected & Pass \\
-        \hline
-        TC405 & Verify admin can retrieve all users with pagination & Valid admin JWT; multiple users in database & Call \texttt{GET /users?page=1\&limit=10} & \texttt{page}: 1\\\texttt{limit}: 10 & Returns \texttt{200 OK} with list of up to 10 users, total count, and pagination metadata & Response contains valid user list & As Expected & Pass \\
-        \hline
-        TC406 & Filter users by role & Valid admin JWT; users of different roles exist & Call \texttt{GET /users?role=student} & \texttt{role}: "student" & Returns only Student users in the response & Response contains only students & As Expected & Pass \\
-        \hline
-        TC407 & Verify admin can update user information & Valid admin JWT; existing non-admin user & Call \texttt{PUT /users/\{user\_id\}} with updated data & \texttt{name}: "Updated Name"\\\texttt{email}: "updated@example.com" & Returns \texttt{200 OK} with updated User object & User record reflects new name and email & As Expected & Pass \\
-        \hline
-        TC408 & Prevent admin from editing other admin users & Valid admin JWT; another admin user exists & Call \texttt{PUT /users/\{admin\_id\}} with update data & \texttt{name}: "Attempted Update" & Returns \texttt{403 Forbidden} with ``Admins cannot edit other admin users'' & Admin user remains unchanged & As Expected & Pass \\
-        \hline
-        TC409 & Verify admin can delete a non-admin user & Valid admin JWT; existing student user & Call \texttt{DELETE /users/\{user\_id\}} & Valid student \texttt{user\_id} & Returns \texttt{204 No Content} & User record is removed from database & As Expected & Pass \\
-        \hline
-        TC410 & Prevent deletion of admin users & Valid admin JWT; admin user exists & Call \texttt{DELETE /users/\{admin\_id\}} & Valid admin \texttt{user\_id} & Returns \texttt{403 Forbidden} or \texttt{400 Bad Request} with appropriate error message & Admin user remains in database & As Expected & Pass \\
-        \hline
-    \end{tabularx}
+    \end{tabular}%
+    }
 \end{table}
-
-\subsubsection*{Seating Plan Upload Tests}
-
-Table~\ref{tab:seating-plan-tests} lists test cases for the seating plan upload functionality, which processes PDF files containing exam schedules and extracts room, student, and seat assignment information.
+\subsubsection*{Admin Portal Testing}
 
 \begin{table}[H]
     \centering
-    \caption{Unit Test Cases for Seating Plan Upload}
-    \label{tab:seating-plan-tests}
-    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal}
+    \label{tab:admin-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
         \hline
-        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC501 & Upload valid seating plan PDF with room filter & Valid PDF file; admin JWT; database accessible & Call \texttt{POST /upload-seating-plan} with PDF file and room parameter & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "C-301" & Returns \texttt{200 OK} with extracted data including room number, exam date, time slot, and list of students with seat numbers & Room, Exam, Student, and Seat records created/updated in database & As Expected & Pass \\
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Stats, Activity, Incidents APIs. 
+        3. Render Admin Dashboard & Token: "test-token", User type: "admin" & Header and sidebar appear on screen & As Expected & Pass \\
         \hline
-        TC502 & Upload seating plan with time slot filter & Valid PDF file; admin JWT & Call \texttt{POST /upload-seating-plan} with PDF and time slot parameter & \texttt{file}: seating\_plan.pdf\\\texttt{time\_slot}: "10:20 AM to 11:20 AM" & Returns \texttt{200 OK} with data for exams matching the specified time slot & Only matching exam data is extracted and stored & As Expected & Pass \\
+        TC002 & Dashboard displays welcome message and statistics & API returns valid stats data & 1. Mock getDashboardStats with active\_exams=5. 
+        2. Mock other APIs. 
+        3. Render dashboard & Stats: \{active\_exams: 5, incidents\_detected: 10, students\_monitored: 150\} & UI shows: "Welcome back" message, Active Exams = 5, Incidents = 10 & As Expected & Pass \\
         \hline
-        TC503 & Handle invalid PDF file format & Admin JWT & Call \texttt{POST /upload-seating-plan} with non-PDF file & \texttt{file}: document.txt (text file) & Returns \texttt{400 Bad Request} or \texttt{422 Unprocessable Entity} with appropriate error message & No data is extracted or stored & As Expected & Pass \\
+        TC003 & Dashboard displays recent incidents list & API returns incidents data & 1. Mock getRecentIncidents with "Suspicious Movement" incident. 
+        2. Render dashboard. 
+        3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high"\} & Recent incidents section shows "John Doe" name & As Expected & Pass \\
         \hline
-        TC504 & Handle PDF with no matching room & Valid PDF file; admin JWT; PDF contains different rooms & Call \texttt{POST /upload-seating-plan} with non-existent room & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "Z-999" & Returns \texttt{404 Not Found} or \texttt{400 Bad Request} indicating room not found in PDF & No database changes occur & As Expected & Pass \\
+        TC004 & Analytics page fetches and displays metrics correctly & Valid token and API returns metrics & 1. Mock getAnalyticsMetrics with total\_incidents=128. 
+        2. Mock other analytics APIs. 
+        3. Render AnalyticsPage & Metrics: \{total\_incidents: 128, resolution\_rate: 87.5, avg\_response\_time: 4.2\} & UI shows: 128 incidents, 87.5\% resolution rate & As Expected & Pass \\
         \hline
-        TC505 & Verify automatic student creation from seating plan & Valid PDF file; admin JWT; student with roll number does not exist & Upload seating plan containing new student roll numbers & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "C-301" & New Student records are created with roll numbers and names from PDF; email auto-generated if not present & Student records exist in database with correct roll numbers & As Expected & Pass \\
+        TC005 & Analytics page displays incident type distribution & API returns distribution data & 1. Mock getIncidentTypeDistribution with types. 
+        2. Render AnalyticsPage. 
+        3. Verify display & Types: [\{type: "Suspicious Movement", count: 45\}, \{type: "Device Detected", count: 32\}] & "Suspicious Movement" and "Device Detected" appear on screen & As Expected & Pass \\
         \hline
-        TC506 & Verify seat assignment to existing students & Valid PDF file; admin JWT; student already exists in database & Upload seating plan with existing student roll numbers & \texttt{file}: seating\_plan.pdf\\existing \texttt{roll\_number}: "22I-1234" & Seat records are created/updated linking existing Student to Room with correct seat number & Seat assignment reflects in database & As Expected & Pass \\
+        TC006 & Exams page renders and displays exams list & Valid token and API returns exams & 1. Mock getExams with Calculus I and Data Structures. 
+        2. Render ExamsPage. 
+        3. Verify display & Exams: [\{name: "Calculus I", course\_code: "MATH101"\}, \{name: "Data Structures", course\_code: "CS201"\}] & "Calculus I" and "Data Structures" appear on screen & As Expected & Pass \\
         \hline
-        TC507 & Handle large PDF file upload & Valid PDF file (>10MB); admin JWT & Call \texttt{POST /upload-seating-plan} with large PDF & \texttt{file}: large\_seating\_plan.pdf (15MB) & Returns \texttt{200 OK} after processing; or \texttt{413 Payload Too Large} if size limit enforced & File is processed or rejected based on size limits & As Expected & Pass \\
+        TC007 & Exams page opens create modal when add button clicked & Exams page loaded & 1. Render ExamsPage. 
+        2. Click "Create Exam" button. 
+        3. Verify modal display & Initial exams: [] & Modal opens with "Create New Exam" heading & As Expected & Pass \\
         \hline
-        TC508 & Verify room creation from seating plan & Valid PDF file; admin JWT; room does not exist & Upload seating plan with new room number & \texttt{file}: seating\_plan.pdf\\\texttt{room\_no}: "D-405" & New Room record is created with room number, block, total seats, and camera ID & Room record exists in database linked to Exam & As Expected & Pass \\
-        \hline
-    \end{tabularx}
+    \end{tabular}%
+    }
 \end{table}
-
-\subsubsection*{Monitoring and Camera Integration Tests}
-
-Table~\ref{tab:monitoring-tests} presents test cases for the monitoring endpoints and camera integration functionality, which enable administrators and investigators to view live camera feeds and manage monitoring sessions.
 
 \begin{table}[H]
     \centering
-    \caption{Unit Test Cases for Monitoring and Camera Integration}
-    \label{tab:monitoring-tests}
-    \begin{tabularx}{\textwidth}{|c|X|X|X|X|X|X|X|X|}
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal (continued)}
+    \label{tab:admin-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
         \hline
-        \textbf{Test ID} & \textbf{Objective} & \textbf{Preconditions} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Postconditions} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC601 & Retrieve monitoring feeds for all cameras & Admin JWT; rooms with cameras exist in database & Call \texttt{GET /monitoring/feeds} & No parameters & Returns \texttt{200 OK} with list of camera feeds including camera ID, room name, status, stream URL, and students monitored count & Response contains valid feed data for all rooms & As Expected & Pass \\
+        TC008 & Exams page filters by status correctly & Multiple exams with different statuses loaded & 1. Render ExamsPage. 
+        2. Find status filter select. 
+        3. Change to "active". 
+        4. Verify API call & Statuses: "scheduled", "active", "completed" & getExams API called with status='active' parameter & As Expected & Pass \\
         \hline
-        TC602 & Filter monitoring feeds by exam ID & Admin JWT; multiple exams with rooms & Call \texttt{GET /monitoring/feeds?exam\_id=\{exam\_id\}} & \texttt{exam\_id}: valid UUID & Returns only camera feeds for rooms associated with the specified exam & Response contains feeds filtered by exam & As Expected & Pass \\
+        TC009 & Login page handles successful authentication & Valid credentials provided & 1. Mock fetch with success response. 
+        2. Render LoginPage. 
+        3. Enter email="admin@test.com" and password="password123". 
+        4. Click submit button & Credentials: \{email: "admin@test.com", password: "password123"\}. 
+        Response: \{access\_token: "test-token", user\_type: "admin"\} & Login API called; token stored in sessionStorage; navigate to "/dashboard" & As Expected & Pass \\
         \hline
-        TC603 & Enforce RBAC on monitoring feeds & Student JWT & Call \texttt{GET /monitoring/feeds} & Student token & Returns \texttt{403 Forbidden} with ``Access denied'' & No monitoring data is exposed to unauthorized users & As Expected & Pass \\
+        TC010 & Login page validates input and shows/hides password & Login form rendered & 1. Render LoginPage. 
+        2. Verify password input type is "password". 
+        3. Click toggle button. 
+        4. Verify type changes & Initial type: "password" & Password input type changes to "text" when toggle clicked, then back to "password" & As Expected & Pass \\
         \hline
-        TC604 & Verify camera status endpoint & Admin JWT; camera exists & Call \texttt{GET /monitoring/cameras/\{camera\_id\}/status} & \texttt{camera\_id}: valid camera ID & Returns \texttt{200 OK} with camera status including last heartbeat, students detected, and connection status & Response contains valid status information & As Expected & Pass \\
+        TC011 & SignUp page validates password requirements & SignUp form rendered & 1. Render SignUpPage. 
+        2. Enter password="12345". 
+        3. Enter confirm="12345". 
+        4. Click submit. 
+        5. Verify validation & Passwords: \{password: "12345", confirm: "12345"\} & Alert shown: "Password must be at least 6 characters long!" & As Expected & Pass \\
         \hline
-        TC605 & Handle non-existent camera ID & Admin JWT & Call \texttt{GET /monitoring/cameras/invalid-id/status} & \texttt{camera\_id}: "invalid-id" & Returns \texttt{404 Not Found} with appropriate error message & No data is returned & As Expected & Pass \\
+        TC012 & Users page fetches and displays users list & Valid token and API returns users & 1. Mock getUsers with John Doe and Jane Smith. 
+        2. Render UsersPage. 
+        3. Verify display & Users: [\{name: "John Doe", email: "john@test.com", user\_type: "student"\}, \{name: "Jane Smith", email: "jane@test.com", user\_type: "admin"\}] & "John Doe" and "Jane Smith" appear on screen & As Expected & Pass \\
         \hline
-        TC606 & Start phone camera monitoring session & Admin JWT; phone stream URL available & Call \texttt{POST /phone-monitoring/start} with stream URL & \texttt{stream\_url}: "http://192.168.1.100:8080/video"\\\texttt{exam\_id}: "exam-123"\\\texttt{duration\_seconds}: 3600 & Returns \texttt{200 OK} with \texttt{session\_id}, \texttt{status: "started"}, and confirmation message & Monitoring session is active; frames are being captured & As Expected & Pass \\
+        TC013 & Users page opens add user modal when button clicked & Users page loaded & 1. Mock getUsers API. 
+        2. Render UsersPage. 
+        3. Click "Add User" button. 
+        4. Verify modal & Initial users: [] & Modal opens with "Add New User" heading & As Expected & Pass \\
         \hline
-        TC607 & Verify phone monitoring session status & Admin JWT; active monitoring session exists & Call \texttt{GET /phone-monitoring/\{session\_id\}/status} & \texttt{session\_id}: valid session ID & Returns \texttt{200 OK} with session status including frames captured, processing status, and duration & Response reflects current monitoring state & As Expected & Pass \\
+        TC014 & Incidents page renders and displays incidents list & Valid token and API returns incidents & 1. Mock getIncidents with "Suspicious Movement" incident. 
+        2. Render Incidents page. 
+        3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high", status: "investigating"\} & "John Doe" and "Suspicious Movement" appear on screen & As Expected & Pass \\
         \hline
-        TC608 & Stop active phone monitoring session & Admin JWT; active monitoring session exists & Call \texttt{POST /phone-monitoring/\{session\_id\}/stop} & \texttt{session\_id}: valid session ID & Returns \texttt{200 OK} with \texttt{status: "stopped"} and confirmation message & Monitoring session is terminated; no further frames captured & As Expected & Pass \\
-        \hline
-        TC609 & Handle invalid stream URL in phone monitoring & Admin JWT & Call \texttt{POST /phone-monitoring/start} with invalid URL & \texttt{stream\_url}: "http://invalid-url:8080/video" & Returns \texttt{400 Bad Request} or connection error indicating invalid stream URL & No monitoring session is created & As Expected & Pass \\
-        \hline
-        TC610 & Verify stream URL proxy endpoint & Admin JWT; valid camera stream URL exists & Call \texttt{GET /monitoring/stream-proxy?url=\{encoded\_url\}} & \texttt{url}: valid encoded stream URL & Returns proxied stream or redirects to stream source & Stream is accessible through proxy & As Expected & Pass \\
-        \hline
-        TC611 & Verify camera feed displays in front-end & Admin logged in; monitoring page loaded & Navigate to Monitoring page and select a camera & Camera feed with valid \texttt{stream\_url} & Camera feed displays in video/image element; status indicator shows active/inactive & UI correctly renders camera stream & As Expected & Pass \\
-        \hline
-        TC612 & Handle camera feed with no stream URL & Admin logged in; room exists without stream URL & Navigate to Monitoring page; select camera without \texttt{stream\_url} & Camera with \texttt{stream\_url}: null & UI displays placeholder message ``No stream URL configured'' instead of video element & UI handles missing stream gracefully & As Expected & Pass \\
-        \hline
-    \end{tabularx}
+    \end{tabular}%
+    }
 \end{table}
 
-\let\cleardoublepage\clearpage
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal (continued)}
+    \label{tab:admin-portal-tests-cont2}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC015 & Monitoring page fetches and displays camera feeds & Valid token and API returns feeds & 1. Mock getMonitoringFeeds with Room A101 and B205. 
+        2. Render MonitoringPage. 
+        3. Verify display & Feeds: [\{room\_name: "Room A101", status: "active"\}, \{room\_name: "Room B205", status: "inactive"\}] & "Room A101" and "Room B205" appear on screen & As Expected & Pass \\
+        \hline
+        TC016 & Monitoring page opens phone camera monitor when button clicked & Monitoring page loaded & 1. Mock getMonitoringFeeds API. 
+        2. Render MonitoringPage. 
+        3. Click "Start Phone Camera" button. 
+        4. Verify modal & Feeds: [] & Phone camera monitor component appears with testid \texttt{"phone-camera-monitor"} & As Expected & Pass \\
+        \hline
+        TC017 & Reports page renders and displays reports list & Valid token and API returns reports & 1. Mock getReportHistory with exam and incident reports. 
+        2. Mock getExams and getIncidents. 
+        3. Render ReportsPage & Reports: [\{title: "Exam Report - Calculus I", type: "exam"\}, \{title: "Incident Report", type: "incident"\}] & Report headings "Exam Report - Calculus I" and "Incident Report" appear & As Expected & Pass \\
+        \hline
+        TC018 & Reports page opens generate modal when button clicked & Reports page loaded & 1. Mock all reports APIs. 
+        2. Render ReportsPage. 
+        3. Click "Incident Report" button. 
+        4. Verify modal & Reports: [] & Modal opens with "Generate Incident Report" heading & As Expected & Pass \\
+        \hline
+        TC019 & Seating Plans page fetches and displays plans list & Valid token and API returns plans & 1. Mock getSeatingPlans with 2 PDF files. 
+        2. Render SeatingPlansPage. 
+        3. Verify display & Plans: [\{filename: "seating\_plan\_2024.pdf"\}, \{filename: "seating\_plan\_2025.pdf"\}] & \texttt{"seating\_plan\_2024.pdf"} and \texttt{"seating\_plan\_2025.pdf"} appear on screen & As Expected & Pass \\
+        \hline
+        TC020 & Settings page displays tabs and allows logout & Valid session exists & 1. Render SettingsPage. 
+        2. Verify tabs display. 
+        3. Switch to Security tab. 
+        4. Click Logout button. 
+        5. Verify navigation & Tabs: General, Notifications, Security, System & All tabs appear; logout clears session and navigates to \texttt{"/login"} & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
