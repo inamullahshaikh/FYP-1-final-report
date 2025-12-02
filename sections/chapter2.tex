@@ -13,7 +13,7 @@ Note that login, sign up and feedback pages are not included in these use cases.
 UC-01 & View \& Manage Reports/Dashboard & Authorized users view and manage reports of student and invigilator activity. \\ \hline
 UC-02 & Manage User Profiles & System administrator manages accounts and roles of all users. \\ \hline
 UC-03 & Generate Detection Reports & System generates timestamped reports of detected cheating or negligence. \\ \hline
-UC-04 & Verify Student Identity \& Seat Mapping & System verifies student identity using face recognition and assigned seats. \\ \hline
+UC-04 & Seat Mapping & System maps detected activities to assigned student seats. \\ \hline
 UC-05 & Monitor Invigilator Activity & System monitors invigilators for negligence, absence, or unauthorized actions. \\ \hline
 UC-06 & Monitor Student Behaviour & System monitors student actions to detect cheating attempts. \\ \hline
 UC-07 & Process Exam Footage (Live/Recorded) & System processes live and recorded video streams to detect activities. \\ \hline
@@ -130,29 +130,27 @@ Special Requirements & Reports exportable to PDF/Excel \\ \hline
 % ---------- UC-04 ----------
 \subsubsection*{2.1.4\quad UC-04}
 \begin{longtable}{|p{5cm}|p{10cm}|}
-\caption{Use Case 4: Verify Student Identity \& Seat Mapping}\label{uc04} \\
+\caption{Use Case 4: Seat Mapping}\label{uc04} \\
 \hline
 \textbf{Use Case Detail} & \textbf{Description} \\ \hline
 Use Case ID & UC-04 \\ \hline
-Use Case Name & Verify Student Identity \& Seat Mapping \\ \hline
+Use Case Name & Seat Mapping \\ \hline
 Scope & Backend Service \\ \hline
 Level & User Goal \\ \hline
-Brief Description & System verifies student identity using face recognition and seat mapping. \\ \hline
-Actor(s) Involved & Student, Invigilator \\ \hline
+Brief Description & System maps detected activities to assigned student seats. \\ \hline
+Actor(s) Involved & System (Automated) \\ \hline
 Stakeholders & • University Management \\ \hline
 Pre-conditions & Seating plan and student ID data available. \\ \hline
-Post-conditions & Student identity verified and mapped. \\ \hline
+Post-conditions & Detected activities are mapped to correct student seats. \\ \hline
 Main Success Scenario & 
 1. Exam seating plan is uploaded into the system. \newline
-2. Student enters the exam hall and sits on the assigned seat. \newline
-3. System activates facial recognition through CCTV or camera feed. \newline
-4. System captures the student’s face and compares it with pre-stored student records. \newline
-5. System checks whether the student is seated in the correct assigned seat. \newline
-6. If the identity matches, the system confirms successful verification. \newline
-7. If there is a mismatch, the system flags the seat for manual review by the examiner. \newline
-8. System logs the verification results along with seat ID and student ID. \newline
-9. Verified data is linked to subsequent activity monitoring and reports. \\ \hline
-Special Requirements & Reliable face recognition with low error rate \\ \hline
+2. System processes video feeds from CCTV or camera sources. \newline
+3. System detects suspicious activities in the video frames. \newline
+4. System maps detected activities to specific seat locations using seating plan data. \newline
+5. System links each detected activity to the student assigned to that seat. \newline
+6. System logs the activity along with seat ID and student ID. \newline
+7. Mapped data is linked to subsequent activity monitoring and reports. \\ \hline
+Special Requirements & Accurate seat mapping with reliable coordinate detection \\ \hline
 
 
 \end{longtable}
@@ -331,11 +329,11 @@ FR-15 & The system shall allow reports to be exported in PDF/Excel format. \\ \h
 \begin{tabular}{|c|p{11cm}|}
 \hline
 \textbf{Functional Requirement ID} & \textbf{Description} \\ \hline
-FR-16 & The system shall verify student identity using face recognition. \\ \hline
-FR-17 & The system shall cross-check student identity against pre-stored records. \\ \hline
-FR-18 & The system shall map verified students to their assigned seat numbers. \\ \hline
-FR-19 & The system shall log verification results (student ID, seat ID, verification status). \\ \hline
-FR-20 & The system shall flag mismatches for manual review. \\ \hline
+FR-16 & The system shall map detected activities to assigned seat numbers. \\ \hline
+FR-17 & The system shall link activities to students based on seating plan data. \\ \hline
+FR-18 & The system shall log activity mapping results (student ID, seat ID, activity type). \\ \hline
+FR-19 & The system shall ensure accurate coordinate-based seat detection. \\ \hline
+FR-20 & The system shall handle cases where seat mapping cannot be determined. \\ \hline
 \end{tabular}
 \end{table}
 
@@ -461,13 +459,13 @@ Following are the requirements for Module 2 (Backend Service):
         \item FR-30: The system shall allow investigators to review and confirm logged violations.
     \end{enumerate}
 
-    \item \textbf{Face and Seat Verification}
+    \item \textbf{Seat Mapping}
     \begin{enumerate}[label=(\alph*)]
-        \item FR-16: The system shall verify student identity using face recognition.
-        \item FR-17: The system shall cross-check student identity against pre-stored records.
-        \item FR-18: The system shall map verified students to their assigned seat numbers.
-        \item FR-19: The system shall log verification results (student ID, seat ID, verification status).
-        \item FR-20: The system shall flag mismatches for manual review.
+        \item FR-16: The system shall map detected activities to assigned seat numbers.
+        \item FR-17: The system shall link activities to students based on seating plan data.
+        \item FR-18: The system shall log activity mapping results (student ID, seat ID, activity type).
+        \item FR-19: The system shall ensure accurate coordinate-based seat detection.
+        \item FR-20: The system shall handle cases where seat mapping cannot be determined.
     \end{enumerate}
 
     \item \textbf{Invigilator Monitoring}

@@ -7,8 +7,7 @@ solution, and stakeholders while providing a detailed background of the system.
 
 \textbf{ForeSyte} integrates computer vision and deep learning techniques to analyze both real-time CCTV/camera feeds and uploaded exam footage. 
 By focusing on seat-specific mapping, the system ensures precise tracking of students and their activities while simultaneously monitoring 
-invigilators’ behavior to maintain a fair and transparent examination environment \cite{bucciol2020cheating}. 
-It also ensures correct student ID verification on assigned seats using face recognition, thereby preventing impersonation. 
+invigilators' behavior to maintain a fair and transparent examination environment \cite{bucciol2020cheating}. 
 
 Furthermore, several studies have highlighted the growing prevalence of academic dishonesty and the limitations of traditional manual invigilation methods. 
 By leveraging AI-driven video analysis, \textbf{ForeSyte} aims to improve the accuracy of cheating detection, automate timestamped reporting, 
@@ -71,7 +70,6 @@ The system processes both real-time CCTV/camera streams and uploaded video foota
 phone usage, hand waving, bending over the desk, looking around, and standing up using advanced computer vision techniques.
 
 The system focuses on seat-specific mapping, ensuring that every detected activity is linked to the correct student. 
-It also ensures that the correct student ID is sitting on the assigned seat by using face recognition.  
 In addition, \textbf{ForeSyte} incorporates an Invigilator Activity Monitoring module to:
 \begin{itemize}[noitemsep, topsep=0pt]
     \item Track invigilators' movements
@@ -116,8 +114,7 @@ academic integrity \cite{bucciol2020cheating, examIntegrity2021}.
 The system will process CCTV/camera footage, both live streams and uploaded recordings, to 
 automatically detect and log suspicious activities such as unauthorized object usage and 
 irregular gestures. It will also incorporate seating arrangement verification, ensuring that 
-each detected activity is accurately linked to the correct student, and that the correct student ID 
-is sitting in the assigned seat using face recognition, similar to approaches in modern proctoring systems \cite{masud2025cheating_detection, arumugam2025smart_invigilation}. 
+each detected activity is accurately linked to the correct student through seat mapping, similar to approaches in modern proctoring systems \cite{masud2025cheating_detection, arumugam2025smart_invigilation}. 
 
 The project further extends to monitoring invigilator activity within the exam hall, 
 identifying negligence or prolonged absence from duty. Similar works on offline and 
@@ -154,7 +151,7 @@ It provides centralized access to seating plans and violation reports, ensuring 
     \item \textbf{Dashboard Visualization:} Displays real-time updates of suspicious activities, flagged violations, and invigilator presence across multiple exam halls using data from connected CCTV/camera systems.
     \item \textbf{Report Access:} Enables authorized users to view, manage, and download detailed violation reports containing timestamps, seat details and room information.
     \item \textbf{User Roles and Permissions:} Implements secure role-based access, where administrators manage seating plans, camera configurations, and exam schedules, while discipline committee members focus on reviewing reports and initiating actions.
-    \item \textbf{Seating Plan Integration:} Links violations to student seating layouts and verifies correct student IDs using face recognition to ensure accurate identification of candidates involved in flagged incidents.
+    \item \textbf{Seating Plan Integration:} Links violations to student seating layouts to ensure accurate identification of candidates involved in flagged incidents.
 \end{enumerate}
 
 \subsection{Backend Service}
@@ -165,7 +162,7 @@ This module processes video streams from CCTV/camera systems and uploaded exam f
     \setlength{\itemsep}{2pt}
     \item \textbf{Video Stream Processing:} Integrates with CCTV/camera systems and uploaded recordings, extracting frames for real-time detection of activities and events.
     \item \textbf{Cheating Detection Engine:} Uses advanced computer vision techniques to identify suspicious behaviors such as unauthorized object usage, irregular gestures, communication, and frequent seat movements \cite{bhatti2023smart, arumugam2025smart_invigilation}.
-    \item \textbf{Face and Seat Verification:} Verifies student identities and ensures correct student ID is sitting on the assigned seat using face recognition, mapping detected activities to seating plans for accurate violation reporting.
+    \item \textbf{Seat Mapping:} Maps detected activities to seating plans for accurate violation reporting, ensuring each activity is linked to the correct student seat.
     \item \textbf{Invigilator Monitoring:} Tracks invigilator's prolonged absences from assigned zones, and identifies potential negligence or unauthorized phone usage\cite{moyo2023openpose_exam_detection}.
     \item \textbf{Report Generation:} Compiles timestamped violation logs, including room details, seat numbers, and integrates them directly into the ForeSyte Web Portal for automated PDF/Excel report exports.
 \end{enumerate}
