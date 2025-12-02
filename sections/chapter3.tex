@@ -6,24 +6,32 @@
 
 The ForeSyte AI Exam Surveillance System is designed using a modular architecture to ensure scalability, maintainability, and clear separation of concerns. At a high level, the system is divided into front-end modules, back-end modules, and supporting external systems. Each module plays a distinct role but collaborates with others to achieve the overall goal of automated, AI-powered exam monitoring.
 
-The architecture follows a \textbf{multi-tiered layered style}, combining elements of the \textbf{MVC (Model-View-Controller)} pattern. The front-end handles input, report generation and visualization, the back-end processes and analyzes video frames, and the data management layer ensures persistence and retrieval of information. Reports are then generated for administrators and investigators. This decomposition ensures that the AI detection logic, data storage, and user interfaces remain loosely coupled and independently upgradable.
+The architecture follows a \textbf{two-tier client-server architecture} with \textbf{layered components}, implementing a \textbf{RESTful API} design pattern. The front-end (presentation tier) handles user input, report visualization, and dashboard interactions through a React-based single-page application. The back-end (application tier) processes video streams, performs AI-based detection and analysis, and manages business logic through FastAPI routes. The data management layer (data tier) ensures persistence and retrieval of information using PostgreSQL for relational data and MongoDB for high-velocity event logs. This decomposition ensures that the AI detection logic, data storage, and user interfaces remain loosely coupled and independently upgradable.
 
-Figure \ref{fig:architecture} illustrates the high-level architecture of the system, showing the main subsystems and their interactions.
+\subsection*{3.3.1 Box and Line Diagram (Initial Design Stage)}
+In the initial design stage, a simple box and line diagram is used to represent the main system components and their interactions. This diagram provides a high-level overview of how the core modules connect, without detailing the internal architecture or data flow.
 
-\begin{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{sections/box-line.drawio.png}
+    \caption{Box and Line Diagram for ForeSyte AI Exam Surveillance System}
+    \label{fig:box-line}
+\end{figure}
+\FloatBarrier
+
+\subsection*{3.3.2 High-Level Architectural Style}
+After the initial overview, the finalized architecture style/pattern diagram is presented. The system uses a two-tier client-server architecture with layered components, providing clear separation between the presentation layer (React frontend), application layer (FastAPI backend with embedded business logic), and data management layer (PostgreSQL and MongoDB). Figure~\ref{fig:architecture} illustrates the high-level architecture of the system, showing the main subsystems and their interactions.
+
+\begin{figure}[H]
     \centering
     \caption{High-Level Architectural Design of the ForeSyte AI Exam Surveillance System}
-    \includegraphics[width=\textwidth]{sections/architecture.png}
+    \includegraphics[width=\textwidth]{sections/foresyte-architecture-style.drawio.png}
     \label{fig:architecture}
 \end{figure}
 \FloatBarrier
 
-\begin{itemize}
-    \item In the initial design stage, create a Box and Line Diagram for a simpler representation of the systems.
-    \item After finalizing the architecture style/pattern diagram (MVC, Client-Server, Layered, Multi-tiered), create a detailed mapping of modules/components to each part of the architecture.
-\end{itemize}
-
-To view examples of box and line diagrams and architecture styles, see Appendix C.
+\subsection*{3.3.3 Mapping of Modules/Components}
+Each module/component is mapped to its respective part of the architecture, ensuring modularity and scalability. The architecture supports integration with external systems (CCTV, storage, databases) and provides a robust foundation for AI-powered exam monitoring.
 
 \subsection*{3.4 Data Design}
 
@@ -60,7 +68,6 @@ Similarly, Figure~\ref{fig:data-flow-storage} shows how streams/uploads are proc
     \label{fig:data-flow-storage}
 \end{figure}
 
-
 \subsubsection*{3.4.5 Data Flow and Processing}
 The system processes exam footage via two paths that converge into a unified pipeline:
 \begin{enumerate}
@@ -71,7 +78,6 @@ The system processes exam footage via two paths that converge into a unified pip
   \item \textbf{Consumption}: Admin dashboards query relational views; investigators open pre-signed evidence URLs and download reports.
 \end{enumerate}
 \let\cleardoublepage\clearpage
-
 \section{Domain Model}
 Figure \textcolor{blue}{\ref{fig:domain}} represents the domain model for ForeSyte.
 

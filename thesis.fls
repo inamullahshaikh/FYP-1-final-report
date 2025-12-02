@@ -561,13 +561,20 @@ OUTPUT sections\chapter3.aux
 INPUT .\sections\chapter3.tex
 INPUT .\sections\chapter3.tex
 INPUT sections\chapter3.tex
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
-INPUT .\sections\architecture.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\box-line.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
+INPUT .\sections\foresyte-architecture-style.drawio.png
 INPUT .\sections\data-flow.drawio (2).png
 INPUT .\sections\data-flow.drawio (2).png
 INPUT .\sections\data-flow.drawio (2).png

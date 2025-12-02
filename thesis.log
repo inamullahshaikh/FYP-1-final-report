@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 04:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  2 DEC 2025 05:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1176,7 +1176,16 @@ Overfull \hbox (3.60652pt too wide) in paragraph at lines 3--3
 
 [4
 
-] (thesis.lot)
+]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[5] (thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
@@ -1334,7 +1343,7 @@ Overfull \hbox (6.99289pt too wide) in paragraph at lines 80--86
 \T1/ptm/m/n/12 search-ing through hours of footage. By com-bin-ing AI-powered surveil-lance with in-tel-li-gent
  []
 
-<sections/cheating_reduction_foreSyte.png, id=448, 608.7543pt x 380.1402pt>
+<sections/cheating_reduction_foreSyte.png, id=454, 608.7543pt x 380.1402pt>
 File: sections/cheating_reduction_foreSyte.png Graphic file (type png)
 <use sections/cheating_reduction_foreSyte.png>
 Package pdftex.def Info: sections/cheating_reduction_foreSyte.png  used on input line 90.
@@ -1347,7 +1356,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has b
                    \relax 
 l.92 \end{figure}
                   [3]
-<sections/piechart.png, id=455, 853.1875pt x 592.2125pt>
+<sections/piechart.png, id=461, 853.1875pt x 592.2125pt>
 File: sections/piechart.png Graphic file (type png)
 <use sections/piechart.png>
 Package pdftex.def Info: sections/piechart.png  used on input line 97.
@@ -1357,7 +1366,7 @@ Overfull \hbox (17.45575pt too wide) in paragraph at lines 102--106
 \T1/ptm/m/n/12 Re-cent re-search high-lights the im-por-tance of au-to-mated in-vig-i-la-tion for main-tain-ing aca-demic
  []
 
-<sections/flowchart.png, id=458, 851.43094pt x 527.571pt>
+<sections/flowchart.png, id=464, 851.43094pt x 527.571pt>
 File: sections/flowchart.png Graphic file (type png)
 <use sections/flowchart.png>
 Package pdftex.def Info: sections/flowchart.png  used on input line 110.
@@ -1397,7 +1406,12 @@ Underfull \vbox (badness 2073) has occurred while \output is active []
 
 
 
-[5 <./sections/flowchart.png>]
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.143 
+       [5 <./sections/flowchart.png>]
 Overfull \hbox (12.95435pt too wide) in paragraph at lines 150--151
 []\T1/ptm/b/n/12 Dashboard Vi-su-al-iza-tion: \T1/ptm/m/n/12 Dis-plays real-time up-dates of sus-pi-cious ac-tiv-i-ties, flagged
  []
@@ -1592,7 +1606,7 @@ Overfull \hbox (25.19997pt too wide) in alignment at lines 229--256
 [16
 
 ]
-<sections/usecase.png, id=538, 670.505pt x 654.445pt>
+<sections/usecase.png, id=543, 670.505pt x 654.445pt>
 File: sections/usecase.png Graphic file (type png)
 <use sections/usecase.png>
 Package pdftex.def Info: sections/usecase.png  used on input line 266.
@@ -1766,110 +1780,110 @@ Overfull \hbox (1.79642pt too wide) in paragraph at lines 9--10
 \T1/ptm/m/n/12 vi-su-al-iza-tion, the back-end pro-cesses and an-a-lyzes video frames, and the data man-age-ment
  []
 
+<sections/box-line.drawio.png, id=631, 643.40375pt x 171.64125pt>
+File: sections/box-line.drawio.png Graphic file (type png)
+<use sections/box-line.drawio.png>
+Package pdftex.def Info: sections/box-line.drawio.png  used on input line 16.
+(pdftex.def)             Requested size: 362.77525pt x 96.78104pt.
 
-Overfull \hbox (7.89172pt too wide) in paragraph at lines 11--12
-[]\T1/ptm/m/n/12 Figure [][][] il-lus-trates the high-level ar-chi-tec-ture of the sys-tem, show-ing the main sub-sys-tems
+Overfull \hbox (23.64728pt too wide) in paragraph at lines 23--24
+\T1/ptm/m/n/12 The sys-tem uses a multi-tiered, lay-ered ar-chi-tec-ture with clear sep-a-ra-tion be-tween pre-sen-ta-tion,
  []
 
-<sections/architecture.png, id=626, 2388.925pt x 1304.875pt>
-File: sections/architecture.png Graphic file (type png)
-<use sections/architecture.png>
-Package pdftex.def Info: sections/architecture.png  used on input line 16.
-(pdftex.def)             Requested size: 426.79135pt x 233.11522pt.
+<sections/foresyte-architecture-style.drawio.png, id=633, 1406.25375pt x 533.995pt>
+File: sections/foresyte-architecture-style.drawio.png Graphic file (type png)
+<use sections/foresyte-architecture-style.drawio.png>
+Package pdftex.def Info: sections/foresyte-architecture-style.drawio.png  used on input line 28.
+(pdftex.def)             Requested size: 426.79135pt x 162.0575pt.
 
-Overfull \hbox (4.89107pt too wide) in paragraph at lines 22--23
-[]\T1/ptm/m/n/12 In the ini-tial de-sign stage, cre-ate a Box and Line Di-a-gram for a sim-pler rep-re-sen-ta-tion
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[26 <./sections/box-line.drawio.png>]
+Overfull \hbox (22.89348pt too wide) in paragraph at lines 34--35
+\T1/ptm/m/n/12 (CCTV, stor-age, databases) and pro-vides a ro-bust foun-da-tion for AI-powered exam mon-i-tor-ing. 
  []
 
 
-Overfull \hbox (5.21494pt too wide) in paragraph at lines 23--24
-[]\T1/ptm/m/n/12 After fi-nal-iz-ing the ar-chi-tec-ture style/pattern di-a-gram (MVC, Client-Server, Lay-ered,
- []
-
-
-Overfull \hbox (12.6208pt too wide) in paragraph at lines 30--31
+Overfull \hbox (12.6208pt too wide) in paragraph at lines 38--39
 \T1/ptm/m/n/12 The data de-sign for \T1/ptm/b/n/12 ForeSyte \T1/ptm/m/n/12 fo-cuses on how the sys-tem's in-for-ma-tion do-main is rep-re-sented
  []
 
 
-
-[26 <./sections/architecture.png>]
-Overfull \hbox (3.04364pt too wide) in paragraph at lines 33--35
+Overfull \hbox (3.04364pt too wide) in paragraph at lines 41--43
 \T1/ptm/m/n/12 video ev-i-dence, AI de-tec-tions, ac-tiv-i-ties, vi-o-la-tions, and re-ports. The core data is or-ga-nized
  []
 
 
-Overfull \hbox (4.37473pt too wide) in paragraph at lines 35--36
+Overfull \hbox (4.37473pt too wide) in paragraph at lines 43--44
 []\T1/ptm/b/n/12 Relational (Post-greSQL) \T1/ptm/m/n/12 holds nor-mal-ized, queryable facts: Users, Ex-ams, Rooms,
  []
 
 
-Overfull \hbox (7.56645pt too wide) in paragraph at lines 35--36
+Overfull \hbox (7.56645pt too wide) in paragraph at lines 43--44
 \T1/ptm/m/n/12 Seats, Stu-den-tAc-tiv-ity, In-vig-i-la-torAc-tiv-ity, Vi-o-la-tions, Re-ports, and seat as-sign-ments;
  []
 
 
-Overfull \hbox (28.14606pt too wide) in paragraph at lines 36--37
+Overfull \hbox (28.14606pt too wide) in paragraph at lines 44--45
 []\T1/ptm/b/n/12 Document (Mon-goDB) \T1/ptm/m/n/12 holds high-velocity \T1/ptm/m/it/12 De-tec-tion-Event \T1/ptm/m/n/12 JSON and model di-ag-nos-tics
  []
 
 
-Overfull \hbox (11.18011pt too wide) in paragraph at lines 40--41
+Overfull \hbox (11.18011pt too wide) in paragraph at lines 48--49
 \T1/ptm/m/n/12 con-verts them into ac-tiv-i-ties and vi-o-la-tions with ev-i-dence links; dash-boards and in-ves-ti-ga-tors
  []
 
 
-Overfull \hbox (25.78343pt too wide) in paragraph at lines 45--46
+
+[27 <./sections/foresyte-architecture-style.drawio.png>]
+Overfull \hbox (25.78343pt too wide) in paragraph at lines 53--54
 []\T1/ptm/b/n/12 User In-for-ma-tion\T1/ptm/m/n/12 : Ad-min, In-vig-i-la-tor, In-ves-ti-ga-tor, and Stu-dent pro-files with cre-den-tials
  []
 
-<sections/data-flow.drawio (2).png, id=634, 1366.10374pt x 462.72874pt>
+<sections/data-flow.drawio (2).png, id=645, 1366.10374pt x 462.72874pt>
 File: sections/data-flow.drawio (2).png Graphic file (type png)
 <use sections/data-flow.drawio (2).png>
-Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 59.
+Package pdftex.def Info: sections/data-flow.drawio (2).png  used on input line 67.
 (pdftex.def)             Requested size: 426.79135pt x 144.56001pt.
 
 
-[27]
-Overfull \hbox (44.14165pt too wide) in paragraph at lines 69--70
+[28 <./sections/data-flow.drawio (2).png>]
+Overfull \hbox (44.14165pt too wide) in paragraph at lines 76--77
 []\T1/ptm/b/n/12 Aggregation/Rules\T1/ptm/m/n/12 : Busi-ness rules trans-form events into \T1/ptm/m/it/12 Stu-den-tAc-tiv-ity/InvigilatorActivity\T1/ptm/m/n/12 ;
  []
 
 
-Overfull \hbox (20.41943pt too wide) in paragraph at lines 71--72
+Overfull \hbox (20.41943pt too wide) in paragraph at lines 78--79
 []\T1/ptm/b/n/12 Consumption\T1/ptm/m/n/12 : Ad-min dash-boards query re-la-tional views; in-ves-ti-ga-tors open pre-signed
  []
 
-<sections/domain-model.png, id=640, 884.30376pt x 673.51625pt>
+<sections/domain-model.png, id=653, 884.30376pt x 673.51625pt>
 File: sections/domain-model.png Graphic file (type png)
 <use sections/domain-model.png>
-Package pdftex.def Info: sections/domain-model.png  used on input line 81.
+Package pdftex.def Info: sections/domain-model.png  used on input line 87.
 (pdftex.def)             Requested size: 426.79135pt x 325.06204pt.
 
-Overfull \hbox (4.80446pt too wide) in paragraph at lines 85--85
+Overfull \hbox (4.80446pt too wide) in paragraph at lines 91--91
 |[]\T1/ptm/b/n/17.28 Design Mod-els [UPTO THE CUR-RENT IT-ER-A-TION
  []
 
 
-Underfull \vbox (badness 1242) has occurred while \output is active []
-
-
-
-[28 <./sections/data-flow.drawio (2).png>]
 
 [29 <./sections/domain-model.png>]
-<sections/class-diagram.png, id=656, 1003.75pt x 882.29625pt>
+<sections/class-diagram.png, id=663, 1003.75pt x 882.29625pt>
 File: sections/class-diagram.png Graphic file (type png)
 <use sections/class-diagram.png>
-Package pdftex.def Info: sections/class-diagram.png  used on input line 95.
+Package pdftex.def Info: sections/class-diagram.png  used on input line 101.
 (pdftex.def)             Requested size: 426.79135pt x 375.1527pt.
 
 
 [30 <./sections/class-diagram.png>]
-<sections/activity-diagram.png, id=662, 660.4675pt x 1069.9975pt>
+<sections/activity-diagram.png, id=669, 660.4675pt x 1069.9975pt>
 File: sections/activity-diagram.png Graphic file (type png)
 <use sections/activity-diagram.png>
-Package pdftex.def Info: sections/activity-diagram.png  used on input line 106.
+Package pdftex.def Info: sections/activity-diagram.png  used on input line 112.
 (pdftex.def)             Requested size: 340.55272pt x 551.68704pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1881,33 +1895,33 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  <./sections/activity-diagram.png>]
 
 pdfTeX warning: pdflatex (file ./sections/uc01.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc01.pdf, id=668, 614.295pt x 794.97pt>
+<sections/uc01.pdf, id=676, 614.295pt x 794.97pt>
 File: sections/uc01.pdf Graphic file (type pdf)
 <use sections/uc01.pdf>
-Package pdftex.def Info: sections/uc01.pdf  used on input line 122.
+Package pdftex.def Info: sections/uc01.pdf  used on input line 128.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [32 <./sections/uc01.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc02.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc02.pdf, id=683, 614.295pt x 794.97pt>
+<sections/uc02.pdf, id=690, 614.295pt x 794.97pt>
 File: sections/uc02.pdf Graphic file (type pdf)
 <use sections/uc02.pdf>
-Package pdftex.def Info: sections/uc02.pdf  used on input line 131.
+Package pdftex.def Info: sections/uc02.pdf  used on input line 137.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [33 <./sections/uc02.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc03.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc03.pdf, id=697, 614.295pt x 794.97pt>
+<sections/uc03.pdf, id=704, 614.295pt x 794.97pt>
 File: sections/uc03.pdf Graphic file (type pdf)
 <use sections/uc03.pdf>
-Package pdftex.def Info: sections/uc03.pdf  used on input line 140.
+Package pdftex.def Info: sections/uc03.pdf  used on input line 146.
 (pdftex.def)             Requested size: 467.90012pt x 605.50066pt.
 
-Overfull \hbox (41.10876pt too wide) in paragraph at lines 140--141
+Overfull \hbox (41.10876pt too wide) in paragraph at lines 146--147
  [][] 
  []
 
@@ -1916,51 +1930,51 @@ Overfull \hbox (41.10876pt too wide) in paragraph at lines 140--141
 [34 <./sections/uc03.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc04.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc04.pdf, id=711, 614.295pt x 794.97pt>
+<sections/uc04.pdf, id=718, 614.295pt x 794.97pt>
 File: sections/uc04.pdf Graphic file (type pdf)
 <use sections/uc04.pdf>
-Package pdftex.def Info: sections/uc04.pdf  used on input line 148.
+Package pdftex.def Info: sections/uc04.pdf  used on input line 154.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [35 <./sections/uc04.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc05.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc05.pdf, id=730, 614.295pt x 794.97pt>
+<sections/uc05.pdf, id=737, 614.295pt x 794.97pt>
 File: sections/uc05.pdf Graphic file (type pdf)
 <use sections/uc05.pdf>
-Package pdftex.def Info: sections/uc05.pdf  used on input line 157.
+Package pdftex.def Info: sections/uc05.pdf  used on input line 163.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [36 <./sections/uc05.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc06.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc06.pdf, id=749, 614.295pt x 794.97pt>
+<sections/uc06.pdf, id=756, 614.295pt x 794.97pt>
 File: sections/uc06.pdf Graphic file (type pdf)
 <use sections/uc06.pdf>
-Package pdftex.def Info: sections/uc06.pdf  used on input line 167.
+Package pdftex.def Info: sections/uc06.pdf  used on input line 173.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [37 <./sections/uc06.pdf>]
 
 pdfTeX warning: pdflatex (file ./sections/uc077.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<sections/uc077.pdf, id=768, 614.295pt x 794.97pt>
+<sections/uc077.pdf, id=776, 614.295pt x 794.97pt>
 File: sections/uc077.pdf Graphic file (type pdf)
 <use sections/uc077.pdf>
-Package pdftex.def Info: sections/uc077.pdf  used on input line 177.
+Package pdftex.def Info: sections/uc077.pdf  used on input line 183.
 (pdftex.def)             Requested size: 426.79787pt x 552.32666pt.
 
 
 [38 <./sections/uc077.pdf>]
-<sections/std.jpg, id=783, 638.385pt x 834.11626pt>
+<sections/std.jpg, id=790, 638.385pt x 834.11626pt>
 File: sections/std.jpg Graphic file (type jpg)
 <use sections/std.jpg>
-Package pdftex.def Info: sections/std.jpg  used on input line 187.
+Package pdftex.def Info: sections/std.jpg  used on input line 193.
 (pdftex.def)             Requested size: 426.79135pt x 557.64587pt.
 
-Overfull \hbox (10.92848pt too wide) in paragraph at lines 192--193
+Overfull \hbox (10.92848pt too wide) in paragraph at lines 198--199
 \T1/ptm/m/n/12 This model col-lec-tively pro-vide a com-pre-hen-sive view of the ForeSyte sys-tem's ar-chi-tec-ture,
  []
 
@@ -9817,12 +9831,12 @@ Overfull \vbox (1732.92894pt too high) has occurred while \output is active []
 
  (appendix.tex
 Appendix A.
-<images/usecaseexample.png, id=889, 735.49782pt x 304.88907pt>
+<images/usecaseexample.png, id=896, 735.49782pt x 304.88907pt>
 File: images/usecaseexample.png Graphic file (type png)
 <use images/usecaseexample.png>
 Package pdftex.def Info: images/usecaseexample.png  used on input line 7.
 (pdftex.def)             Requested size: 426.79135pt x 176.92416pt.
-<images/detailusecase.png, id=890, 545.03625pt x 433.62pt>
+<images/detailusecase.png, id=897, 545.03625pt x 433.62pt>
 File: images/detailusecase.png Graphic file (type png)
 <use images/detailusecase.png>
 Package pdftex.def Info: images/detailusecase.png  used on input line 15.
@@ -9836,7 +9850,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
  <./images/usecaseexample.png>]
-<images/eventresponsetable.png, id=896, 472.01344pt x 536.0025pt>
+<images/eventresponsetable.png, id=903, 472.01344pt x 536.0025pt>
 File: images/eventresponsetable.png Graphic file (type png)
 <use images/eventresponsetable.png>
 Package pdftex.def Info: images/eventresponsetable.png  used on input line 23.
@@ -9847,7 +9861,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [59 <./images/detailusecase.png>]
-<images/storyboard.png, id=902, 497.60907pt x 436.63126pt>
+<images/storyboard.png, id=909, 497.60907pt x 436.63126pt>
 File: images/storyboard.png Graphic file (type png)
 <use images/storyboard.png>
 Package pdftex.def Info: images/storyboard.png  used on input line 31.
@@ -9858,7 +9872,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [60 <./images/eventresponsetable.png>]
-<images/domainmodel.png, id=908, 563.10374pt x 532.23843pt>
+<images/domainmodel.png, id=915, 563.10374pt x 532.23843pt>
 File: images/domainmodel.png Graphic file (type png)
 <use images/domainmodel.png>
 Package pdftex.def Info: images/domainmodel.png  used on input line 41.
@@ -9869,7 +9883,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [61 <./images/storyboard.png>]
-<images/boxandline.png, id=914, 340.27126pt x 213.04594pt>
+<images/boxandline.png, id=922, 340.27126pt x 213.04594pt>
 File: images/boxandline.png Graphic file (type png)
 <use images/boxandline.png>
 Package pdftex.def Info: images/boxandline.png  used on input line 52.
@@ -9880,7 +9894,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [62 <./images/domainmodel.png>]
-<images/Architecturepattern.png, id=921, 509.65407pt x 382.42876pt>
+<images/Architecturepattern.png, id=928, 509.65407pt x 382.42876pt>
 File: images/Architecturepattern.png Graphic file (type png)
 <use images/Architecturepattern.png>
 Package pdftex.def Info: images/Architecturepattern.png  used on input line 60.
@@ -9891,7 +9905,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [63 <./images/boxandline.png>]
-<images/activityexample.png, id=927, 709.90219pt x 429.10312pt>
+<images/activityexample.png, id=934, 709.90219pt x 429.10312pt>
 File: images/activityexample.png Graphic file (type png)
 <use images/activityexample.png>
 Package pdftex.def Info: images/activityexample.png  used on input line 71.
@@ -9902,7 +9916,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [64 <./images/Architecturepattern.png>]
-<images/classexample.png, id=933, 551.05875pt x 525.46312pt>
+<images/classexample.png, id=940, 551.05875pt x 525.46312pt>
 File: images/classexample.png Graphic file (type png)
 <use images/classexample.png>
 Package pdftex.def Info: images/classexample.png  used on input line 80.
@@ -9913,7 +9927,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [65 <./images/activityexample.png>]
-<images/sequenceexample.png, id=939, 578.16pt x 312.41719pt>
+<images/sequenceexample.png, id=946, 578.16pt x 312.41719pt>
 File: images/sequenceexample.png Graphic file (type png)
 <use images/sequenceexample.png>
 Package pdftex.def Info: images/sequenceexample.png  used on input line 88.
@@ -9924,7 +9938,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [66 <./images/classexample.png>]
-<images/statetransitionexample.png, id=945, 520.19344pt x 263.48438pt>
+<images/statetransitionexample.png, id=952, 520.19344pt x 263.48438pt>
 File: images/statetransitionexample.png Graphic file (type png)
 <use images/statetransitionexample.png>
 Package pdftex.def Info: images/statetransitionexample.png  used on input line 96.
@@ -9932,7 +9946,7 @@ Package pdftex.def Info: images/statetransitionexample.png  used on input line 9
 
 
 pdfTeX warning: pdflatex (file ./DFD.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD.pdf, id=946, 614.295pt x 794.97pt>
+<DFD.pdf, id=953, 614.295pt x 794.97pt>
 File: DFD.pdf Graphic file (type pdf)
 <use DFD.pdf>
 Package pdftex.def Info: DFD.pdf  used on input line 104.
@@ -9945,7 +9959,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [67 <./images/sequenceexample.png> <./images/statetransitionexample.png>]
 
 pdfTeX warning: pdflatex (file ./DFD2.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<DFD2.pdf, id=953, 614.295pt x 794.97pt>
+<DFD2.pdf, id=961, 614.295pt x 794.97pt>
 File: DFD2.pdf Graphic file (type pdf)
 <use DFD2.pdf>
 Package pdftex.def Info: DFD2.pdf  used on input line 108.
@@ -9975,20 +9989,20 @@ L3 programming layer <2025-09-02>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: CD375093C51797C74852D6CFCC26BC79;10708.
+(rerunfilecheck)             Checksum: 11C8518EE2492FA93E9F7A6E3A6880A3;10708.
  ) 
 Here is how much of TeX's memory you used:
- 32480 strings out of 468081
- 639629 string characters out of 5427240
- 1240154 words of memory out of 5000000
- 60244 multiletter control sequences out of 15000+600000
+ 32489 strings out of 468081
+ 640058 string characters out of 5427240
+ 1240250 words of memory out of 5000000
+ 60252 multiletter control sequences out of 15000+600000
  697279 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,12n,121p,1593b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\hp\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/hp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (74 pages, 4789283 bytes).
+Output written on thesis.pdf (75 pages, 4663436 bytes).
 PDF statistics:
- 1165 PDF objects out of 1200 (max. 8388607)
- 267 named destinations out of 1000 (max. 500000)
- 716 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1172 PDF objects out of 1200 (max. 8388607)
+ 268 named destinations out of 1000 (max. 500000)
+ 721 words of extra memory for PDF output out of 10000 (max. 10000000)
 
