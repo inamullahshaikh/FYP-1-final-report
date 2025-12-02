@@ -300,6 +300,163 @@ The Investigator Dashboard is designed to give investigators a structured way to
     \item Provide a \textit{Review} action for each activity which, in the next iteration, will navigate to a detailed case view and allow updating violation status and adding investigation notes.
 \end{enumerate}
 
+\subsection{Seating Plan Upload and Processing}
+
+The seating plan upload algorithm processes PDF files containing exam schedules and extracts room, student, and seat assignment information. The algorithm handles PDF parsing, data extraction, database operations, and visualization generation. The high-level pseudocode for this process is:
+
+\begin{lstlisting}[language=pseudocode, basicstyle=\ttfamily\footnotesize, frame=single, backgroundcolor=\color{gray!10}, breaklines=true, breakatwhitespace=true, tabsize=2, showstringspaces=false, numbers=left, numberstyle=\tiny\color{gray}, numbersep=8pt, xleftmargin=15pt, xrightmargin=15pt, framexleftmargin=10pt, framexrightmargin=10pt, framextopmargin=5pt, framexbottommargin=5pt, rulecolor=\color{gray!50}]
+START timer
+
+READ uploaded PDF bytes
+EXTRACT full text from all pages
+NORMALIZE text (remove extra whitespace)
+
+DEFINE block_pattern to detect each exam block inside PDF
+FIND all exam blocks using regex
+
+CREATE empty list: matching_exams
+
+FOR each exam block:
+    EXTRACT exam date
+    EXTRACT exam time slot
+    EXTRACT room number
+    IF failed -> continue
+
+    CHECK if user-specified room_no matches (if provided)
+    CHECK if user-specified time_slot matches (if provided)
+    IF mismatch -> continue
+
+    EXTRACT course name + section
+    EXTRACT invigilator name
+
+    FIND all students using regex:
+        serial_no, roll_no, name, seat_no
+
+    ADD exam entry to matching_exams list:
+        date, time, course, section, room, invigilator,
+        student_list, total_students, uploaded_at
+
+IF matching_exams is empty:
+    RETURN "No seating plan found"
+
+SELECT first exam -> selected_exam
+STORE selected_exam in global latest_room_data
+
+PARSE exam_date, start_time, end_time using parse_date_time()
+
+------------------------------------
+DATABASE OPERATIONS
+------------------------------------
+
+# --- EXAM ---
+QUERY Exam table:
+    WHERE course == selected_exam.course
+    AND   exam_date == exam_date
+    AND   start_time == start_time
+
+IF exam exists:
+    use existing
+ELSE:
+    CREATE new Exam object
+    COMMIT to DB
+
+# --- ROOM ---
+Split room number into block + room_num
+QUERY Room table:
+    WHERE room_number == room_num AND exam_id == exam.exam_id
+
+IF room exists:
+    use existing
+ELSE:
+    CREATE Room with:
+        room_number, block, total_seats, exam_id, camera_id
+    COMMIT to DB
+
+# --- STUDENTS + SEATS ---
+FOR each student in selected_exam.students:
+    roll_number = student.roll_no
+    name = student.name
+
+    QUERY Student table WHERE roll_number matches
+    IF not exists:
+        CREATE new Student(name, email_from_roll, roll_number)
+        COMMIT
+
+    seat_number = student.seat_no
+
+    QUERY Seat table WHERE (room_id, seat_number)
+    IF exists:
+        UPDATE seat.student_id
+    ELSE:
+        CREATE new Seat(room_id, seat_number, student_id)
+
+COMMIT all changes
+
+------------------------------------
+SAVE JSON EXPORT
+------------------------------------
+
+GENERATE timestamp-based filename
+SAVE selected_exam as JSON file in extractions folder
+
+------------------------------------
+VISUALIZATION PROCESS
+------------------------------------
+
+LOAD CCTV frame image
+LOAD seat_map.json (polygon coordinates)
+
+CALCULATE max_column in seating plan:
+    For each student seat (C#R#) 
+        Extract column number
+        Track the maximum found
+
+DEFINE mapping rules based on max_column:
+    if max_col == 6 -> map 6 columns to 1,3,5,6,8,10
+    if max_col == 5 -> map 5 columns to 1,4,6,8,10
+    else -> identity mapping
+
+DEFINE function map_seat_to_seat_map(seat_no):
+    Extract C#, R#
+    Convert input col -> mapped column
+    RETURN seat_map ID like seat_cXrY
+
+CREATE:
+    filled_seats = all seat IDs containing students
+    student_seat_map = map seat_id -> student
+
+FOR each seat_id in seat_map:
+    IF seat_id NOT in filled_seats -> skip
+
+    GET polygon points
+    DRAW polygon in green
+
+    FIND student assigned
+    CALCULATE centroid
+    DRAW student name + roll number at centroid
+
+SAVE annotated image in extractions folder
+
+------------------------------------
+RETURN RESPONSE
+------------------------------------
+
+RETURN:
+    message
+    exam_date
+    exam_time
+    course
+    room_no
+    students_count
+    exam_id
+    room_id
+    json_file path
+    annotated_image path
+    processing_time
+\end{lstlisting}
+
+The algorithm processes seating plan PDFs through several stages: (1) \textbf{PDF Parsing and Text Extraction}, where the uploaded PDF is read and normalized; (2) \textbf{Pattern Matching}, where exam blocks are identified using regex patterns and filtered by user-specified room number and time slot; (3) \textbf{Data Extraction}, where course information, invigilator details, and student seat assignments are extracted; (4) \textbf{Database Operations}, where Exam, Room, Student, and Seat records are created or updated; (5) \textbf{JSON Export}, where the extracted data is saved as a JSON file; and (6) \textbf{Visualization}, where the seating plan is overlaid on a CCTV frame image with student names and roll numbers annotated at their respective seat positions.
+
 \section{Testing Details}
 
 Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions.
