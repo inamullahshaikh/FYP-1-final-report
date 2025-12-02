@@ -1,0 +1,74 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# LaTeX intermediate files
+*.auxlock
+*.figlist
+*.makefile
+*.fls
+*.fdb_latexmk
+
+# LaTeX output files (keep PDF if needed, but usually ignore)
+# *.pdf  # Uncomment if you don't want to track PDFs
+
+# Editor backup files
+*~
+*.swp
+*.swo
+*#
+.#*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Python (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Section-specific aux files
+sections/*.aux
+
