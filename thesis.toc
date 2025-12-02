@@ -11,48 +11,50 @@
 \contentsline {chapter}{\numberline {2}Project Requirements [AS PER FYP1 MID REPORT]}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Use-cases}{9}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Functional Requirements}{17}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Non-Functional Requirements}{22}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Non-Functional Requirements}{23}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Reliability}{23}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Usability}{23}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Performance}{23}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Security}{23}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.4}Security}{24}{subsection.2.3.4}%
 \contentsline {subsection}{\numberline {2.3.5}Maintainability}{24}{subsection.2.3.5}%
 \contentsline {chapter}{\numberline {3}System Overview [AS PER FYP1 MID REPORT]}{25}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architectural Design}{25}{section.3.1}%
 \contentsline {paragraph}{Data lifecycle.}{28}{figure.caption.18}%
-\contentsline {section}{\numberline {3.2}Domain Model}{29}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Design Models [UPTO THE CURRENT ITERATION ONLY]}{30}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Class Diagram}{30}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Activity Diagram}{31}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}State Transition Diagram}{39}{subsection.3.3.3}%
-\contentsline {chapter}{\numberline {4}Implementation and Testing}{41}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Current Progress}{41}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Front-End}{41}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Back-End}{42}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Next Steps}{44}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}Algorithm Design}{44}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Admin Dashboard Aggregation}{45}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Report Generation Workflow (Planned Design)}{46}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Investigator Violation Review Flow}{46}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Seating Plan Upload and Processing}{47}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}External APIs and Libraries}{50}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Testing Details}{51}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Unit Testing}{51}{subsection.4.4.1}%
-\contentsline {chapter}{References}{61}{chapter*.36}%
-\contentsline {chapter}{\numberline {A}Appendices}{62}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Appendix A}{62}{section.A.1}%
-\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram example (Online Shopping System)}{62}{subsection.A.1.1}%
-\contentsline {subsection}{\numberline {A.1.2}Detail Use Case Example}{63}{subsection.A.1.2}%
-\contentsline {subsection}{\numberline {A.1.3}Event-Response Table for a Highway Intersection}{64}{subsection.A.1.3}%
-\contentsline {subsection}{\numberline {A.1.4}Story Board Example For Android App}{65}{subsection.A.1.4}%
-\contentsline {section}{\numberline {A.2}Appendix B}{66}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Domain Model Example For Online Shopping}{66}{subsection.A.2.1}%
-\contentsline {section}{\numberline {A.3}Appendix C}{67}{section.A.3}%
-\contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{67}{subsection.A.3.1}%
-\contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{68}{subsection.A.3.2}%
-\contentsline {section}{\numberline {A.4}Appendix D}{69}{section.A.4}%
-\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{69}{subsection.A.4.1}%
-\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{70}{subsection.A.4.2}%
-\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{71}{subsection.A.4.3}%
-\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{71}{subsection.A.4.4}%
-\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{72}{subsection.A.4.5}%
+\contentsline {paragraph}{Level 0 – Context Diagram}{28}{figure.caption.18}%
+\contentsline {paragraph}{Level 1 – System Decomposition}{29}{figure.caption.19}%
+\contentsline {section}{\numberline {3.2}Domain Model}{31}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Design Models [UPTO THE CURRENT ITERATION ONLY]}{31}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Class Diagram}{32}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Activity Diagram}{33}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}State Transition Diagram}{41}{subsection.3.3.3}%
+\contentsline {chapter}{\numberline {4}Implementation and Testing}{43}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Current Progress}{43}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Front-End}{43}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Back-End}{44}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Next Steps}{46}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Algorithm Design}{46}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Admin Dashboard Aggregation}{47}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Report Generation Workflow (Planned Design)}{48}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Investigator Violation Review Flow}{48}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Seating Plan Upload and Processing}{49}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}External APIs and Libraries}{52}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Testing Details}{53}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Unit Testing}{53}{subsection.4.4.1}%
+\contentsline {chapter}{References}{63}{chapter*.37}%
+\contentsline {chapter}{\numberline {A}Appendices}{64}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix A}{64}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Use Case Diagram example (Online Shopping System)}{64}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}Detail Use Case Example}{65}{subsection.A.1.2}%
+\contentsline {subsection}{\numberline {A.1.3}Event-Response Table for a Highway Intersection}{66}{subsection.A.1.3}%
+\contentsline {subsection}{\numberline {A.1.4}Story Board Example For Android App}{67}{subsection.A.1.4}%
+\contentsline {section}{\numberline {A.2}Appendix B}{68}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Domain Model Example For Online Shopping}{68}{subsection.A.2.1}%
+\contentsline {section}{\numberline {A.3}Appendix C}{69}{section.A.3}%
+\contentsline {subsection}{\numberline {A.3.1}Box And Line Example For Online Shopping}{69}{subsection.A.3.1}%
+\contentsline {subsection}{\numberline {A.3.2}Architecture Pattern Example For Online Shopping}{70}{subsection.A.3.2}%
+\contentsline {section}{\numberline {A.4}Appendix D}{71}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}Activity Diagram}{71}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}Class Diagram}{72}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}Sequence Diagram}{73}{subsection.A.4.3}%
+\contentsline {subsection}{\numberline {A.4.4}State Transition Diagram}{73}{subsection.A.4.4}%
+\contentsline {subsection}{\numberline {A.4.5}Data Flow Diagram}{74}{subsection.A.4.5}%

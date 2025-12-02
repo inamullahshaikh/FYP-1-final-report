@@ -1,6 +1,8 @@
 \documentclass{fast-nuces-bs}
 %\documentclass{article}
-\usepackage[none]{hyphenat}   % disable word hyphenation
+\usepackage{hyphenat}   % enable word hyphenation
+\usepackage{microtype}  % improve text justification and prevent overflow
+\usepackage{url}        % better URL breaking
 \usepackage{caption}
 \captionsetup{font=small}
 \usepackage{blindtext}
@@ -37,6 +39,14 @@
 % ---------------- Formatting tweaks ----------------
 \titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em} % tighten spacing
 \captionsetup[table]{skip=2pt} % reduce space between table & caption
+
+% ---------------- Text Wrapping and Overflow Prevention ----------------
+\tolerance=1000                    % Allow more flexible line breaking
+\emergencystretch=3em              % Allow extra space in emergency cases
+\hbadness=1000                      % Reduce warnings for underfull boxes
+\sloppy                             % Allow LaTeX to be more flexible with spacing
+\hyphenpenalty=50                   % Encourage hyphenation
+\exhyphenpenalty=50                 % Encourage hyphenation in compound words
 
 % Reduce spacing after subsubsection headings
 \titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em}
