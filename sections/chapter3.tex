@@ -8,7 +8,7 @@ The ForeSyte AI Exam Surveillance System is designed using a modular architectur
 
 The architecture follows a \textbf{two-tier client-server architecture} with \textbf{layered components}, implementing a \textbf{RESTful API} design pattern. The front-end (presentation tier) handles user input, report visualization, and dashboard interactions through a React-based single-page application. The back-end (application tier) processes video streams, performs AI-based detection and analysis, and manages business logic through FastAPI routes. The data management layer (data tier) ensures persistence and retrieval of information using PostgreSQL for relational data and MongoDB for high-velocity event logs. This decomposition ensures that the AI detection logic, data storage, and user interfaces remain loosely coupled and independently upgradable.
 
-\subsection*{3.3.1 Box and Line Diagram (Initial Design Stage)}
+\subsection{Box and Line Diagram (Initial Design Stage)}
 In the initial design stage, a simple box and line diagram is used to represent the main system components and their interactions. This diagram provides a high-level overview of how the core modules connect, without detailing the internal architecture or data flow.
 
 \begin{figure}[H]
@@ -19,7 +19,7 @@ In the initial design stage, a simple box and line diagram is used to represent 
 \end{figure}
 \FloatBarrier
 
-\subsection*{3.3.2 High-Level Architectural Style}
+\subsection{High-Level Architectural Style}
 After the initial overview, the finalized architecture style/pattern diagram is presented. The system uses a two-tier client-server architecture with layered components, providing clear separation between the presentation layer (React frontend), application layer (FastAPI backend with embedded business logic), and data management layer (PostgreSQL and MongoDB). Figure~\ref{fig:architecture} illustrates the high-level architecture of the system, showing the main subsystems and their interactions.
 
 \begin{figure}[H]
@@ -30,14 +30,14 @@ After the initial overview, the finalized architecture style/pattern diagram is 
 \end{figure}
 \FloatBarrier
 
-\subsection*{3.3.3 Mapping of Modules/Components}
+\subsection{Mapping of Modules/Components}
 Each module/component is mapped to its respective part of the architecture, ensuring modularity and scalability. The architecture supports integration with external systems (CCTV, storage, databases) and provides a robust foundation for AI-powered exam monitoring.
 
-\subsection*{3.4 Data Design}
+\section{Data Design}
 
 The data design for \textbf{ForeSyte} focuses on how the system's information domain is represented and transformed into data structures across relational, document, and object stores. In this section, we outline the major system entities, how they are stored, processed, and managed to ensure robust operation and secure handling of user information and evidence.
 
-\subsubsection*{3.4.1 Data Structures and Organization}
+\subsection{Data Structures and Organization}
 ForeSyte deals with multiple data classes: user identities, seating plans, live/recorded video evidence, AI detections, activities, violations, and reports. The core data is organized so that:
 \begin{itemize}
   \item \textbf{Relational (PostgreSQL)} holds normalized, queryable facts: Users, Exams, Rooms, Seats, StudentActivity, InvigilatorActivity, Violations, Reports, and seat assignments; enforced with foreign keys.
@@ -47,7 +47,7 @@ ForeSyte deals with multiple data classes: user identities, seating plans, live/
 
 \paragraph{Data lifecycle.} Streams or uploads produce detection events; an aggregation service converts them into activities and violations with evidence links; dashboards and investigators read relational views and open the referenced evidence in object storage.
 
-\subsubsection*{3.4.2 Major Data Entities}
+\subsection{Major Data Entities}
 Key logical entities:
 \begin{itemize}
   \item \textbf{User Information}: Admin, Invigilator, Investigator, and Student profiles with credentials and roles.
@@ -59,7 +59,7 @@ Key logical entities:
 \end{itemize}
 \vspace{-0.5em} % ↓ Tightens space before the next heading
 
-\subsubsection*{3.4.3\quad Data Flow Diagrams (DFDs)}
+\subsection{Data Flow Diagrams (DFDs)}
 \vspace{-0.25em} % ↓ Minimizes gap under heading
 
 This subsection presents the logical data flow within the ForeSyte system at two abstraction levels.
@@ -68,25 +68,27 @@ Level 0 provides an overview of the main system interactions, while Level 1 elab
 \paragraph{Level 0 – Context Diagram}
 Figure~\ref{fig:dfd-level0} illustrates the high-level data flow between external entities (such as Students, Invigilators, and Administrators) and the ForeSyte System. It highlights how examination footage, attendance data, and violation reports circulate through the system.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{sections/DFD_Level0.drawio.png}
     \caption{DFD Level 0 – ForeSyte System Context Diagram}
+    \includegraphics[width=\textwidth]{sections/DFD_Level0.drawio.png}
     \label{fig:dfd-level0}
 \end{figure}
+
 
 \paragraph{Level 1 – System Decomposition}
 Figure~\ref{fig:dfd-level1} expands the ForeSyte process into its major internal modules: Seat Mapping, Cheating Detection Engine, Invigilator Monitoring, and Report Generation. Data from entry-point cameras are first processed to map activities to specific seats; this mapping is then propagated through subsequent modules for activity analysis and reporting.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{sections/DFD_Level1.drawio.png}
     \caption{DFD Level 1 – Detailed ForeSyte System Data Flow}
+    \includegraphics[width=\textwidth]{sections/DFD_Level1.drawio.png}
     \label{fig:dfd-level1}
 \end{figure}
+\clearpage
 
 
-\subsubsection*{3.4.5 Data Flow and Processing}
+\subsection{Data Flow and Processing}
 The system processes exam footage via two paths that converge into a unified pipeline:
 \begin{enumerate}
   \item \textbf{Real-time (Live) Monitoring}: Camera streams feed the AI service, which emits per-frame \textit{DetectionEvents} (JSON).
