@@ -55,128 +55,13 @@ Requests 2.32.5 & HTTP library for making API calls & Fetching video streams fro
 \hline
 Python-JOSE (jose) 3.5.0 & JSON Web Token (JWT) implementation & Creating and validating JWT access tokens for user authentication and authorization & \texttt{jwt.encode()}, \texttt{jwt.decode()}, \texttt{JWTError} \\
 \hline
-Pillow (PIL) 11.3.0 & Python Imaging Library & Image processing and manipulation for video frames and uploaded images & Image processing utilities (used indirectly through OpenCV) \\
-\hline
-NumPy 2.2.6 & Numerical computing library & Array operations and mathematical computations for image/video processing & \texttt{numpy} arrays for image data manipulation \\
-\hline
 \end{tabular}%
 }
 \end{table}
 
 \subsection{Detailed Usage}
 
-\subsubsection*{Google OAuth 2.0}
-\begin{itemize}
-    \item \textbf{Location}: \texttt{src/database/auth.py}
-    \item \textbf{Implementation}: Uses Authlib library to integrate with Google's OAuth 2.0 service
-    \item \textbf{Endpoints Used}:
-    \begin{itemize}
-        \item \texttt{https://accounts.google.com/.well-known/openid-configuration} -- OpenID Connect discovery endpoint
-        \item \texttt{/auth/google} -- Initiates Google OAuth flow
-        \item \texttt{/auth/google/callback} -- Handles OAuth callback and user authentication
-    \end{itemize}
-    \item \textbf{Functions}: 
-    \begin{itemize}
-        \item \texttt{oauth.register()} -- Registers Google OAuth client
-        \item \texttt{google.authorize\_redirect()} -- Redirects user to Google login
-        \item \texttt{google.authorize\_access\_token()} -- Exchanges authorization code for access token
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{OpenCV (cv2)}
-\begin{itemize}
-    \item \textbf{Location}: 
-    \begin{itemize}
-        \item \texttt{src/app/video\_processing/stream\_handler.py}
-        \item \texttt{src/app/video\_processing/processor.py}
-        \item \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}
-    \end{itemize}
-    \item \textbf{Purpose}: 
-    \begin{itemize}
-        \item Capturing video frames from live streams and recorded videos
-        \item Processing video streams for behavior analysis
-        \item Frame extraction for AI-based detection
-    \end{itemize}
-    \item \textbf{Key Functions}:
-    \begin{itemize}
-        \item \texttt{cv2.VideoCapture()} -- Opens video file or stream URL
-        \item \texttt{cap.read()} -- Reads frames from video
-        \item \texttt{cv2.imread()} -- Loads image frames for processing
-        \item \texttt{cap.get(cv2.CAP\_PROP\_FRAME\_COUNT)} -- Gets total frame count
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{PDFplumber}
-\begin{itemize}
-    \item \textbf{Location}: 
-    \begin{itemize}
-        \item \texttt{src/app/seating\_plan/upload\_plan.py}
-        \item \texttt{import\_students\_from\_pdf.py}
-    \end{itemize}
-    \item \textbf{Purpose}: 
-    \begin{itemize}
-        \item Extracting student information from seating plan PDFs
-        \item Parsing exam schedules and room assignments
-        \item Extracting roll numbers and student names from PDF tables
-    \end{itemize}
-    \item \textbf{Key Functions}:
-    \begin{itemize}
-        \item \texttt{pdfplumber.open()} -- Opens PDF file
-        \item \texttt{page.extract\_tables()} -- Extracts table data from PDF pages
-        \item \texttt{page.extract\_text()} -- Extracts text content from PDF pages
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{Requests}
-\begin{itemize}
-    \item \textbf{Location}: 
-    \begin{itemize}
-        \item \texttt{src/database/api/stream\_proxy.py}
-        \item \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}
-        \item \texttt{src/app/live\_phone\_feeds/connection\_tester.py}
-    \end{itemize}
-    \item \textbf{Purpose}: 
-    \begin{itemize}
-        \item Making HTTP GET requests to fetch video streams
-        \item Proxying video streams to frontend
-        \item Testing connectivity to phone camera endpoints
-    \end{itemize}
-    \item \textbf{Key Functions}:
-    \begin{itemize}
-        \item \texttt{requests.get()} -- Makes HTTP GET requests
-        \item \texttt{requests.exceptions.Timeout} -- Handles timeout errors
-        \item \texttt{requests.exceptions.ConnectionError} -- Handles connection errors
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{Python-JOSE}
-\begin{itemize}
-    \item \textbf{Location}: \texttt{src/database/auth.py}
-    \item \textbf{Purpose}: 
-    \begin{itemize}
-        \item Encoding JWT tokens for authenticated users
-        \item Decoding and validating JWT tokens in protected routes
-        \item Managing user session tokens
-    \end{itemize}
-    \item \textbf{Key Functions}:
-    \begin{itemize}
-        \item \texttt{jwt.encode()} -- Creates JWT access tokens
-        \item \texttt{jwt.decode()} -- Validates and decodes JWT tokens
-        \item \texttt{JWTError} -- Exception handling for invalid tokens
-    \end{itemize}
-\end{itemize}
-
-\subsubsection*{Pillow (PIL)}
-\begin{itemize}
-    \item \textbf{Location}: Used indirectly through OpenCV and other image processing operations
-    \item \textbf{Purpose}: Image manipulation and processing utilities
-\end{itemize}
-
-\subsubsection*{NumPy}
-\begin{itemize}
-    \item \textbf{Location}: Used in video processing modules
-    \item \textbf{Purpose}: Array operations for image data and mathematical computations in computer vision tasks
-\end{itemize}
+Google OAuth 2.0 is implemented in \texttt{src/database/auth.py} using Authlib library, with endpoints \texttt{/auth/google} and \texttt{/auth/google/callback} for initiating and handling OAuth flows, and functions \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, and \texttt{google.authorize\_access\_token()} for client registration, user redirection, and token exchange. OpenCV (cv2) is used in \texttt{src/app/video\_processing/stream\_handler.py}, \texttt{processor.py}, and \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py} for capturing video frames from live streams and recorded videos, processing video streams for behavior analysis, and frame extraction for AI-based detection using functions such as \texttt{cv2.VideoCapture()}, \texttt{cap.read()}, \texttt{cv2.imread()}, and \texttt{cap.get(cv2.CAP\_PROP\_FRAME\_COUNT)}. PDFplumber is utilized in \texttt{src/app/seating\_plan/upload\_plan.py} and \texttt{import\_students\_from\_pdf.py} for extracting student information, parsing exam schedules and room assignments, and extracting roll numbers and student names from PDF tables through functions \texttt{pdfplumber.open()}, \texttt{page.extract\_tables()}, and \texttt{page.extract\_text()}. Requests library is employed in \texttt{src/database/api/stream\_proxy.py}, \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}, and \texttt{connection\_tester.py} for making HTTP GET requests to fetch video streams, proxying video streams to frontend, and testing connectivity to phone camera endpoints using \texttt{requests.get()} and exception handlers for timeout and connection errors. Python-JOSE is implemented in \texttt{src/database/auth.py} for encoding and decoding JWT tokens for authenticated users, validating tokens in protected routes, and managing user session tokens through functions \texttt{jwt.encode()}, \texttt{jwt.decode()}, and \texttt{JWTError} exception handling.
 
 \section{Algorithm Design}
 
@@ -398,7 +283,7 @@ The algorithm processes seating plan PDFs through several stages: (1) \textbf{PD
 \section{Testing Details}
 Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions. The testing approach employs a combination of unit tests for individual components, integration tests for API endpoints, and end-to-end validation of user workflows. Test cases cover functional requirements, error handling, data validation, and user interface interactions across all three portals (Admin, Investigator, and Student). The test suite ensures that role-based access controls are properly enforced, data aggregation logic produces accurate results, and the user interface responds correctly to various input scenarios and edge cases.
 \subsection{Unit Testing}
-\subsubsection*{Investigator Portal Testing}
+\subsubsection{Investigator Portal Testing}
 The Investigator Portal testing suite validates the core functionality required for investigators to effectively manage violations and generate reports. All test cases passed successfully, confirming that the dashboard correctly displays statistics, violations can be filtered and reviewed, activities are properly categorized, and report generation workflows function as expected. The error handling tests ensure the portal gracefully manages API failures without crashing, maintaining a stable user experience even under adverse conditions.
 \begin{table}[H]
 \centering
@@ -483,7 +368,7 @@ The Investigator Portal testing suite validates the core functionality required 
     \end{tabular}%
     }
 \end{table}
-\subsubsection*{Student Portal Testing}
+\subsubsection{Student Portal Testing}
 The Student Portal testing validates the student-facing features including profile management, disciplinary records viewing, and document uploads. All test cases passed, demonstrating that students can successfully view their violation history, update profile information, change passwords with proper validation, and manage uploaded documents. The portal correctly handles authentication, displays personalized welcome messages, and provides an intuitive interface for students to access their exam-related information and disciplinary records.
 \begin{table}[H]
     \centering
@@ -565,7 +450,7 @@ The Student Portal testing validates the student-facing features including profi
     \end{tabular}%
     }
 \end{table}
-\subsubsection*{Admin Portal Testing}
+\subsubsection{Admin Portal Testing}
 The Admin Portal testing comprehensively validates all administrative functions including dashboard analytics, user management, exam scheduling, incident monitoring, report generation, and system settings. All test cases passed successfully, confirming that administrators can effectively manage the system, view comprehensive analytics, create and manage exams, monitor camera feeds, generate reports, and configure system settings. The authentication and authorization tests ensure that only authorized admin users can access administrative functions, maintaining proper security boundaries throughout the system.
 \begin{table}[H]
     \centering
