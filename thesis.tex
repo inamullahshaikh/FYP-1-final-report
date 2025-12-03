@@ -171,7 +171,8 @@
 \bibliography{bib}
 \addcontentsline{toc}{chapter}{References} 
 
-% \let\cleardoublepage\clearpage
+% Prevent blank pages before appendix
+\let\cleardoublepage\clearpage
 \appendix
 \include{appendix}
 \end{document}
