@@ -12,6 +12,10 @@ The front-end is implemented as a React-based single-page application with TypeS
 
 The admin dashboard displays key metrics (active exams, incidents detected, students monitored, average exam duration) fetched from \texttt{/dashboard/stats}, along with activity charts, recent incidents, quick actions, and system status indicators. All components are fully integrated with backend APIs.
 
+\subsubsection*{Student Portal}
+
+The Student Portal provides a dedicated interface with dashboard views showing disciplinary cases count and recent activities, plus pages for viewing violation history and  managing profile information. All components are fully integrated with backend APIs.
+
 \subsubsection*{Investigator Portal}
 
 The Investigator Portal provides a dedicated interface with dashboard views showing violation summaries and recent activities, plus a reports page for generating and managing incident and exam reports. Currently uses mock data for validation while backend endpoints are finalized.
@@ -26,6 +30,10 @@ The \texttt{/dashboard/stats} endpoint computes active exams, incidents detected
 \subsubsection*{Reports API}
 
 The \texttt{/reports} router provides CRUD operations for report metadata and endpoints for generating incident and exam reports. Note: actual file generation (PDF/CSV/Excel) is planned for future iterations; current endpoints create database records only.
+
+\subsubsection*{Seating Plan Upload API}
+
+The \texttt{/upload-seating-plan} endpoint processes PDF seating plan documents using PDFplumber and regex pattern matching to extract exam scheduling information and student seat assignments. The extracted data is used to create or update Exam, Room, Student, and Seat database records, and generates both a JSON export and an annotated visualization mapping seat assignments to CCTV frame images.
 \clearpage
 \section{External APIs/SDKs}
 
