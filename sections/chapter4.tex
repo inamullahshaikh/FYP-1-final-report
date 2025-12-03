@@ -1,0 +1,590 @@
+\chapter{Implementation and Testing}
+
+This chapter describes the current implementation status of the \textbf{ForeSyte} AI Exam Surveillance System and the testing performed up to this iteration. The focus of this phase is on the \textbf{Admin} and \textbf{Investigator} dashboards and their supporting backend services. Computer-vision based monitoring and the Student Portal are planned components and therefore remain out of scope for this iteration.
+
+\section{Current Progress}
+
+\subsection{Front-End}
+
+The front-end is implemented as a React-based single-page application with TypeScript, Vite, and Tailwind CSS, providing role-specific dashboards for administrators and investigators.
+
+\subsubsection*{Admin Dashboard}
+
+The admin dashboard displays key metrics (active exams, incidents detected, students monitored, average exam duration) fetched from \texttt{/dashboard/stats}, along with activity charts, recent incidents, quick actions, and system status indicators. All components are fully integrated with backend APIs.
+
+\subsubsection*{Investigator Portal}
+
+The Investigator Portal provides a dedicated interface with dashboard views showing violation summaries and recent activities, plus a reports page for generating and managing incident and exam reports. Currently uses mock data for validation while backend endpoints are finalized.
+
+\subsection{Back-End}
+
+The backend uses FastAPI with PostgreSQL and MongoDB, implementing JWT-based authentication with RBAC. Key modules include the Dashboard API for aggregating statistics and the Reports API for managing report records.
+\subsubsection*{Dashboard API}
+
+The \texttt{/dashboard/stats} endpoint computes active exams, incidents detected, students monitored, average exam duration, and trends. The \texttt{/dashboard/activity} endpoint provides time-bucketed data, while \texttt{/dashboard/recent-incidents} returns the latest flagged activities. All endpoints enforce RBAC policies.
+
+\subsubsection*{Reports API}
+
+The \texttt{/reports} router provides CRUD operations for report metadata and endpoints for generating incident and exam reports. Note: actual file generation (PDF/CSV/Excel) is planned for future iterations; current endpoints create database records only.
+\clearpage
+\section{External APIs/SDKs}
+
+This section describes the third-party APIs/SDKs used in the \textbf{ForeSyte} project implementation.
+
+\subsection{External APIs and SDKs Table}
+
+\begin{table}[H]
+\centering
+\caption{External APIs and SDKs for ForeSyte}
+\label{tab:external-apis-sdks}
+\scriptsize
+\sloppy
+\renewcommand{\arraystretch}{1.5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{2.5cm}|p{2.8cm}|p{2.8cm}|p{4.4cm}|}
+\hline
+\textbf{API and version} & \textbf{Description} & \textbf{Purpose of usage} & \textbf{API endpoint/function/class used} \\
+\hline
+Google OAuth 2.0 (via Authlib 1.6.5) & Google authentication and authorization service & User authentication using Google accounts for single sign-on (SSO) & \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, \texttt{google.authorize\_access\_token()} \\
+\hline
+OpenCV (cv2) 4.12.0.88 & Computer vision and image processing library & Video stream processing, frame extraction from live CCTV feeds and recorded videos, image analysis for behavior detection & \texttt{cv2.VideoCapture()}, \texttt{cv2.imread()}, \texttt{cv2.CAP\_PROP\_FRAME\_COUNT}, \texttt{cv2.CAP\_PROP\_BUFFERSIZE} \\
+\hline
+PDFplumber 0.11.7 & PDF text and table extraction library & Parsing seating plan PDFs to extract student information, roll numbers, and exam schedules & \texttt{pdfplumber.open()}, \texttt{page.extract\_tables()}, \texttt{page.extract\_text()} \\
+\hline
+Requests 2.32.5 & HTTP library for making API calls & Fetching video streams from phone cameras, proxying video streams, testing connection endpoints & \texttt{requests.get()}, \texttt{requests.exceptions.Timeout} \\
+\hline
+Python-JOSE (jose) 3.5.0 & JSON Web Token (JWT) implementation & Creating and validating JWT access tokens for user authentication and authorization & \texttt{jwt.encode()}, \texttt{jwt.decode()}, \texttt{JWTError} \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Detailed Usage}
+
+Google OAuth 2.0 is implemented in \texttt{src/database/auth.py} using Authlib library, with endpoints \texttt{/auth/google} and \texttt{/auth/google/callback} for initiating and handling OAuth flows, and functions \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, and \texttt{google.authorize\_access\_token()} for client registration, user redirection, and token exchange. OpenCV (cv2) is used in \texttt{src/app/video\_processing/stream\_handler.py}, \texttt{processor.py}, and \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py} for capturing video frames from live streams and recorded videos, processing video streams for behavior analysis, and frame extraction for AI-based detection using functions such as \texttt{cv2.VideoCapture()}, \texttt{cap.read()}, \texttt{cv2.imread()}, and \texttt{cap.get(cv2.CAP\_PROP\_FRAME\_COUNT)}. PDFplumber is utilized in \texttt{src/app/seating\_plan/upload\_plan.py} and \texttt{import\_students\_from\_pdf.py} for extracting student information, parsing exam schedules and room assignments, and extracting roll numbers and student names from PDF tables through functions \texttt{pdfplumber.open()}, \texttt{page.extract\_tables()}, and \texttt{page.extract\_text()}. Requests library is employed in \texttt{src/database/api/stream\_proxy.py}, \texttt{src/app/live\_phone\_feeds/phone\_stream\_receiver.py}, and \texttt{connection\_tester.py} for making HTTP GET requests to fetch video streams, proxying video streams to frontend, and testing connectivity to phone camera endpoints using \texttt{requests.get()} and exception handlers for timeout and connection errors. Python-JOSE is implemented in \texttt{src/database/auth.py} for encoding and decoding JWT tokens for authenticated users, validating tokens in protected routes, and managing user session tokens through functions \texttt{jwt.encode()}, \texttt{jwt.decode()}, and \texttt{JWTError} exception handling.
+
+\section{Algorithm Design}
+
+This section summarizes the main algorithms and data flows used to support the implemented features in ForeSyte.
+
+\subsection{Admin Dashboard Aggregation}
+
+The Admin Dashboard relies on server-side aggregation logic to compute statistics for different time windows. The high-level algorithm for computing dashboard statistics is:
+
+\begin{enumerate}
+    \item \textbf{Determine Time Window:} Given \texttt{period} $\in \{\texttt{today}, \texttt{week}, \texttt{month}\}$, compute the current window (\texttt{start\_date}) and the immediately preceding window (\texttt{prev\_start}, \texttt{prev\_end}) for trend comparison.
+    \item \textbf{Count Active Exams:} Query \texttt{Exam} where \texttt{exam\_date} is greater than or equal to the current date. Perform the same query on the previous window to obtain \texttt{prev\_active\_exams}.
+    \item \textbf{Count Incidents and Students:} 
+    \begin{itemize}
+        \item Incidents: count \texttt{StudentActivity} records with timestamps within the current window.
+        \item Previous incidents: count \texttt{StudentActivity} records within the previous window.
+        \item Students monitored: count distinct \texttt{Seat.student\_id} in rooms and exams that fall inside the current and previous windows.
+    \end{itemize}
+    \item \textbf{Compute Average Exam Duration:} For all exams in the current window with non-null start and end times, compute the duration in minutes and average the result.
+    \item \textbf{Compute Trends:} For each metric (incidents, students, exams), compute percentage change between current and previous counts, handling the edge case when the previous value is zero.
+    \item \textbf{Return Structured Response:} Package all calculated values into a \texttt{DashboardStats} object and return it to the client.
+\end{enumerate}
+
+On the client side, the React dashboard:
+\begin{itemize}
+    \item Calls \texttt{/dashboard/stats} to populate the metric cards.
+    \item Calls \texttt{/dashboard/activity} to render a bar chart comparing incidents and exams per time bucket.
+    \item Calls \texttt{/dashboard/recent-incidents} to display the latest suspicious activities with relative time labels.
+\end{itemize}
+
+\subsection{Report Generation Workflow (Planned Design)}
+
+The report generation workflow is designed to be configurable and format-agnostic. \textbf{Note:} The following describes the planned design; actual file generation (PDF, CSV, Excel) is not yet implemented in this iteration.
+
+\subsubsection*{Incident Reports (Planned)}
+
+\begin{enumerate}
+    \item The investigator selects one or more incident IDs and chooses an export format (e.g., PDF, CSV, JSON), with options such as including video evidence links.
+    \item The front-end constructs an \texttt{IncidentReportRequest} and sends it to \texttt{POST /reports/incidents}.
+    \item The backend validates permissions, resolves the incident IDs into \texttt{StudentActivity} records, ensures there is an associated \texttt{Violation}, and generates a unique report filename.
+    \item A new \texttt{Report} record is inserted in the database, and the API returns the report ID, file path, format, and status to the client. \textbf{In the current iteration, the actual report file is not generated; only the database record is created.}
+\end{enumerate}
+
+\subsubsection*{Exam Reports (Planned)}
+
+\begin{enumerate}
+    \item The investigator selects an exam and desired output format from the Reports Page.
+    \item The front-end sends an \texttt{ExamReportRequest} to \texttt{POST /reports/exams/\{exam\_id\}}.
+    \item The backend verifies the exam, aggregates its related \texttt{StudentActivity} records, ensures a linked \texttt{Violation} exists, and creates a \texttt{Report} entry in the database.
+    \item The API responds with the report metadata. \textbf{The actual report file generation (PDF/CSV/Excel) will be implemented in a future iteration.}
+\end{enumerate}
+
+\subsection{Investigator Violation Review Flow}
+
+The Investigator Dashboard is designed to give investigators a structured way to triage violations:
+
+\begin{enumerate}
+    \item Load dashboard summary counters (total violations, pending reviews, resolved today, active exams).
+    \item Display a list of recent activities with type, severity, and status tags.
+    \item Allow investigators to toggle the period filter to focus on \texttt{today}, \texttt{week}, or \texttt{month}.
+    \item Provide a \textit{Review} action for each activity which, in the next iteration, will navigate to a detailed case view and allow updating violation status and adding investigation notes.
+\end{enumerate}
+
+\subsection{Seating Plan Upload and Processing}
+
+The seating plan upload algorithm processes PDF files containing exam schedules and extracts room, student, and seat assignment information. The algorithm handles PDF parsing, data extraction, database operations, and visualization generation. The high-level pseudocode for this process is:
+
+\begin{lstlisting}[language=pseudocode, basicstyle=\ttfamily\footnotesize, frame=single, backgroundcolor=\color{gray!10}, breaklines=true, breakatwhitespace=true, tabsize=2, showstringspaces=false, numbers=left, numberstyle=\tiny\color{gray}, numbersep=8pt, xleftmargin=15pt, xrightmargin=15pt, framexleftmargin=10pt, framexrightmargin=10pt, framextopmargin=5pt, framexbottommargin=5pt, rulecolor=\color{gray!50}]
+START timer
+
+READ uploaded PDF bytes
+EXTRACT full text from all pages
+NORMALIZE text (remove extra whitespace)
+
+DEFINE block_pattern to detect each exam block inside PDF
+FIND all exam blocks using regex
+
+CREATE empty list: matching_exams
+
+FOR each exam block:
+    EXTRACT exam date
+    EXTRACT exam time slot
+    EXTRACT room number
+    IF failed -> continue
+
+    CHECK if user-specified room_no matches (if provided)
+    CHECK if user-specified time_slot matches (if provided)
+    IF mismatch -> continue
+
+    EXTRACT course name + section
+    EXTRACT invigilator name
+
+    FIND all students using regex:
+        serial_no, roll_no, name, seat_no
+
+    ADD exam entry to matching_exams list:
+        date, time, course, section, room, invigilator,
+        student_list, total_students, uploaded_at
+
+IF matching_exams is empty:
+    RETURN "No seating plan found"
+
+SELECT first exam -> selected_exam
+STORE selected_exam in global latest_room_data
+
+PARSE exam_date, start_time, end_time using parse_date_time()
+
+------------------------------------
+DATABASE OPERATIONS
+------------------------------------
+
+# --- EXAM ---
+QUERY Exam table:
+    WHERE course == selected_exam.course
+    AND   exam_date == exam_date
+    AND   start_time == start_time
+
+IF exam exists:
+    use existing
+ELSE:
+    CREATE new Exam object
+    COMMIT to DB
+
+# --- ROOM ---
+Split room number into block + room_num
+QUERY Room table:
+    WHERE room_number == room_num AND exam_id == exam.exam_id
+
+IF room exists:
+    use existing
+ELSE:
+    CREATE Room with:
+        room_number, block, total_seats, exam_id, camera_id
+    COMMIT to DB
+
+# --- STUDENTS + SEATS ---
+FOR each student in selected_exam.students:
+    roll_number = student.roll_no
+    name = student.name
+
+    QUERY Student table WHERE roll_number matches
+    IF not exists:
+        CREATE new Student(name, email_from_roll, roll_number)
+        COMMIT
+
+    seat_number = student.seat_no
+
+    QUERY Seat table WHERE (room_id, seat_number)
+    IF exists:
+        UPDATE seat.student_id
+    ELSE:
+        CREATE new Seat(room_id, seat_number, student_id)
+
+COMMIT all changes
+
+------------------------------------
+SAVE JSON EXPORT
+------------------------------------
+
+GENERATE timestamp-based filename
+SAVE selected_exam as JSON file in extractions folder
+
+------------------------------------
+VISUALIZATION PROCESS
+------------------------------------
+
+LOAD CCTV frame image
+LOAD seat_map.json (polygon coordinates)
+
+CALCULATE max_column in seating plan:
+    For each student seat (C#R#) 
+        Extract column number
+        Track the maximum found
+
+DEFINE mapping rules based on max_column:
+    if max_col == 6 -> map 6 columns to 1,3,5,6,8,10
+    if max_col == 5 -> map 5 columns to 1,4,6,8,10
+    else -> identity mapping
+
+DEFINE function map_seat_to_seat_map(seat_no):
+    Extract C#, R#
+    Convert input col -> mapped column
+    RETURN seat_map ID like seat_cXrY
+
+CREATE:
+    filled_seats = all seat IDs containing students
+    student_seat_map = map seat_id -> student
+
+FOR each seat_id in seat_map:
+    IF seat_id NOT in filled_seats -> skip
+
+    GET polygon points
+    DRAW polygon in green
+
+    FIND student assigned
+    CALCULATE centroid
+    DRAW student name + roll number at centroid
+
+SAVE annotated image in extractions folder
+
+------------------------------------
+RETURN RESPONSE
+------------------------------------
+
+RETURN:
+    message
+    exam_date
+    exam_time
+    course
+    room_no
+    students_count
+    exam_id
+    room_id
+    json_file path
+    annotated_image path
+    processing_time
+\end{lstlisting}
+The algorithm processes seating plan PDFs through several stages: (1) \textbf{PDF Parsing and Text Extraction}, where the uploaded PDF is read and normalized; (2) \textbf{Pattern Matching}, where exam blocks are identified using regex patterns and filtered by user-specified room number and time slot; (3) \textbf{Data Extraction}, where course information, invigilator details, and student seat assignments are extracted; (4) \textbf{Database Operations}, where Exam, Room, Student, and Seat records are created or updated; (5) \textbf{JSON Export}, where the extracted data is saved as a JSON file; and (6) \textbf{Visualization}, where the seating plan is overlaid on a CCTV frame image with student names and roll numbers annotated at their respective seat positions.
+\section{Testing Details}
+Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions. The testing approach employs a combination of unit tests for individual components, integration tests for API endpoints, and end-to-end validation of user workflows. Test cases cover functional requirements, error handling, data validation, and user interface interactions across all three portals (Admin, Investigator, and Student). The test suite ensures that role-based access controls are properly enforced, data aggregation logic produces accurate results, and the user interface responds correctly to various input scenarios and edge cases.
+\subsection{Unit Testing}
+\subsubsection{Investigator Portal Testing}
+The Investigator Portal testing suite validates the core functionality required for investigators to effectively manage violations and generate reports. All test cases passed successfully, confirming that the dashboard correctly displays statistics, violations can be filtered and reviewed, activities are properly categorized, and report generation workflows function as expected. The error handling tests ensure the portal gracefully manages API failures without crashing, maintaining a stable user experience even under adverse conditions.
+\begin{table}[H]
+\centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Investigator Portal}
+    \label{tab:investigator-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Stats, Violations, Incidents APIs. 
+        3. Render Investigator Dashboard & Token: "test-token" & Header and sidebar appear on screen & As Expected & Pass \\
+        \hline
+        TC002 & Dashboard statistics load correctly & API returns valid stats + violations & 1. Mock Stats API: active\_exams=3. 
+        2. Mock Violations API: 2 violations. 
+        3. Render component & Stats: \{active\_exams: 3\}. 
+        2 violations & UI shows: Active Exams = 3, Total Violations = 2, Pending Reviews $\geq$ 1 & As Expected & Pass \\
+        \hline
+        TC003 & Dashboard displays recent activities correctly & API returns incident data & 1. Mock Incidents API with type='Cheating'. 
+        2. Render dashboard. 
+        3. Verify activity display & Incident: \{type: "Cheating", student: "John Doe", severity: "high"\} & Recent activities section shows "Cheating" as h3 heading & As Expected & Pass \\
+        \hline
+        TC004 & Period filter changes dashboard data & Dashboard loaded with initial data & 1. Render dashboard. 
+        2. Click "This Week" button. 
+        3. Verify API call & Initial period: "today" & getDashboardStats called with period='week' parameter & As Expected & Pass \\
+        \hline
+        TC005 & Violations page renders and displays violations list & Valid token and API returns violations & 1. Mock getViolations API. 
+        2. Render ViolationsPage. 
+        3. Verify table display & Violation: \{student\_name: "John Doe", type: "cheating", status: "pending"\} & Student name and violation type appear in table row & As Expected & Pass \\
+        \hline
+        TC006 & Violations can be filtered by search term & Multiple violations loaded & 1. Render page with 2 violations. 
+        2. Enter "Jane" in search input. 
+        3. Verify filtered results & Students: "John Doe", "Jane Smith" & Only "Jane Smith" violation visible, "John Doe" hidden & As Expected & Pass \\
+        \hline
+        TC007 & Violations can be filtered by status & Violations with different statuses loaded & 1. Render page with pending and confirmed violations. 
+        2. Select "pending" in status filter. 
+        3. Verify filtered results & Statuses: "pending", "confirmed" & Only pending violation visible, confirmed violation hidden & As Expected & Pass \\
+        \hline
+        TC008 & Violation details modal opens and confirms violation & Violation exists in system & 1. Render ViolationsPage. 
+        2. Click "View" button. 
+        3. Click "Confirm" in modal. 
+        4. Verify API call & Violation ID: "v1" & Modal opens with "Violation Details" heading; confirmViolation API called with ID "v1" & As Expected & Pass \\
+\hline
+    \end{tabular}%
+    }
+\end{table}
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Investigator Portal (continued)}
+    \label{tab:investigator-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC009 & Invigilator activities page displays and filters by type & Multiple activity types exist & 1. Mock activities API with phone\_usage and absent\_from\_zone. 
+        2. Render page. 
+        3. Select "phone\_usage" filter. 
+        4. Verify display & Activities: phone\_usage, absent\_from\_zone & phone\_usage appears in table cell (td element) after filtering & As Expected & Pass \\
+        \hline
+        TC010 & Student activities page displays and filters by search & Multiple student activities loaded & 1. Mock API with activities for John and Jane. 
+        2. Render page. 
+        3. Search for "Jane". 
+        4. Verify results & Students: "John Doe", "Jane Smith" & Only Jane's activities visible; phone\_usage type shown in table cell & As Expected & Pass \\
+        \hline
+        TC011 & Reports page opens generate modal and displays reports list & Valid token and reports exist & 1. Mock getReports API. 
+        2. Render ReportsPage. 
+        3. Click "Generate New Report" button. 
+        4. Verify modal & Report: \{type: "incident", exam: "Calculus I"\} & Report displayed; modal opens with "Generate New Report" heading & As Expected & Pass \\
+        \hline
+        TC012 & All pages handle API errors gracefully & API returns network error & 1. Mock API to reject with error. 
+        2. Render any investigator page. 
+        3. Verify error handling & Error: "Network error" & Page renders with header visible; no crash or unhandled exception & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+\subsubsection{Student Portal Testing}
+The Student Portal testing validates the student-facing features including profile management, disciplinary records viewing, and document uploads. All test cases passed, demonstrating that students can successfully view their violation history, update profile information, change passwords with proper validation, and manage uploaded documents. The portal correctly handles authentication, displays personalized welcome messages, and provides an intuitive interface for students to access their exam-related information and disciplinary records.
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Student Portal}
+    \label{tab:student-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Profile, Activities, Violations APIs. 
+        3. Render Student Dashboard & Token: "test-token", User ID: "student-123" & Header and sidebar appear on screen & As Expected & Pass \\
+        \hline
+        TC002 & Dashboard displays welcome message with student name & API returns valid profile data & 1. Mock getStudentProfile API with name="John Doe". 
+        2. Mock Activities and Violations APIs. 
+        3. Render dashboard & Profile: \{name: "John Doe", email: "john@test.com", roll\_number: "22I-1234"\} & UI shows: "Welcome back, John Doe" message & As Expected & Pass \\
+        \hline
+        TC003 & Dashboard displays disciplinary cases count correctly & API returns violations data & 1. Mock Profile API. 
+        2. Mock getStudentViolations with 2 violations. 
+        3. Render dashboard & Violations: [\{violation\_id: "v1", status: "pending"\}, \{violation\_id: "v2", status: "confirmed"\}] & UI shows: Disciplinary Cases = 2 & As Expected & Pass \\
+        \hline
+        TC004 & Dashboard displays recent activities list & API returns activities data & 1. Mock Profile API. 
+        2. Mock getStudentActivitiesByStudentId with head\_movement activity. 
+        3. Render dashboard & Activity: head\_movement, severity: high & Recent activities section shows "head\_movement" activity & As Expected & Pass \\
+        \hline
+        TC005 & Disciplinary records page displays violations list & Valid token and API returns violations & 1. Mock getStudentProfile API. 
+        2. Mock getStudentViolations with cheating violation. 
+        3. Render dcRecords page & Violation: cheating, severity: 3, status: pending & Violation type "cheating" appears as heading (h3 element) & As Expected & Pass \\
+        \hline
+        TC006 & Disciplinary records can be expanded to view details & Violations loaded on page & 1. Render dcRecords page with violations. 
+        2. Find clickable record card. 
+        3. Click on record. 
+        4. Verify details display & Violation: \{violation\_type: "cheating", status: "pending"\} & Record expands; "Details" text appears on screen & As Expected & Pass \\
+        \hline
+        TC007 & Profile page allows editing student name & Valid profile data loaded & 1. Mock getStudentProfile with name="John Doe". 
+        2. Render profile page. 
+        3. Click "Edit" button. 
+        4. Change name to "Jane Doe". 
+        5. Click save button. 
+        6. Verify API call & Original: "John Doe", Updated: "Jane Doe" & updateStudentProfile API called with name="Jane Doe"; change saved successfully & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Student Portal (continued)}
+    \label{tab:student-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC008 & Profile page cancels editing when cancel button clicked & Profile in edit mode with changes & 1. Render profile page. 
+        2. Click "Edit" button. 
+        3. Change name to "Jane Doe". 
+        4. Click cancel button. 
+        5. Verify revert & Changed: "Jane Doe", Original: "John Doe" & Input field disappears; original name "John Doe" displayed; updateStudentProfile not called & As Expected & Pass \\
+        \hline
+        TC009 & Settings page allows password change with validation & Valid profile and matching passwords & 1. Mock getStudentProfile API. 
+        2. Render settings page. 
+        3. Switch to Password tab. 
+        4. Enter current="oldpass123", new="newpass123", confirm="newpass123". 
+        5. Click "Update Password" & Passwords: \{current: "oldpass123", new: "newpass123", confirm: "newpass123"\} & changePassword API called with current\_password="oldpass123" and new\_password="newpass123" & As Expected & Pass \\
+        \hline
+        TC010 & Upload page displays uploaded documents and allows file removal & Documents exist in system & 1. Mock getStudentDocuments with id\_card.pdf. 
+        2. Render upload page. 
+        3. Find remove button. 
+        4. Click remove. 
+        5. Verify removal & Document: \{filename: "id\_card.pdf", size: 1024000, status: "verified"\} & Document "id\_card.pdf" appears initially; after clicking remove button, document no longer visible & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+\subsubsection{Admin Portal Testing}
+The Admin Portal testing comprehensively validates all administrative functions including dashboard analytics, user management, exam scheduling, incident monitoring, report generation, and system settings. All test cases passed successfully, confirming that administrators can effectively manage the system, view comprehensive analytics, create and manage exams, monitor camera feeds, generate reports, and configure system settings. The authentication and authorization tests ensure that only authorized admin users can access administrative functions, maintaining proper security boundaries throughout the system.
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal}
+    \label{tab:admin-portal-tests}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
+        2. Mock Stats, Activity, Incidents APIs. 
+        3. Render Admin Dashboard & Token: "test-token", User type: "admin" & Header and sidebar appear on screen & As Expected & Pass \\
+        \hline
+        TC002 & Dashboard displays welcome message and statistics & API returns valid stats data & 1. Mock getDashboardStats with active\_exams=5. 
+        2. Mock other APIs. 
+        3. Render dashboard & Stats: \{active\_exams: 5, incidents\_detected: 10, students\_monitored: 150\} & UI shows: "Welcome back" message, Active Exams = 5, Incidents = 10 & As Expected & Pass \\
+        \hline
+        TC003 & Dashboard displays recent incidents list & API returns incidents data & 1. Mock getRecentIncidents with "Suspicious Movement" incident. 
+        2. Render dashboard. 
+        3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high"\} & Recent incidents section shows "John Doe" name & As Expected & Pass \\
+        \hline
+        TC004 & Analytics page fetches and displays metrics correctly & Valid token and API returns metrics & 1. Mock getAnalyticsMetrics with total\_incidents=128. 
+        2. Mock other analytics APIs. 
+        3. Render AnalyticsPage & Metrics: \{total\_incidents: 128, resolution\_rate: 87.5, avg\_response\_time: 4.2\} & UI shows: 128 incidents, 87.5\% resolution rate & As Expected & Pass \\
+        \hline
+        TC005 & Analytics page displays incident type distribution & API returns distribution data & 1. Mock getIncidentTypeDistribution with types. 
+        2. Render AnalyticsPage. 
+        3. Verify display & Types: [\{type: "Suspicious Movement", count: 45\}, \{type: "Device Detected", count: 32\}] & "Suspicious Movement" and "Device Detected" appear on screen & As Expected & Pass \\
+        \hline
+        TC006 & Exams page renders and displays exams list & Valid token and API returns exams & 1. Mock getExams with Calculus I and Data Structures. 
+        2. Render ExamsPage. 
+        3. Verify display & Exams: [\{name: "Calculus I", course\_code: "MATH101"\}, \{name: "Data Structures", course\_code: "CS201"\}] & "Calculus I" and "Data Structures" appear on screen & As Expected & Pass \\
+        \hline
+        TC007 & Exams page opens create modal when add button clicked & Exams page loaded & 1. Render ExamsPage. 
+        2. Click "Create Exam" button. 
+        3. Verify modal display & Initial exams: [] & Modal opens with "Create New Exam" heading & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal (continued)}
+    \label{tab:admin-portal-tests-cont}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC008 & Exams page filters by status correctly & Multiple exams with different statuses loaded & 1. Render ExamsPage. 
+        2. Find status filter select. 
+        3. Change to "active". 
+        4. Verify API call & Statuses: "scheduled", "active", "completed" & getExams API called with status='active' parameter & As Expected & Pass \\
+        \hline
+        TC009 & Login page handles successful authentication & Valid credentials provided & 1. Mock fetch with success response. 
+        2. Render LoginPage. 
+        3. Enter email="admin@test.com" and password="password123". 
+        4. Click submit button & Credentials: \{email: "admin@test.com", password: "password123"\}. 
+        Response: \{access\_token: "test-token", user\_type: "admin"\} & Login API called; token stored in sessionStorage; navigate to "/dashboard" & As Expected & Pass \\
+        \hline
+        TC010 & Login page validates input and shows/hides password & Login form rendered & 1. Render LoginPage. 
+        2. Verify password input type is "password". 
+        3. Click toggle button. 
+        4. Verify type changes & Initial type: "password" & Password input type changes to "text" when toggle clicked, then back to "password" & As Expected & Pass \\
+        \hline
+        TC011 & SignUp page validates password requirements & SignUp form rendered & 1. Render SignUpPage. 
+        2. Enter password="12345". 
+        3. Enter confirm="12345". 
+        4. Click submit. 
+        5. Verify validation & Passwords: \{password: "12345", confirm: "12345"\} & Alert shown: "Password must be at least 6 characters long!" & As Expected & Pass \\
+        \hline
+        TC012 & Users page fetches and displays users list & Valid token and API returns users & 1. Mock getUsers with John Doe and Jane Smith. 
+        2. Render UsersPage. 
+        3. Verify display & Users: John Doe (student), Jane Smith (admin) & "John Doe" and "Jane Smith" appear on screen & As Expected & Pass \\
+        \hline
+        TC013 & Users page opens add user modal when button clicked & Users page loaded & 1. Mock getUsers API. 
+        2. Render UsersPage. 
+        3. Click "Add User" button. 
+        4. Verify modal & Initial users: [] & Modal opens with "Add New User" heading & As Expected & Pass \\
+        \hline
+        TC014 & Incidents page renders and displays incidents list & Valid token and API returns incidents & 1. Mock getIncidents with "Suspicious Movement" incident. 
+        2. Render Incidents page. 
+        3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high", status: "investigating"\} & "John Doe" and "Suspicious Movement" appear on screen & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \sloppy
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Unit Testing for Admin Portal (continued)}
+    \label{tab:admin-portal-tests-cont2}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|p{0.8cm}|p{1.8cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{2cm}|p{1.2cm}|p{0.8cm}|}
+        \hline
+        \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
+        \hline
+        TC015 & Monitoring page fetches and displays camera feeds & Valid token and API returns feeds & 1. Mock getMonitoringFeeds with Room A101 and B205. 
+        2. Render MonitoringPage. 
+        3. Verify display & Feeds: [\{room\_name: "Room A101", status: "active"\}, \{room\_name: "Room B205", status: "inactive"\}] & "Room A101" and "Room B205" appear on screen & As Expected & Pass \\
+        \hline
+        TC016 & Monitoring page opens phone camera monitor when button clicked & Monitoring page loaded & 1. Mock getMonitoringFeeds API. 
+        2. Render MonitoringPage. 
+        3. Click "Start Phone Camera" button. 
+        4. Verify modal & Feeds: [] & Phone camera monitor component appears with testid \texttt{"phone-camera-monitor"} & As Expected & Pass \\
+        \hline
+        TC017 & Reports page renders and displays reports list & Valid token and API returns reports & 1. Mock getReportHistory with exam and incident reports. 
+        2. Mock getExams and getIncidents. 
+        3. Render ReportsPage & Reports: [\{title: "Exam Report - Calculus I", type: "exam"\}, \{title: "Incident Report", type: "incident"\}] & Report headings "Exam Report - Calculus I" and "Incident Report" appear & As Expected & Pass \\
+        \hline
+        TC018 & Reports page opens generate modal when button clicked & Reports page loaded & 1. Mock all reports APIs. 
+        2. Render ReportsPage. 
+        3. Click "Incident Report" button. 
+        4. Verify modal & Reports: [] & Modal opens with "Generate Incident Report" heading & As Expected & Pass \\
+        \hline
+        TC019 & Seating Plans page fetches and displays plans list & Valid token and API returns plans & 1. Mock getSeatingPlans with 2 PDF files. 
+        2. Render SeatingPlansPage. 
+        3. Verify display & Plans: [\{filename: "seating\_plan\_2024.pdf"\}, \{filename: "seating\_plan\_2025.pdf"\}] & \texttt{"seating\_plan\_2024.pdf"} and \texttt{"seating\_plan\_2025.pdf"} appear on screen & As Expected & Pass \\
+        \hline
+        TC020 & Settings page displays tabs and allows logout & Valid session exists & 1. Render SettingsPage. 
+        2. Verify tabs display. 
+        3. Switch to Security tab. 
+        4. Click Logout button. 
+        5. Verify navigation & Tabs: General, Notifications, Security, System & All tabs appear; logout clears session and navigates to \texttt{"/login"} & As Expected & Pass \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
