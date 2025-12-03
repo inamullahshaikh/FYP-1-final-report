@@ -26,7 +26,7 @@ The \texttt{/dashboard/stats} endpoint computes active exams, incidents detected
 \subsubsection*{Reports API}
 
 The \texttt{/reports} router provides CRUD operations for report metadata and endpoints for generating incident and exam reports. Note: actual file generation (PDF/CSV/Excel) is planned for future iterations; current endpoints create database records only.
-
+\clearpage
 \section{External APIs/SDKs}
 
 This section describes the third-party APIs/SDKs used in the \textbf{ForeSyte} project implementation.
@@ -45,13 +45,13 @@ This section describes the third-party APIs/SDKs used in the \textbf{ForeSyte} p
 \hline
 \textbf{API and version} & \textbf{Description} & \textbf{Purpose of usage} & \textbf{API endpoint/function/class used} \\
 \hline
-Google OAuth 2.0 (via Authlib 1.6.5) & Google authentication and authorization service & User authentication using Google accounts for single sign-on (SSO) & \texttt{https://accounts.google.com/.well-known/openid-configuration}, \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, \texttt{google.authorize\_access\_token()} \\
+Google OAuth 2.0 (via Authlib 1.6.5) & Google authentication and authorization service & User authentication using Google accounts for single sign-on (SSO) & \texttt{oauth.register()}, \texttt{google.authorize\_redirect()}, \texttt{google.authorize\_access\_token()} \\
 \hline
 OpenCV (cv2) 4.12.0.88 & Computer vision and image processing library & Video stream processing, frame extraction from live CCTV feeds and recorded videos, image analysis for behavior detection & \texttt{cv2.VideoCapture()}, \texttt{cv2.imread()}, \texttt{cv2.CAP\_PROP\_FRAME\_COUNT}, \texttt{cv2.CAP\_PROP\_BUFFERSIZE} \\
 \hline
 PDFplumber 0.11.7 & PDF text and table extraction library & Parsing seating plan PDFs to extract student information, roll numbers, and exam schedules & \texttt{pdfplumber.open()}, \texttt{page.extract\_tables()}, \texttt{page.extract\_text()} \\
 \hline
-Requests 2.32.5 & HTTP library for making API calls & Fetching video streams from phone cameras, proxying video streams, testing connection endpoints & \texttt{requests.get()}, \texttt{requests.exceptions.Timeout}, \texttt{requests.exceptions.ConnectionError} \\
+Requests 2.32.5 & HTTP library for making API calls & Fetching video streams from phone cameras, proxying video streams, testing connection endpoints & \texttt{requests.get()}, \texttt{requests.exceptions.Timeout} \\
 \hline
 Python-JOSE (jose) 3.5.0 & JSON Web Token (JWT) implementation & Creating and validating JWT access tokens for user authentication and authorization & \texttt{jwt.encode()}, \texttt{jwt.decode()}, \texttt{JWTError} \\
 \hline
@@ -511,11 +511,11 @@ The Student Portal testing validates the student-facing features including profi
         \hline
         TC004 & Dashboard displays recent activities list & API returns activities data & 1. Mock Profile API. 
         2. Mock getStudentActivitiesByStudentId with head\_movement activity. 
-        3. Render dashboard & Activities: [\{activity\_type: "head\_movement", severity: "high", timestamp: "2024-01-01T10:00:00Z"\}] & Recent activities section shows "head\_movement" activity & As Expected & Pass \\
+        3. Render dashboard & Activity: head\_movement, severity: high & Recent activities section shows "head\_movement" activity & As Expected & Pass \\
         \hline
         TC005 & Disciplinary records page displays violations list & Valid token and API returns violations & 1. Mock getStudentProfile API. 
         2. Mock getStudentViolations with cheating violation. 
-        3. Render dcRecords page & Violation: \{violation\_type: "cheating", severity: 3, status: "pending", timestamp: "2024-01-01T10:00:00Z"\} & Violation type "cheating" appears as heading (h3 element) & As Expected & Pass \\
+        3. Render dcRecords page & Violation: cheating, severity: 3, status: pending & Violation type "cheating" appears as heading (h3 element) & As Expected & Pass \\
         \hline
         TC006 & Disciplinary records can be expanded to view details & Violations loaded on page & 1. Render dcRecords page with violations. 
         2. Find clickable record card. 
@@ -646,7 +646,7 @@ The Admin Portal testing comprehensively validates all administrative functions 
         \hline
         TC012 & Users page fetches and displays users list & Valid token and API returns users & 1. Mock getUsers with John Doe and Jane Smith. 
         2. Render UsersPage. 
-        3. Verify display & Users: [\{name: "John Doe", email: "john@test.com", user\_type: "student"\}, \{name: "Jane Smith", email: "jane@test.com", user\_type: "admin"\}] & "John Doe" and "Jane Smith" appear on screen & As Expected & Pass \\
+        3. Verify display & Users: John Doe (student), Jane Smith (admin) & "John Doe" and "Jane Smith" appear on screen & As Expected & Pass \\
         \hline
         TC013 & Users page opens add user modal when button clicked & Users page loaded & 1. Mock getUsers API. 
         2. Render UsersPage. 
