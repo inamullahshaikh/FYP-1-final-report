@@ -458,12 +458,15 @@ RETURN:
 The algorithm processes seating plan PDFs through several stages: (1) \textbf{PDF Parsing and Text Extraction}, where the uploaded PDF is read and normalized; (2) \textbf{Pattern Matching}, where exam blocks are identified using regex patterns and filtered by user-specified room number and time slot; (3) \textbf{Data Extraction}, where course information, invigilator details, and student seat assignments are extracted; (4) \textbf{Database Operations}, where Exam, Room, Student, and Seat records are created or updated; (5) \textbf{JSON Export}, where the extracted data is saved as a JSON file; and (6) \textbf{Visualization}, where the seating plan is overlaid on a CCTV frame image with student names and roll numbers annotated at their respective seat positions.
 
 \section{Testing Details}
+\vspace{-0.5em}
 
 Testing for this iteration concentrates on validating backend APIs, role-based access control, and the correctness of aggregated statistics, along with front-end behaviour under typical and edge-case conditions.
 
 \subsection{Unit Testing}
+\vspace{-0.3em}
 
 \subsubsection{Investigator Portal Testing}
+\vspace{-0.3em}
 
 \begin{table}[H]
 \centering
