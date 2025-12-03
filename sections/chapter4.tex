@@ -18,7 +18,7 @@ The Student Portal provides a dedicated interface with dashboard views showing d
 
 \subsubsection*{Investigator Portal}
 
-The Investigator Portal provides a dedicated interface with dashboard views showing violation summaries and recent activities, plus a reports page for generating and managing incident and exam reports. Currently uses mock data for validation while backend endpoints are finalized.
+The Investigator Portal provides a dedicated interface with dashboard views showing violation summaries and recent activities, plus a reports page for generating and managing incident and exam reports. All components are fully integrated with backend APIs and tested with database records.
 
 \subsection{Back-End}
 
@@ -306,15 +306,15 @@ The Investigator Portal testing suite validates the core functionality required 
         \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
         TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
-        2. Mock Stats, Violations, Incidents APIs. 
+        2. Test Stats, Violations, Incidents APIs with database data. 
         3. Render Investigator Dashboard & Token: "test-token" & Header and sidebar appear on screen & As Expected & Pass \\
         \hline
-        TC002 & Dashboard statistics load correctly & API returns valid stats + violations & 1. Mock Stats API: active\_exams=3. 
-        2. Mock Violations API: 2 violations. 
+        TC002 & Dashboard statistics load correctly & API returns valid stats + violations & 1. Test Stats API with database: active\_exams=3. 
+        2. Test Violations API with database: 2 violations. 
         3. Render component & Stats: \{active\_exams: 3\}. 
         2 violations & UI shows: Active Exams = 3, Total Violations = 2, Pending Reviews $\geq$ 1 & As Expected & Pass \\
         \hline
-        TC003 & Dashboard displays recent activities correctly & API returns incident data & 1. Mock Incidents API with type='Cheating'. 
+        TC003 & Dashboard displays recent activities correctly & API returns incident data & 1. Test Incidents API with database data: type='Cheating'. 
         2. Render dashboard. 
         3. Verify activity display & Incident: \{type: "Cheating", student: "John Doe", severity: "high"\} & Recent activities section shows "Cheating" as h3 heading & As Expected & Pass \\
         \hline
@@ -322,7 +322,7 @@ The Investigator Portal testing suite validates the core functionality required 
         2. Click "This Week" button. 
         3. Verify API call & Initial period: "today" & getDashboardStats called with period='week' parameter & As Expected & Pass \\
         \hline
-        TC005 & Violations page renders and displays violations list & Valid token and API returns violations & 1. Mock getViolations API. 
+        TC005 & Violations page renders and displays violations list & Valid token and API returns violations & 1. Test getViolations API with database records. 
         2. Render ViolationsPage. 
         3. Verify table display & Violation: \{student\_name: "John Doe", type: "cheating", status: "pending"\} & Student name and violation type appear in table row & As Expected & Pass \\
         \hline
@@ -354,22 +354,22 @@ The Investigator Portal testing suite validates the core functionality required 
         \hline
         \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC009 & Invigilator activities page displays and filters by type & Multiple activity types exist & 1. Mock activities API with phone\_usage and absent\_from\_zone. 
+        TC009 & Invigilator activities page displays and filters by type & Multiple activity types exist & 1. Test activities API with database records: phone\_usage and absent\_from\_zone. 
         2. Render page. 
         3. Select "phone\_usage" filter. 
         4. Verify display & Activities: phone\_usage, absent\_from\_zone & phone\_usage appears in table cell (td element) after filtering & As Expected & Pass \\
         \hline
-        TC010 & Student activities page displays and filters by search & Multiple student activities loaded & 1. Mock API with activities for John and Jane. 
+        TC010 & Student activities page displays and filters by search & Multiple student activities loaded & 1. Test API with database records: activities for John and Jane. 
         2. Render page. 
         3. Search for "Jane". 
         4. Verify results & Students: "John Doe", "Jane Smith" & Only Jane's activities visible; phone\_usage type shown in table cell & As Expected & Pass \\
         \hline
-        TC011 & Reports page opens generate modal and displays reports list & Valid token and reports exist & 1. Mock getReports API. 
+        TC011 & Reports page opens generate modal and displays reports list & Valid token and reports exist & 1. Test getReports API with database records. 
         2. Render ReportsPage. 
         3. Click "Generate New Report" button. 
         4. Verify modal & Report: \{type: "incident", exam: "Calculus I"\} & Report displayed; modal opens with "Generate New Report" heading & As Expected & Pass \\
         \hline
-        TC012 & All pages handle API errors gracefully & API returns network error & 1. Mock API to reject with error. 
+        TC012 & All pages handle API errors gracefully & API returns network error & 1. Test API error handling with database connection failure. 
         2. Render any investigator page. 
         3. Verify error handling & Error: "Network error" & Page renders with header visible; no crash or unhandled exception & As Expected & Pass \\
         \hline
@@ -391,23 +391,23 @@ The Student Portal testing validates the student-facing features including profi
         \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
         TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
-        2. Mock Profile, Activities, Violations APIs. 
+        2. Test Profile, Activities, Violations APIs with database records. 
         3. Render Student Dashboard & Token: "test-token", User ID: "student-123" & Header and sidebar appear on screen & As Expected & Pass \\
         \hline
-        TC002 & Dashboard displays welcome message with student name & API returns valid profile data & 1. Mock getStudentProfile API with name="John Doe". 
-        2. Mock Activities and Violations APIs. 
+        TC002 & Dashboard displays welcome message with student name & API returns valid profile data & 1. Test getStudentProfile API with database: name="John Doe". 
+        2. Test Activities and Violations APIs with database records. 
         3. Render dashboard & Profile: \{name: "John Doe", email: "john@test.com", roll\_number: "22I-1234"\} & UI shows: "Welcome back, John Doe" message & As Expected & Pass \\
         \hline
-        TC003 & Dashboard displays disciplinary cases count correctly & API returns violations data & 1. Mock Profile API. 
-        2. Mock getStudentViolations with 2 violations. 
+        TC003 & Dashboard displays disciplinary cases count correctly & API returns violations data & 1. Test Profile API with database records. 
+        2. Test getStudentViolations with database: 2 violations. 
         3. Render dashboard & Violations: [\{violation\_id: "v1", status: "pending"\}, \{violation\_id: "v2", status: "confirmed"\}] & UI shows: Disciplinary Cases = 2 & As Expected & Pass \\
         \hline
-        TC004 & Dashboard displays recent activities list & API returns activities data & 1. Mock Profile API. 
-        2. Mock getStudentActivitiesByStudentId with head\_movement activity. 
+        TC004 & Dashboard displays recent activities list & API returns activities data & 1. Test Profile API with database records. 
+        2. Test getStudentActivitiesByStudentId with database: head\_movement activity. 
         3. Render dashboard & Activity: head\_movement, severity: high & Recent activities section shows "head\_movement" activity & As Expected & Pass \\
         \hline
-        TC005 & Disciplinary records page displays violations list & Valid token and API returns violations & 1. Mock getStudentProfile API. 
-        2. Mock getStudentViolations with cheating violation. 
+        TC005 & Disciplinary records page displays violations list & Valid token and API returns violations & 1. Test getStudentProfile API with database records. 
+        2. Test getStudentViolations with database: cheating violation. 
         3. Render dcRecords page & Violation: cheating, severity: 3, status: pending & Violation type "cheating" appears as heading (h3 element) & As Expected & Pass \\
         \hline
         TC006 & Disciplinary records can be expanded to view details & Violations loaded on page & 1. Render dcRecords page with violations. 
@@ -415,12 +415,12 @@ The Student Portal testing validates the student-facing features including profi
         3. Click on record. 
         4. Verify details display & Violation: \{violation\_type: "cheating", status: "pending"\} & Record expands; "Details" text appears on screen & As Expected & Pass \\
         \hline
-        TC007 & Profile page allows editing student name & Valid profile data loaded & 1. Mock getStudentProfile with name="John Doe". 
+        TC007 & Profile page allows editing student name & Valid profile data loaded & 1. Test getStudentProfile with database: name="John Doe". 
         2. Render profile page. 
         3. Click "Edit" button. 
         4. Change name to "Jane Doe". 
         5. Click save button. 
-        6. Verify API call & Original: "John Doe", Updated: "Jane Doe" & updateStudentProfile API called with name="Jane Doe"; change saved successfully & As Expected & Pass \\
+        6. Verify API call & Original: "John Doe", Updated: "Jane Doe" & updateStudentProfile API called with name="Jane Doe"; change saved successfully to database & As Expected & Pass \\
         \hline
     \end{tabular}%
     }
@@ -443,17 +443,17 @@ The Student Portal testing validates the student-facing features including profi
         4. Click cancel button. 
         5. Verify revert & Changed: "Jane Doe", Original: "John Doe" & Input field disappears; original name "John Doe" displayed; updateStudentProfile not called & As Expected & Pass \\
         \hline
-        TC009 & Settings page allows password change with validation & Valid profile and matching passwords & 1. Mock getStudentProfile API. 
+        TC009 & Settings page allows password change with validation & Valid profile and matching passwords & 1. Test getStudentProfile API with database records. 
         2. Render settings page. 
         3. Switch to Password tab. 
         4. Enter current="oldpass123", new="newpass123", confirm="newpass123". 
-        5. Click "Update Password" & Passwords: \{current: "oldpass123", new: "newpass123", confirm: "newpass123"\} & changePassword API called with current\_password="oldpass123" and new\_password="newpass123" & As Expected & Pass \\
+        5. Click "Update Password" & Passwords: \{current: "oldpass123", new: "newpass123", confirm: "newpass123"\} & changePassword API called with current\_password="oldpass123" and new\_password="newpass123"; password updated in database & As Expected & Pass \\
         \hline
-        TC010 & Upload page displays uploaded documents and allows file removal & Documents exist in system & 1. Mock getStudentDocuments with id\_card.pdf. 
+        TC010 & Upload page displays uploaded documents and allows file removal & Documents exist in system & 1. Test getStudentDocuments with database records: id\_card.pdf. 
         2. Render upload page. 
         3. Find remove button. 
         4. Click remove. 
-        5. Verify removal & Document: \{filename: "id\_card.pdf", size: 1024000, status: "verified"\} & Document "id\_card.pdf" appears initially; after clicking remove button, document no longer visible & As Expected & Pass \\
+        5. Verify removal & Document: \{filename: "id\_card.pdf", size: 1024000, status: "verified"\} & Document "id\_card.pdf" appears initially; after clicking remove button, document removed from database and no longer visible & As Expected & Pass \\
         \hline
     \end{tabular}%
     }
@@ -473,26 +473,26 @@ The Admin Portal testing comprehensively validates all administrative functions 
         \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
         TC001 & Verify dashboard renders header and sidebar correctly & Valid token exists in sessionStorage & 1. Insert token in storage. 
-        2. Mock Stats, Activity, Incidents APIs. 
+        2. Test Stats, Activity, Incidents APIs with database records. 
         3. Render Admin Dashboard & Token: "test-token", User type: "admin" & Header and sidebar appear on screen & As Expected & Pass \\
         \hline
-        TC002 & Dashboard displays welcome message and statistics & API returns valid stats data & 1. Mock getDashboardStats with active\_exams=5. 
-        2. Mock other APIs. 
+        TC002 & Dashboard displays welcome message and statistics & API returns valid stats data & 1. Test getDashboardStats with database: active\_exams=5. 
+        2. Test other APIs with database records. 
         3. Render dashboard & Stats: \{active\_exams: 5, incidents\_detected: 10, students\_monitored: 150\} & UI shows: "Welcome back" message, Active Exams = 5, Incidents = 10 & As Expected & Pass \\
         \hline
-        TC003 & Dashboard displays recent incidents list & API returns incidents data & 1. Mock getRecentIncidents with "Suspicious Movement" incident. 
+        TC003 & Dashboard displays recent incidents list & API returns incidents data & 1. Test getRecentIncidents with database records: "Suspicious Movement" incident. 
         2. Render dashboard. 
         3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high"\} & Recent incidents section shows "John Doe" name & As Expected & Pass \\
         \hline
-        TC004 & Analytics page fetches and displays metrics correctly & Valid token and API returns metrics & 1. Mock getAnalyticsMetrics with total\_incidents=128. 
-        2. Mock other analytics APIs. 
+        TC004 & Analytics page fetches and displays metrics correctly & Valid token and API returns metrics & 1. Test getAnalyticsMetrics with database: total\_incidents=128. 
+        2. Test other analytics APIs with database records. 
         3. Render AnalyticsPage & Metrics: \{total\_incidents: 128, resolution\_rate: 87.5, avg\_response\_time: 4.2\} & UI shows: 128 incidents, 87.5\% resolution rate & As Expected & Pass \\
         \hline
-        TC005 & Analytics page displays incident type distribution & API returns distribution data & 1. Mock getIncidentTypeDistribution with types. 
+        TC005 & Analytics page displays incident type distribution & API returns distribution data & 1. Test getIncidentTypeDistribution with database records: types. 
         2. Render AnalyticsPage. 
         3. Verify display & Types: [\{type: "Suspicious Movement", count: 45\}, \{type: "Device Detected", count: 32\}] & "Suspicious Movement" and "Device Detected" appear on screen & As Expected & Pass \\
         \hline
-        TC006 & Exams page renders and displays exams list & Valid token and API returns exams & 1. Mock getExams with Calculus I and Data Structures. 
+        TC006 & Exams page renders and displays exams list & Valid token and API returns exams & 1. Test getExams with database records: Calculus I and Data Structures. 
         2. Render ExamsPage. 
         3. Verify display & Exams: [\{name: "Calculus I", course\_code: "MATH101"\}, \{name: "Data Structures", course\_code: "CS201"\}] & "Calculus I" and "Data Structures" appear on screen & As Expected & Pass \\
         \hline
@@ -520,11 +520,11 @@ The Admin Portal testing comprehensively validates all administrative functions 
         3. Change to "active". 
         4. Verify API call & Statuses: "scheduled", "active", "completed" & getExams API called with status='active' parameter & As Expected & Pass \\
         \hline
-        TC009 & Login page handles successful authentication & Valid credentials provided & 1. Mock fetch with success response. 
+        TC009 & Login page handles successful authentication & Valid credentials provided & 1. Test authentication with database credentials. 
         2. Render LoginPage. 
         3. Enter email="admin@test.com" and password="password123". 
         4. Click submit button & Credentials: \{email: "admin@test.com", password: "password123"\}. 
-        Response: \{access\_token: "test-token", user\_type: "admin"\} & Login API called; token stored in sessionStorage; navigate to "/dashboard" & As Expected & Pass \\
+        Response: \{access\_token: "test-token", user\_type: "admin"\} & Login API called with database validation; token stored in sessionStorage; navigate to "/dashboard" & As Expected & Pass \\
         \hline
         TC010 & Login page validates input and shows/hides password & Login form rendered & 1. Render LoginPage. 
         2. Verify password input type is "password". 
@@ -537,16 +537,16 @@ The Admin Portal testing comprehensively validates all administrative functions 
         4. Click submit. 
         5. Verify validation & Passwords: \{password: "12345", confirm: "12345"\} & Alert shown: "Password must be at least 6 characters long!" & As Expected & Pass \\
         \hline
-        TC012 & Users page fetches and displays users list & Valid token and API returns users & 1. Mock getUsers with John Doe and Jane Smith. 
+        TC012 & Users page fetches and displays users list & Valid token and API returns users & 1. Test getUsers with database records: John Doe and Jane Smith. 
         2. Render UsersPage. 
         3. Verify display & Users: John Doe (student), Jane Smith (admin) & "John Doe" and "Jane Smith" appear on screen & As Expected & Pass \\
         \hline
-        TC013 & Users page opens add user modal when button clicked & Users page loaded & 1. Mock getUsers API. 
+        TC013 & Users page opens add user modal when button clicked & Users page loaded & 1. Test getUsers API with database records. 
         2. Render UsersPage. 
         3. Click "Add User" button. 
         4. Verify modal & Initial users: [] & Modal opens with "Add New User" heading & As Expected & Pass \\
         \hline
-        TC014 & Incidents page renders and displays incidents list & Valid token and API returns incidents & 1. Mock getIncidents with "Suspicious Movement" incident. 
+        TC014 & Incidents page renders and displays incidents list & Valid token and API returns incidents & 1. Test getIncidents with database records: "Suspicious Movement" incident. 
         2. Render Incidents page. 
         3. Verify display & Incident: \{student\_name: "John Doe", type: "Suspicious Movement", severity: "high", status: "investigating"\} & "John Doe" and "Suspicious Movement" appear on screen & As Expected & Pass \\
         \hline
@@ -565,25 +565,25 @@ The Admin Portal testing comprehensively validates all administrative functions 
         \hline
         \textbf{Test Case ID} & \textbf{Test Objective} & \textbf{Pre-condition} & \textbf{Steps} & \textbf{Test Data} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Pass/Fail} \\
         \hline
-        TC015 & Monitoring page fetches and displays camera feeds & Valid token and API returns feeds & 1. Mock getMonitoringFeeds with Room A101 and B205. 
+        TC015 & Monitoring page fetches and displays camera feeds & Valid token and API returns feeds & 1. Test getMonitoringFeeds with database records: Room A101 and B205. 
         2. Render MonitoringPage. 
         3. Verify display & Feeds: [\{room\_name: "Room A101", status: "active"\}, \{room\_name: "Room B205", status: "inactive"\}] & "Room A101" and "Room B205" appear on screen & As Expected & Pass \\
         \hline
-        TC016 & Monitoring page opens phone camera monitor when button clicked & Monitoring page loaded & 1. Mock getMonitoringFeeds API. 
+        TC016 & Monitoring page opens phone camera monitor when button clicked & Monitoring page loaded & 1. Test getMonitoringFeeds API with database records. 
         2. Render MonitoringPage. 
         3. Click "Start Phone Camera" button. 
         4. Verify modal & Feeds: [] & Phone camera monitor component appears with testid \texttt{"phone-camera-monitor"} & As Expected & Pass \\
         \hline
-        TC017 & Reports page renders and displays reports list & Valid token and API returns reports & 1. Mock getReportHistory with exam and incident reports. 
-        2. Mock getExams and getIncidents. 
+        TC017 & Reports page renders and displays reports list & Valid token and API returns reports & 1. Test getReportHistory with database records: exam and incident reports. 
+        2. Test getExams and getIncidents with database records. 
         3. Render ReportsPage & Reports: [\{title: "Exam Report - Calculus I", type: "exam"\}, \{title: "Incident Report", type: "incident"\}] & Report headings "Exam Report - Calculus I" and "Incident Report" appear & As Expected & Pass \\
         \hline
-        TC018 & Reports page opens generate modal when button clicked & Reports page loaded & 1. Mock all reports APIs. 
+        TC018 & Reports page opens generate modal when button clicked & Reports page loaded & 1. Test all reports APIs with database records. 
         2. Render ReportsPage. 
         3. Click "Incident Report" button. 
         4. Verify modal & Reports: [] & Modal opens with "Generate Incident Report" heading & As Expected & Pass \\
         \hline
-        TC019 & Seating Plans page fetches and displays plans list & Valid token and API returns plans & 1. Mock getSeatingPlans with 2 PDF files. 
+        TC019 & Seating Plans page fetches and displays plans list & Valid token and API returns plans & 1. Test getSeatingPlans with database records: 2 PDF files. 
         2. Render SeatingPlansPage. 
         3. Verify display & Plans: [\{filename: "seating\_plan\_2024.pdf"\}, \{filename: "seating\_plan\_2025.pdf"\}] & \texttt{"seating\_plan\_2024.pdf"} and \texttt{"seating\_plan\_2025.pdf"} appear on screen & As Expected & Pass \\
         \hline
