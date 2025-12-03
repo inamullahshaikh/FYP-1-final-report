@@ -8,7 +8,7 @@ This chapter describes the current implementation status of the \textbf{ForeSyte
 
 The front-end of ForeSyte is implemented as a modern single-page application using React, TypeScript, Vite, and Tailwind CSS. The interface is split into role-specific areas so that administrators and investigators see different dashboards and workflows.
 
-\subsubsection*{Admin Dashboard}
+\subsubsection{Admin Dashboard}
 
 The main admin dashboard presents a high-level overview of system activity. It displays:
 \begin{itemize}
@@ -28,7 +28,7 @@ These statistics are fetched via the backend \texttt{/dashboard/stats} endpoint 
 
 The Admin Dashboard is therefore fully wired to the backend aggregation APIs. Loading states, error handling, and period switching are implemented in the front-end.
 
-\subsubsection*{Investigator Portal}
+\subsubsection{Investigator Portal}
 
 The Investigator Portal is implemented as a separate area in the React application, with its own header and sidebar components to clearly separate workflows from the admin role.
 
@@ -50,7 +50,7 @@ Two backend modules are particularly important for this iteration:
     \item \textbf{Reports API (\texttt{/reports})}: manages report generation and retrieval for incidents and exams.
 \end{itemize}
 
-\subsubsection*{Dashboard API}
+\subsubsection{Dashboard API}
 
 The \texttt{/dashboard/stats} endpoint computes:
 \begin{itemize}
@@ -463,7 +463,7 @@ Testing for this iteration concentrates on validating backend APIs, role-based a
 
 \subsection{Unit Testing}
 
-\subsubsection*{Investigator Portal Testing}
+\subsubsection{Investigator Portal Testing}
 
 \begin{table}[H]
 \centering
@@ -549,7 +549,7 @@ Testing for this iteration concentrates on validating backend APIs, role-based a
     \end{tabular}%
     }
 \end{table}
-\subsubsection*{Student Portal Testing}
+\subsubsection{Student Portal Testing}
 
 \begin{table}[H]
     \centering
@@ -632,7 +632,7 @@ Testing for this iteration concentrates on validating backend APIs, role-based a
     \end{tabular}%
     }
 \end{table}
-\subsubsection*{Admin Portal Testing}
+\subsubsection{Admin Portal Testing}
 
 \begin{table}[H]
     \centering
