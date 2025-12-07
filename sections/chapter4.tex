@@ -75,63 +75,179 @@ Google OAuth 2.0 is implemented in \texttt{src/database/auth.py} using Authlib l
 
 This section summarizes the main algorithms and data flows used to support the implemented features in ForeSyte.
 
-\subsection{Admin Dashboard Aggregation}
+\subsection{Camera Integration and Live Stream Processing}
 
-The Admin Dashboard relies on server-side aggregation logic to compute statistics for different time windows. The high-level algorithm for computing dashboard statistics is:
+The system connects to CCTV cameras and processes live video streams in real-time. The high-level pseudocode for this process is:
 
-\begin{enumerate}
-    \item \textbf{Determine Time Window:} Given \texttt{period} $\in \{\texttt{today}, \texttt{week}, \texttt{month}\}$, compute the current window (\texttt{start\_date}) and the immediately preceding window (\texttt{prev\_start}, \texttt{prev\_end}) for trend comparison.
-    \item \textbf{Count Active Exams:} Query \texttt{Exam} where \texttt{exam\_date} is greater than or equal to the current date. Perform the same query on the previous window to obtain \texttt{prev\_active\_exams}.
-    \item \textbf{Count Incidents and Students:} 
-    \begin{itemize}
-        \item Incidents: count \texttt{StudentActivity} records with timestamps within the current window.
-        \item Previous incidents: count \texttt{StudentActivity} records within the previous window.
-        \item Students monitored: count distinct \texttt{Seat.student\_id} in rooms and exams that fall inside the current and previous windows.
-    \end{itemize}
-    \item \textbf{Compute Average Exam Duration:} For all exams in the current window with non-null start and end times, compute the duration in minutes and average the result.
-    \item \textbf{Compute Trends:} For each metric (incidents, students, exams), compute percentage change between current and previous counts, handling the edge case when the previous value is zero.
-    \item \textbf{Return Structured Response:} Package all calculated values into a \texttt{DashboardStats} object and return it to the client.
-\end{enumerate}
+\begin{lstlisting}[language=pseudocode, basicstyle=\ttfamily\footnotesize, frame=single, backgroundcolor=\color{gray!10}, breaklines=true, breakatwhitespace=true, tabsize=2, showstringspaces=false, numbers=left, numberstyle=\tiny\color{gray}, numbersep=8pt, xleftmargin=15pt, xrightmargin=15pt, framexleftmargin=10pt, framexrightmargin=10pt, framextopmargin=5pt, framexbottommargin=5pt, rulecolor=\color{gray!50}]
+RECEIVE stream_url (RTSP, HTTP, or camera URL)
+SET duration_seconds = 3600 (default: 1 hour)
+SET callback function for frame processing
 
-On the client side, the React dashboard:
-\begin{itemize}
-    \item Calls \texttt{/dashboard/stats} to populate the metric cards.
-    \item Calls \texttt{/dashboard/activity} to render a bar chart comparing incidents and exams per time bucket.
-    \item Calls \texttt{/dashboard/recent-incidents} to display the latest suspicious activities with relative time labels.
-\end{itemize}
+------------------------------------
+CONNECT TO CAMERA STREAM
+------------------------------------
 
-\subsection{Report Generation Workflow (Planned Design)}
+CREATE VideoCapture object with stream_url
 
-The report generation workflow is designed to be configurable and format-agnostic. \textbf{Note:} The following describes the planned design; actual file generation (PDF, CSV, Excel) is not yet implemented in this iteration.
+IF NOT cap.isOpened():
+    RETURN error: "Cannot connect to live stream"
 
-\subsubsection*{Incident Reports (Planned)}
+------------------------------------
+PROCESS LIVE STREAM
+------------------------------------
 
-\begin{enumerate}
-    \item The investigator selects one or more incident IDs and chooses an export format (e.g., PDF, CSV, JSON), with options such as including video evidence links.
-    \item The front-end constructs an \texttt{IncidentReportRequest} and sends it to \texttt{POST /reports/incidents}.
-    \item The backend validates permissions, resolves the incident IDs into \texttt{StudentActivity} records, ensures there is an associated \texttt{Violation}, and generates a unique report filename.
-    \item A new \texttt{Report} record is inserted in the database, and the API returns the report ID, file path, format, and status to the client. \textbf{In the current iteration, the actual report file is not generated; only the database record is created.}
-\end{enumerate}
+GET start_time = current datetime
+SET frame_count = 0
+SET processed_count = 0
 
-\subsubsection*{Exam Reports (Planned)}
+WHILE (current_time - start_time) < duration_seconds:
+    READ frame from stream -> ret, frame
+    
+    IF NOT ret:
+        LOG warning: "Failed to read frame"
+        SLEEP 0.1 seconds
+        CONTINUE
+    
+    INCREMENT frame_count
+    
+    IF frame_count MOD 30 == 0:
+        Process 1 frame per second (at 30fps stream)
+        IF callback exists:
+            CALL callback(frame, frame_count, current_timestamp)
+        INCREMENT processed_count
+    
+    SLEEP 0.001 seconds (prevent system overload)
 
-\begin{enumerate}
-    \item The investigator selects an exam and desired output format from the Reports Page.
-    \item The front-end sends an \texttt{ExamReportRequest} to \texttt{POST /reports/exams/\{exam\_id\}}.
-    \item The backend verifies the exam, aggregates its related \texttt{StudentActivity} records, ensures a linked \texttt{Violation} exists, and creates a \texttt{Report} entry in the database.
-    \item The API responds with the report metadata. \textbf{The actual report file generation (PDF/CSV/Excel) will be implemented in a future iteration.}
-\end{enumerate}
+RELEASE VideoCapture
 
-\subsection{Investigator Violation Review Flow}
+------------------------------------
+RETURN RESULTS
+------------------------------------
 
-The Investigator Dashboard is designed to give investigators a structured way to triage violations:
+RETURN:
+    success = true
+    frames_captured = frame_count
+    frames_processed = processed_count
+    duration = (end_time - start_time) in seconds
+\end{lstlisting}
 
-\begin{enumerate}
-    \item Load dashboard summary counters (total violations, pending reviews, resolved today, active exams).
-    \item Display a list of recent activities with type, severity, and status tags.
-    \item Allow investigators to toggle the period filter to focus on \texttt{today}, \texttt{week}, or \texttt{month}.
-    \item Provide a \textit{Review} action for each activity which, in the next iteration, will navigate to a detailed case view and allow updating violation status and adding investigation notes.
-\end{enumerate}
+\subsection{Video Upload and Storage}
+
+The system handles video file uploads and organizes them for processing. The high-level pseudocode for this process is:
+
+\begin{lstlisting}[language=pseudocode, basicstyle=\ttfamily\footnotesize, frame=single, backgroundcolor=\color{gray!10}, breaklines=true, breakatwhitespace=true, tabsize=2, showstringspaces=false, numbers=left, numberstyle=\tiny\color{gray}, numbersep=8pt, xleftmargin=15pt, xrightmargin=15pt, framexleftmargin=10pt, framexrightmargin=10pt, framextopmargin=5pt, framexbottommargin=5pt, rulecolor=\color{gray!50}]
+RECEIVE file_content (video bytes)
+RECEIVE filename (original filename)
+RECEIVE exam_id
+RECEIVE room_id
+
+------------------------------------
+CREATE DIRECTORY STRUCTURE
+------------------------------------
+
+DEFINE upload_dir = "uploads/videos"
+CREATE directory: upload_dir / exam_id / room_id
+CREATE parent directories if NOT EXISTS
+
+------------------------------------
+GENERATE UNIQUE FILENAME
+------------------------------------
+
+GET current timestamp -> timestamp
+EXTRACT file extension from filename -> file_extension
+GENERATE new_filename = "exam_footage_" + timestamp + file_extension
+
+------------------------------------
+SAVE VIDEO FILE
+------------------------------------
+
+SET file_path = upload_dir / exam_id / room_id / new_filename
+WRITE file_content to file_path (binary mode)
+GET absolute_path = resolve(file_path)
+
+LOG: "Saved video to: absolute_path"
+
+------------------------------------
+RETURN FILE PATH
+------------------------------------
+
+RETURN absolute_path
+\end{lstlisting}
+
+\subsection{Frame Extraction from Video}
+
+The system extracts frames from uploaded videos at specified frame rates for analysis. The high-level pseudocode for this process is:
+
+\begin{lstlisting}[language=pseudocode, basicstyle=\ttfamily\footnotesize, frame=single, backgroundcolor=\color{gray!10}, breaklines=true, breakatwhitespace=true, tabsize=2, showstringspaces=false, numbers=left, numberstyle=\tiny\color{gray}, numbersep=8pt, xleftmargin=15pt, xrightmargin=15pt, framexleftmargin=10pt, framexrightmargin=10pt, framextopmargin=5pt, framexbottommargin=5pt, rulecolor=\color{gray!50}]
+RECEIVE video_source (file path or stream URL)
+RECEIVE frame_rate = 1 (extract 1 frame per N frames, default: every frame)
+RECEIVE job_id (processing job identifier)
+
+------------------------------------
+OPEN VIDEO SOURCE
+------------------------------------
+
+CREATE VideoCapture object with video_source
+
+IF NOT cap.isOpened():
+    RETURN empty frames_info list
+
+------------------------------------
+GET VIDEO PROPERTIES
+------------------------------------
+
+GET total_frames = CAP_PROP_FRAME_COUNT
+CALCULATE expected_extracted_frames = (total_frames // frame_rate) + (1 if total_frames MOD frame_rate > 0 else 0)
+LOG: "Video has total_frames frames, extracting every frame_rate frames (expected: ~expected_extracted_frames frames)"
+
+------------------------------------
+EXTRACT FRAMES
+------------------------------------
+
+SET frame_number = 0
+SET extracted_count = 0
+CREATE empty frames_info list
+
+WHILE True:
+    READ frame from video -> ret, frame
+    
+    IF NOT ret:
+        BREAK (end of video)
+    
+    IF frame_number MOD frame_rate == 0:
+        GET timestamp = current datetime
+        GENERATE frame_filename = "frame_" + job_id + "_" + frame_number + "_" + timestamp + ".jpg"
+        SET frame_path = frame_dir / frame_filename
+        
+        SAVE frame to frame_path using cv2.imwrite()
+        
+        ADD to frames_info:
+            frame_number
+            timestamp
+            frame_path
+            extracted = true
+        
+        INCREMENT extracted_count
+        
+        IF progress_callback exists:
+            CALL progress_callback(extracted_count, expected_extracted_frames)
+        
+        IF extracted_count MOD 100 == 0:
+            LOG: "Extracted extracted_count frames"
+    
+    INCREMENT frame_number
+
+RELEASE VideoCapture
+
+------------------------------------
+RETURN EXTRACTED FRAMES
+------------------------------------
+
+LOG: "Total frames extracted: extracted_count from frame_number total frames"
+RETURN frames_info list
+\end{lstlisting}
+
 
 \subsection{Seating Plan Upload and Processing}
 

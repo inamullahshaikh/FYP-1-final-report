@@ -128,6 +128,11 @@
 % For e.g., usually there are 3 students in a group, so leave authorone, 
 % authortwo, and authorthree, and delete authorfour.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define keywords environment if not already defined
+\newenvironment{keywords}
+  {\small\noindent\textbf{Keywords:} }
+  {}
 \department{Department of Computer Science}
 \faculty{Computer Science}
 \degreeyear{2026}
@@ -159,6 +164,10 @@
 %Briefly state the (1) research problem, (2) methodology, (3) key results, and (4) conclusion. Generally, abstracts are between 150 and 200 words–roughly 10-15 sentences.
 %\end{abstract}
 
+\begin{keywords}
+Exam Surveillance, AI-Powered Monitoring, Computer Vision, Deep Learning, Student Behavior Detection, Invigilator Monitoring, Cheating Detection, FastAPI, React, Dashboard Systems, Video Processing, RESTful API, PostgreSQL, MongoDB, Seat Mapping, Academic Integrity
+\end{keywords}
+
 \include{sections/chapter1}
 \include{sections/chapter2}
 \include{sections/chapter3}
@@ -170,11 +179,7 @@
 \bibliographystyle{plain}
 \bibliography{bib}
 \addcontentsline{toc}{chapter}{References} 
-\let\cleardoublepage\clearpage
-\clearpage
 
-% Prevent blank pages before appendix
-\let\cleardoublepage\clearpage
 \appendix
 \include{appendix}
 \end{document}
